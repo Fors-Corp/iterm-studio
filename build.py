@@ -335,8 +335,7 @@ def make(pid, name, cat, flavor, base_h, *, mode="dark", accent_s=0.62, tint=0.0
     fg  = hsl(base_h, 0.10, fg_l)
     dim = hsl(base_h, 0.14, dim_l)
     sel = hsl(base_h, 0.25, sel_l)
-    # 6 accent hues fanned around base_h
-    offs = [0, 130, 90, 45, 200, 275]                       # red-ish, green-ish, yellow, orange, blue, magenta
+    # 6 accent hues fanned around base_h: red · green · yellow · orange · blue · magenta
     hues = [base_h - 25, base_h + 95, base_h + 55, base_h + 20, base_h + 200, base_h + 260]
     norm_l = 0.58 if dark else 0.42
     brt_l  = 0.70 if dark else 0.36
