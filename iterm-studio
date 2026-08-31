@@ -286,15 +286,17 @@ def do_tool(name):
 # --------------------------------------------------------------------------- #
 #  page rendering  (shared by `serve` and the published artifact)
 # --------------------------------------------------------------------------- #
-def render_app(mode, token=""):
+def render_app(mode, token="", *, full_document=False):
     html = (ROOT / "app.html").read_text()
     arr = json.dumps(DATA["presets"], separators=(",", ":"))
     html = (html.replace("/*__PRESETS__*/[]", arr)
                 .replace("__MODE__", mode)
                 .replace("__TOKEN__", token))
-    if mode == "web":
-        # the Artifacts runtime supplies its own <!doctype><html><head><body>
+    if mode == "web" and not full_document:
+        # the Artifacts runtime supplies its own <!doctype><html><head><body>;
+        # GitHub Pages / a plain file needs the wrapper, so pass full_document=True there.
         html = re.sub(r"^<!doctype html>\s*<html[^>]*>\s*", "", html, flags=re.I)
+        html = re.sub(r"\s*</html>\s*$", "\n", html, flags=re.I)
     return html
 
 # --------------------------------------------------------------------------- #
