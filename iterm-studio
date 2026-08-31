@@ -1,0 +1,422 @@
+#!/usr/bin/env python3
+"""iTerm Studio — pick a terminal style, apply it to this Mac.
+
+  iterm-studio serve [--port N] [--no-open]   one-click picker in your browser
+  iterm-studio list
+  iterm-studio apply <id> [--with-tools] [--set-default]
+  iterm-studio current
+  iterm-studio revert
+  iterm-studio version
+
+Applies three things:
+  * an iTerm2 Dynamic Profile named "Studio"  (colours, transparency, blur, cursor, font)
+  * a managed block in ~/.p10k.zsh            (Powerlevel10k prompt shape + palette)
+  * a managed block in ~/.zshrc               (syntax-highlight + autosuggest colours)
+Nothing else in your dotfiles is touched. `revert` removes all of it.
+"""
+import json, re, secrets, subprocess, sys, threading, pathlib
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+
+__version__ = "1.0.0"
+
+ROOT   = pathlib.Path(__file__).resolve().parent
+HOME   = pathlib.Path.home()
+DATA   = json.loads((ROOT / "presets.json").read_text())
+PRESETS = {p["id"]: p for p in DATA["presets"]}
+
+STATE  = HOME / ".config/iterm-studio";  STATE.mkdir(parents=True, exist_ok=True)
+ACTIVE = STATE / "active"
+PREVGUID = STATE / "prev-default-guid"
+
+P10K   = HOME / ".p10k.zsh"
+ZSHRC  = HOME / ".zshrc"
+DPDIR  = HOME / "Library/Application Support/iTerm2/DynamicProfiles"
+DPFILE = DPDIR / "iterm-studio.json"
+GUID   = "ITERM-STUDIO-PROFILE-0001"
+
+P10K_BEGIN, P10K_END = "# >>> iterm-studio prompt >>>", "# <<< iterm-studio prompt <<<"
+ZSH_BEGIN,  ZSH_END  = "# >>> iterm-studio shell >>>",  "# <<< iterm-studio shell <<<"
+
+# brew targets for the Power-ups shelf + the two stack presets
+TOOLS = {
+ "starship":["starship"], "eza":["eza"], "bat":["bat"], "fzf":["fzf"], "fd":["fd"],
+ "zoxide":["zoxide"], "atuin":["atuin"], "git-delta":["git-delta"], "tmux":["tmux"],
+ "btop":["btop"], "tlrc":["tlrc"], "thefuck":["thefuck"],
+ "zsh-fast-syntax-highlighting":["zsh-fast-syntax-highlighting"],
+ "nerd-fonts":["--cask","font-jetbrains-mono-nerd-font"],
+}
+
+C = dict(reset="\033[0m", dim="\033[2m", b="\033[1m", grn="\033[32m", ylw="\033[33m", red="\033[31m", cyn="\033[36m")
+def say(m): print(m)
+def die(m): print(f"{C['red']}error:{C['reset']} {m}", file=sys.stderr); sys.exit(1)
+
+# --------------------------------------------------------------------------- #
+#  file helpers
+# --------------------------------------------------------------------------- #
+def strip_block(text, begin, end):
+    return re.sub(r"\n?" + re.escape(begin) + r".*?" + re.escape(end) + r"[^\n]*\n?", "\n", text, flags=re.S)
+
+def hexcomp(h):
+    h = h.lstrip("#")
+    r, g, b = (int(h[i:i+2], 16) / 255 for i in (0, 2, 4))
+    return {"Red Component": round(r, 6), "Green Component": round(g, 6),
+            "Blue Component": round(b, 6), "Color Space": "sRGB"}
+
+def write_profile(p):
+    col, win = p["colors"], p["window"]
+    font = win["font"]
+    normal_font = f"{font.replace(' ', '-')}-Regular 13" if font.startswith("MesloLGS") else f"{font} 13"
+    prof = {
+        "Name": "Studio", "Guid": GUID, "Dynamic Profile Parent Name": "Default",
+        "Foreground Color": hexcomp(col["fg"]), "Background Color": hexcomp(col["bg"]),
+        "Bold Color": hexcomp(col["fg"]), "Link Color": hexcomp(col["ansi"][6]),
+        "Cursor Color": hexcomp(col["cursor"]), "Cursor Text Color": hexcomp(col["cursorText"]),
+        "Selection Color": hexcomp(col["selection"]), "Selected Text Color": hexcomp(col["selectedText"]),
+        "Badge Color": {**hexcomp(col["ansi"][1]), "Alpha Component": 0.5},
+        "Cursor Guide Color": {**hexcomp(col["ansi"][4]), "Alpha Component": 0.25},
+        **{f"Ansi {i} Color": hexcomp(col["ansi"][i]) for i in range(16)},
+        "Transparency": win["transparency"], "Blur": win["blur"] > 0, "Blur Radius": win["blur"],
+        "Only The Default BG Color Uses Transparency": True,
+        "Cursor Type": {"underline": 0, "bar": 1, "block": 2}[win["cursor"]],
+        "Blinking Cursor": False,
+        "Normal Font": normal_font, "Non Ascii Font": "MesloLGS-NF-Regular 13", "Use Non-ASCII Font": False,
+        "ASCII Anti Aliased": True, "Non-ASCII Anti Aliased": True,
+        "Use Bold Font": True, "Use Bright Bold": True, "Use Italic Font": True,
+        "Draw Powerline Glyphs": True, "Horizontal Spacing": 1, "Vertical Spacing": 1,
+        "Minimum Contrast": 0, "Unlimited Scrollback": True, "Scrollback Lines": 100000,
+        "Silence Bell": True, "Visual Bell": True, "Flashing Bell": False,
+    }
+    DPDIR.mkdir(parents=True, exist_ok=True)
+    DPFILE.write_text(json.dumps({"Profiles": [prof]}, indent=2))
+
+# --------------------------------------------------------------------------- #
+#  prompt / shell blocks
+# --------------------------------------------------------------------------- #
+def p10k_block(p):
+    a = p["colors"]["ansi"]; fg = p["colors"]["fg"]
+    blue, grn, ylw, red, mag, dim = a[4], a[2], a[3], a[1], a[5], a[8]
+    fl = p["flavor"]
+    L = [P10K_BEGIN, "# managed by `iterm-studio` — do not edit by hand", "() {", "  emulate -L zsh",
+         "  unset -m '(POWERLEVEL9K_*)~POWERLEVEL9K_GITSTATUS_DIR'",
+         "  autoload -Uz is-at-least && is-at-least 5.1 || return"]
+    common = [
+        "  typeset -g POWERLEVEL9K_MODE=nerdfont-complete",
+        "  typeset -g POWERLEVEL9K_ICON_PADDING=none",
+        "  typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true",
+        "  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=always",
+        "  typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet",
+        "  typeset -g POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true",
+        "  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1",
+        "  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=1",
+        f"  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='{dim}'",
+        "  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PREFIX='took '",
+        "  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'",
+        f"  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{{VIINS,VICMD,VIVIS,VIOWR}}_FOREGROUND='{blue}'",
+        f"  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{{VIINS,VICMD,VIVIS,VIOWR}}_FOREGROUND='{red}'",
+        "  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'",
+        "  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'",
+        "  typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_{LEFT,RIGHT}_WHITESPACE=",
+        f"  typeset -g POWERLEVEL9K_DIR_FOREGROUND='{blue}'",
+        f"  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND='{fg}'",
+        f"  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND='{dim}'",
+        "  typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true",
+        "  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique",
+        "  typeset -g POWERLEVEL9K_DIR_MAX_LENGTH=60",
+        f"  typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND='{ylw}'",
+        f"  typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='{ylw}'",
+        f"  typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='{ylw}'",
+        f"  typeset -g POWERLEVEL9K_VCS_CONFLICTED_FOREGROUND='{red}'",
+        f"  typeset -g POWERLEVEL9K_VCS_LOADING_FOREGROUND='{dim}'",
+        "  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=' '",
+        "  typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON='?'",
+        "  typeset -g POWERLEVEL9K_VCS_UNSTAGED_ICON='✚'",
+        "  typeset -g POWERLEVEL9K_VCS_STAGED_ICON='●'",
+    ]
+    if fl in ("lean2", "minimal"):
+        common += [
+            "  typeset -g POWERLEVEL9K_BACKGROUND=",
+            "  typeset -g POWERLEVEL9K_{LEFT,RIGHT}_SEGMENT_SEPARATOR=' '",
+            "  typeset -g POWERLEVEL9K_{LEFT,RIGHT}_SUBSEGMENT_SEPARATOR=' '",
+            "  typeset -g POWERLEVEL9K_LEFT_PROMPT_{FIRST_SEGMENT_START,LAST_SEGMENT_END}_SYMBOL=",
+            "  typeset -g POWERLEVEL9K_RIGHT_PROMPT_{FIRST_SEGMENT_START,LAST_SEGMENT_END}_SYMBOL=",
+            "  typeset -g POWERLEVEL9K_VCS_PREFIX=",
+            "  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time)",
+        ]
+        if fl == "lean2":
+            common += [
+                "  typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline prompt_char)",
+                f"  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{{{dim}}}╭─%f'",
+                f"  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%F{{{dim}}}├─%f'",
+                f"  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{{{dim}}}╰─%f'",
+            ]
+        else:
+            common += [
+                "  typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs prompt_char)",
+                "  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=",
+                "  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=",
+            ]
+    else:  # powerline / pill / rainbow — solid segments, two lines
+        sep = {"pill": ("\\uE0B6", "\\uE0B4", "\\uE0B7", "\\uE0B5"),
+               "powerline": ("", "\\uE0B0", "", "\\uE0B2"),
+               "rainbow": ("", "\\uE0B0", "", "\\uE0B2")}[fl]
+        dfg = p["colors"]["bg"]
+        common += [
+            "  typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline prompt_char)",
+            "  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time)",
+            f"  typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=$'{sep[0]}'",
+            f"  typeset -g POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'{sep[1]}'",
+            f"  typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=$'{sep[1]}'",
+            f"  typeset -g POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL=$'{sep[2]}'",
+            f"  typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'{sep[3]}'",
+            f"  typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=$'{sep[3]}'",
+            f"  typeset -g POWERLEVEL9K_DIR_BACKGROUND='{blue}'",
+            f"  typeset -g POWERLEVEL9K_DIR_FOREGROUND='{dfg}'",
+            f"  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND='{dfg}'",
+            f"  typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND='{grn if fl=='rainbow' else dim}'",
+            f"  typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='{ylw}'",
+            f"  typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='{grn if fl=='rainbow' else dim}'",
+            f"  typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND='{dfg if fl=='rainbow' else fg}'",
+            f"  typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='{dfg}'",
+            f"  typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='{dfg if fl=='rainbow' else fg}'",
+            f"  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='{mag if fl=='rainbow' else dim}'",
+            f"  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='{dfg if fl=='rainbow' else fg}'",
+            f"  typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND='{red}'",
+            f"  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND='{dfg}'",
+            "  typeset -g POWERLEVEL9K_STATUS_OK=false",
+            "  typeset -g POWERLEVEL9K_PROMPT_CHAR_BACKGROUND=",
+            "  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=",
+            "  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=",
+        ]
+    L += common
+    L += ["  (( ! $+functions[p10k] )) || p10k reload", "}", P10K_END]
+    return "\n".join(L) + "\n"
+
+def zsh_block(p):
+    a = p["colors"]["ansi"]; fg = p["colors"]["fg"]
+    dim, grn, cyan, ylw, red = a[8], a[2], a[6], a[3], a[1]
+    lines = [ZSH_BEGIN, "# managed by `iterm-studio` — do not edit by hand",
+             f"ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg={dim}'", "typeset -gA ZSH_HIGHLIGHT_STYLES"]
+    for k in ("command", "builtin", "alias", "function", "precommand"):
+        lines.append(f"ZSH_HIGHLIGHT_STYLES[{k}]='fg={grn}'")
+    lines += [
+        f"ZSH_HIGHLIGHT_STYLES[path]='fg={fg}'",
+        f"ZSH_HIGHLIGHT_STYLES[globbing]='fg={cyan}'",
+        f"ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg={ylw}'",
+        f"ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg={ylw}'",
+        f"ZSH_HIGHLIGHT_STYLES[unknown-token]='fg={red}'",
+        ZSH_END,
+    ]
+    return "\n".join(lines) + "\n"
+
+def upsert_zsh(block):
+    t = ZSHRC.read_text()
+    if ZSH_BEGIN in t:
+        t = strip_block(t, ZSH_BEGIN, ZSH_END)
+    anchor = "source $ZSH/oh-my-zsh.sh"
+    t = t.replace(anchor, anchor + "\n\n" + block, 1) if anchor in t else t.rstrip() + "\n\n" + block
+    ZSHRC.write_text(t)
+
+# --------------------------------------------------------------------------- #
+#  core operations  (return dicts, no printing)
+# --------------------------------------------------------------------------- #
+def state():
+    pid = ACTIVE.read_text().strip() if ACTIVE.exists() else None
+    return {"active": pid, "name": PRESETS[pid]["name"] if pid in PRESETS else None,
+            "setDefault": PREVGUID.exists()}
+
+def do_apply(pid, with_tools=False, set_default=False):
+    if pid not in PRESETS:
+        raise ValueError(f"unknown style '{pid}'")
+    p = PRESETS[pid]
+
+    orig = HOME / ".p10k.zsh.iterm-studio-orig"
+    if P10K.exists() and not orig.exists():
+        orig.write_text(P10K.read_text())
+
+    t = P10K.read_text() if P10K.exists() else ""
+    P10K.write_text(strip_block(t, P10K_BEGIN, P10K_END).rstrip() + "\n\n" + p10k_block(p))
+    upsert_zsh(zsh_block(p))
+    write_profile(p)
+
+    installed = ""
+    if with_tools and p["tools"]:
+        pkgs = []
+        for tname in p["tools"]:
+            pkgs += TOOLS.get(tname, [tname])
+        r = subprocess.run(["brew", "install", *pkgs], capture_output=True, text=True)
+        installed = f" · brew {'ok' if r.returncode == 0 else 'had issues'} ({', '.join(p['tools'])})"
+
+    if set_default:
+        cur = subprocess.run(["defaults", "read", "com.googlecode.iterm2", "Default Bookmark Guid"],
+                             capture_output=True, text=True).stdout.strip()
+        if cur and not PREVGUID.exists():
+            PREVGUID.write_text(cur)
+        subprocess.run(["defaults", "write", "com.googlecode.iterm2", "Default Bookmark Guid", "-string", GUID])
+    elif PREVGUID.exists():
+        subprocess.run(["defaults", "write", "com.googlecode.iterm2", "Default Bookmark Guid", "-string",
+                        PREVGUID.read_text().strip()])
+        PREVGUID.unlink()
+
+    ACTIVE.write_text(pid)
+    tail = "it's the default profile — open a new tab" if set_default else "select the \"Studio\" profile in iTerm (⌘I)"
+    return {"ok": True, "active": pid, "name": p["name"],
+            "message": f"Applied {p['name']}{installed}. Colours: {tail}. Prompt: run `exec zsh`."}
+
+def do_revert():
+    if P10K.exists():
+        P10K.write_text(strip_block(P10K.read_text(), P10K_BEGIN, P10K_END).rstrip() + "\n")
+    if ZSHRC.exists():
+        ZSHRC.write_text(strip_block(ZSHRC.read_text(), ZSH_BEGIN, ZSH_END))
+    DPFILE.unlink(missing_ok=True)
+    if PREVGUID.exists():
+        subprocess.run(["defaults", "write", "com.googlecode.iterm2", "Default Bookmark Guid", "-string",
+                        PREVGUID.read_text().strip()])
+        PREVGUID.unlink()
+    ACTIVE.unlink(missing_ok=True)
+    return {"ok": True, "message": "Reverted — Studio profile and managed dotfile blocks removed. Run `exec zsh`."}
+
+def do_tool(name):
+    if name not in TOOLS:
+        raise ValueError(f"unknown tool '{name}'")
+    r = subprocess.run(["brew", "install", *TOOLS[name]], capture_output=True, text=True)
+    if r.returncode != 0 and "already installed" not in (r.stderr + r.stdout):
+        raise RuntimeError((r.stderr or r.stdout).strip().splitlines()[-1][:200])
+    return {"ok": True, "message": f"{name} installed"}
+
+# --------------------------------------------------------------------------- #
+#  page rendering  (shared by `serve` and the published artifact)
+# --------------------------------------------------------------------------- #
+def render_app(mode, token=""):
+    html = (ROOT / "app.html").read_text()
+    arr = json.dumps(DATA["presets"], separators=(",", ":"))
+    html = (html.replace("/*__PRESETS__*/[]", arr)
+                .replace("__MODE__", mode)
+                .replace("__TOKEN__", token))
+    if mode == "web":
+        # the Artifacts runtime supplies its own <!doctype><html><head><body>
+        html = re.sub(r"^<!doctype html>\s*<html[^>]*>\s*", "", html, flags=re.I)
+    return html
+
+# --------------------------------------------------------------------------- #
+#  local one-click server
+# --------------------------------------------------------------------------- #
+def serve(port, open_browser=True):
+    token = secrets.token_hex(16)
+    for cand in range(port, port + 20):
+        try:
+            httpd = ThreadingHTTPServer(("127.0.0.1", cand), None); httpd.server_close(); port = cand; break
+        except OSError:
+            continue
+    else:
+        die("no free port in range")
+
+    page = render_app("local", token).encode()
+    HOST_OK   = {f"127.0.0.1:{port}", f"localhost:{port}"}
+    ORIGIN_OK = {f"http://127.0.0.1:{port}", f"http://localhost:{port}"}
+
+    class H(BaseHTTPRequestHandler):
+        def log_message(self, *a): pass
+        def _send(self, code, body=b"", ctype="application/json"):
+            self.send_response(code)
+            self.send_header("Content-Type", ctype)
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            if body: self.wfile.write(body)
+        def _guard(self):
+            if (self.headers.get("Host") or "").split(",")[0].strip() not in HOST_OK:
+                self._send(403, b'{"ok":false,"message":"bad host"}'); return False
+            org = self.headers.get("Origin")
+            if org and org not in ORIGIN_OK:
+                self._send(403, b'{"ok":false,"message":"bad origin"}'); return False
+            if self.headers.get("X-Studio-Token") != token:
+                self._send(403, b'{"ok":false,"message":"bad token"}'); return False
+            return True
+        def do_GET(self):
+            if self.path in ("/", "/index.html"):
+                return self._send(200, page, "text/html; charset=utf-8")
+            if self.path == "/api/state":
+                if not self._guard(): return
+                return self._send(200, json.dumps(state()).encode())
+            self._send(404, b'{"ok":false}')
+        def do_POST(self):
+            if not self._guard(): return
+            n = int(self.headers.get("Content-Length") or 0)
+            try:
+                body = json.loads(self.rfile.read(n) or b"{}")
+            except Exception:
+                return self._send(400, b'{"ok":false,"message":"bad json"}')
+            try:
+                if self.path == "/api/apply":
+                    res = do_apply(body.get("id", ""), bool(body.get("tools")), bool(body.get("setDefault")))
+                elif self.path == "/api/revert":
+                    res = do_revert()
+                elif self.path == "/api/tool":
+                    res = do_tool(body.get("name", ""))
+                else:
+                    return self._send(404, b'{"ok":false,"message":"no such endpoint"}')
+                self._send(200, json.dumps(res).encode())
+            except Exception as e:
+                self._send(200, json.dumps({"ok": False, "message": str(e)}).encode())
+
+    srv = ThreadingHTTPServer(("127.0.0.1", port), H)
+    url = f"http://127.0.0.1:{port}/"
+    print(f"{C['grn']}iTerm Studio{C['reset']} → {C['b']}{url}{C['reset']}", flush=True)
+    print(f"{C['dim']}one click on a card applies it for real. Ctrl-C to stop the server.{C['reset']}", flush=True)
+    if open_browser:
+        threading.Timer(0.4, lambda: subprocess.run(["open", url])).start()
+    try:
+        srv.serve_forever()
+    except KeyboardInterrupt:
+        say("\nstopped.")
+        srv.shutdown()
+
+# --------------------------------------------------------------------------- #
+#  CLI
+# --------------------------------------------------------------------------- #
+def cmd_list(_):
+    st = state()
+    say(f"{C['b']}{'ID':<18}{'NAME':<20}{'CAT':<8}PROMPT{C['reset']}")
+    for p in DATA["presets"]:
+        mark = f"  {C['grn']}● active{C['reset']}" if st["active"] == p["id"] else ""
+        say(f"{p['id']:<18}{p['name']:<20}{p['category']:<8}{p['flavor']}{mark}")
+
+def cmd_current(_):
+    st = state()
+    say(f"{st['active']}  ({st['name']})" if st["active"] else "(none — run `iterm-studio apply <id>` or `iterm-studio serve`)")
+
+def cmd_apply(args):
+    ids = [a for a in args if not a.startswith("-")]
+    if not ids:
+        die("usage: iterm-studio apply <id> [--with-tools] [--set-default]")
+    try:
+        res = do_apply(ids[0], "--with-tools" in args, "--set-default" in args)
+    except Exception as e:
+        die(str(e))
+    say(f"{C['grn']}✓ {res['message']}{C['reset']}")
+
+def cmd_revert(_):
+    say(f"{C['grn']}✓ {do_revert()['message']}{C['reset']}")
+
+def cmd_serve(args):
+    port = 8787
+    if "--port" in args:
+        port = int(args[args.index("--port") + 1])
+    serve(port, open_browser="--no-open" not in args)
+
+def cmd_version(_):
+    say(f"iterm-studio {__version__}  ·  {len(PRESETS)} presets")
+
+CMDS = {"list": cmd_list, "current": cmd_current, "apply": cmd_apply,
+        "revert": cmd_revert, "serve": cmd_serve, "version": cmd_version}
+
+def main():
+    argv = sys.argv[1:]
+    if argv and argv[0] in ("-V", "--version"):
+        return cmd_version(argv)
+    if not argv or argv[0] in ("-h", "--help") or argv[0] not in CMDS:
+        say(__doc__); sys.exit(0 if not argv or argv[0] in ("-h", "--help") else 1)
+    CMDS[argv[0]](argv[1:])
+
+if __name__ == "__main__":
+    main()

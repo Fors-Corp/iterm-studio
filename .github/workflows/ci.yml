@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Lint (ruff)
+        run: ruff check .
+
+      - name: Compile
+        run: python -m py_compile iterm-studio build.py tests/test_presets.py
+
+      - name: Presets are committed in sync with build.py
+        run: |
+          python build.py
+          git diff --exit-code -- presets.json presets.js
+
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+
+      - name: app.html JavaScript syntax
+        run: node tests/check_app_js.mjs
+
+      - name: CLI smoke
+        run: |
+          python iterm-studio version
+          python iterm-studio list | tail -n +2 | wc -l

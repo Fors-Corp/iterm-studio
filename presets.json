@@ -1,0 +1,4861 @@
+{
+ "version": 2,
+ "presets": [
+  {
+   "id": "tokyo-night",
+   "name": "Tokyo Night",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Cool indigo, periwinkle path, amber branch. The balanced default.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#c0caf5",
+    "bg": "#24283b",
+    "cursor": "#c0caf5",
+    "cursorText": "#24283b",
+    "selection": "#364a82",
+    "selectedText": "#c0caf5",
+    "ansi": [
+     "#1d202f",
+     "#f7768e",
+     "#9ece6a",
+     "#e0af68",
+     "#7aa2f7",
+     "#bb9af7",
+     "#7dcfff",
+     "#a9b1d6",
+     "#414868",
+     "#f7768e",
+     "#9ece6a",
+     "#e0af68",
+     "#7aa2f7",
+     "#bb9af7",
+     "#7dcfff",
+     "#c0caf5"
+    ]
+   }
+  },
+  {
+   "id": "tokyo-night-moon",
+   "name": "Tokyo Night Moon",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Tokyo Night with a softer, bluer ground and mint accents.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#c8d3f5",
+    "bg": "#222436",
+    "cursor": "#c8d3f5",
+    "cursorText": "#222436",
+    "selection": "#2d3f76",
+    "selectedText": "#c8d3f5",
+    "ansi": [
+     "#1b1d2b",
+     "#ff757f",
+     "#c3e88d",
+     "#ffc777",
+     "#82aaff",
+     "#c099ff",
+     "#86e1fc",
+     "#828bb8",
+     "#444a73",
+     "#ff757f",
+     "#c3e88d",
+     "#ffc777",
+     "#82aaff",
+     "#c099ff",
+     "#86e1fc",
+     "#c8d3f5"
+    ]
+   }
+  },
+  {
+   "id": "tokyo-night-day",
+   "name": "Tokyo Night Day",
+   "category": "light",
+   "flavor": "lean2",
+   "blurb": "The same palette flipped to daylight \u2014 ink-blue on soft paper.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#3760bf",
+    "bg": "#e1e2e7",
+    "cursor": "#3760bf",
+    "cursorText": "#e1e2e7",
+    "selection": "#b6bfe2",
+    "selectedText": "#3760bf",
+    "ansi": [
+     "#b4b5b9",
+     "#f52a65",
+     "#587539",
+     "#8c6c3e",
+     "#2e7de9",
+     "#9854f1",
+     "#007197",
+     "#6172b0",
+     "#a1a6c5",
+     "#f52a65",
+     "#587539",
+     "#8c6c3e",
+     "#2e7de9",
+     "#9854f1",
+     "#007197",
+     "#3760bf"
+    ]
+   }
+  },
+  {
+   "id": "catppuccin-mocha",
+   "name": "Catppuccin Mocha",
+   "category": "dark",
+   "flavor": "pill",
+   "blurb": "Warm charcoal with pastel mauve, peach and sage.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#cdd6f4",
+    "bg": "#1e1e2e",
+    "cursor": "#f5e0dc",
+    "cursorText": "#1e1e2e",
+    "selection": "#414356",
+    "selectedText": "#cdd6f4",
+    "ansi": [
+     "#45475a",
+     "#f38ba8",
+     "#a6e3a1",
+     "#f9e2af",
+     "#89b4fa",
+     "#f5c2e7",
+     "#94e2d5",
+     "#bac2de",
+     "#585b70",
+     "#f38ba8",
+     "#a6e3a1",
+     "#f9e2af",
+     "#89b4fa",
+     "#f5c2e7",
+     "#94e2d5",
+     "#a6adc8"
+    ]
+   }
+  },
+  {
+   "id": "catppuccin-macchiato",
+   "name": "Catppuccin Macchiato",
+   "category": "dark",
+   "flavor": "pill",
+   "blurb": "Mocha's slightly lighter, bluer sibling.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#cad3f5",
+    "bg": "#24273a",
+    "cursor": "#f4dbd6",
+    "cursorText": "#24273a",
+    "selection": "#494d64",
+    "selectedText": "#cad3f5",
+    "ansi": [
+     "#494d64",
+     "#ed8796",
+     "#a6da95",
+     "#eed49f",
+     "#8aadf4",
+     "#f5bde6",
+     "#8bd5ca",
+     "#b8c0e0",
+     "#5b6078",
+     "#ed8796",
+     "#a6da95",
+     "#eed49f",
+     "#8aadf4",
+     "#f5bde6",
+     "#8bd5ca",
+     "#a5adcb"
+    ]
+   }
+  },
+  {
+   "id": "catppuccin-frappe",
+   "name": "Catppuccin Frapp\u00e9",
+   "category": "dark",
+   "flavor": "pill",
+   "blurb": "The mid-tone Catppuccin \u2014 muted, cosy, low glare.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#c6d0f5",
+    "bg": "#303446",
+    "cursor": "#f2d5cf",
+    "cursorText": "#303446",
+    "selection": "#414559",
+    "selectedText": "#c6d0f5",
+    "ansi": [
+     "#51576d",
+     "#e78284",
+     "#a6d189",
+     "#e5c890",
+     "#8caaee",
+     "#f4b8e4",
+     "#81c8be",
+     "#b5bfe2",
+     "#626880",
+     "#e78284",
+     "#a6d189",
+     "#e5c890",
+     "#8caaee",
+     "#f4b8e4",
+     "#81c8be",
+     "#a5adce"
+    ]
+   }
+  },
+  {
+   "id": "catppuccin-latte",
+   "name": "Catppuccin Latte",
+   "category": "light",
+   "flavor": "pill",
+   "blurb": "The light Catppuccin \u2014 gentle, colourful, easy on the eyes.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#4c4f69",
+    "bg": "#eff1f5",
+    "cursor": "#dc8a78",
+    "cursorText": "#eff1f5",
+    "selection": "#bcc0cc",
+    "selectedText": "#4c4f69",
+    "ansi": [
+     "#5c5f77",
+     "#d20f39",
+     "#40a02b",
+     "#df8e1d",
+     "#1e66f5",
+     "#ea76cb",
+     "#179299",
+     "#acb0be",
+     "#6c6f85",
+     "#d20f39",
+     "#40a02b",
+     "#df8e1d",
+     "#1e66f5",
+     "#ea76cb",
+     "#179299",
+     "#bcc0cc"
+    ]
+   }
+  },
+  {
+   "id": "rose-pine",
+   "name": "Ros\u00e9 Pine",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Dusk violet, foam cyan and gold. Hushed rather than technical.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#e0def4",
+    "bg": "#191724",
+    "cursor": "#e0def4",
+    "cursorText": "#191724",
+    "selection": "#403d52",
+    "selectedText": "#e0def4",
+    "ansi": [
+     "#26233a",
+     "#eb6f92",
+     "#31748f",
+     "#f6c177",
+     "#9ccfd8",
+     "#c4a7e7",
+     "#ebbcba",
+     "#e0def4",
+     "#6e6a86",
+     "#eb6f92",
+     "#31748f",
+     "#f6c177",
+     "#9ccfd8",
+     "#c4a7e7",
+     "#ebbcba",
+     "#e0def4"
+    ]
+   }
+  },
+  {
+   "id": "rose-pine-moon",
+   "name": "Ros\u00e9 Pine Moon",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Ros\u00e9 Pine one notch brighter \u2014 a touch more contrast.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#e0def4",
+    "bg": "#232136",
+    "cursor": "#e0def4",
+    "cursorText": "#232136",
+    "selection": "#44415a",
+    "selectedText": "#e0def4",
+    "ansi": [
+     "#393552",
+     "#eb6f92",
+     "#3e8fb0",
+     "#f6c177",
+     "#9ccfd8",
+     "#c4a7e7",
+     "#ea9a97",
+     "#e0def4",
+     "#6e6a86",
+     "#eb6f92",
+     "#3e8fb0",
+     "#f6c177",
+     "#9ccfd8",
+     "#c4a7e7",
+     "#ea9a97",
+     "#e0def4"
+    ]
+   }
+  },
+  {
+   "id": "rose-pine-dawn",
+   "name": "Ros\u00e9 Pine Dawn",
+   "category": "light",
+   "flavor": "lean2",
+   "blurb": "Ros\u00e9 Pine at sunrise \u2014 rosy taupe on warm cream.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#575279",
+    "bg": "#faf4ed",
+    "cursor": "#575279",
+    "cursorText": "#faf4ed",
+    "selection": "#dfdad9",
+    "selectedText": "#575279",
+    "ansi": [
+     "#f2e9e1",
+     "#b4637a",
+     "#286983",
+     "#ea9d34",
+     "#56949f",
+     "#907aa9",
+     "#d7827e",
+     "#575279",
+     "#9893a5",
+     "#b4637a",
+     "#286983",
+     "#ea9d34",
+     "#56949f",
+     "#907aa9",
+     "#d7827e",
+     "#575279"
+    ]
+   }
+  },
+  {
+   "id": "gruvbox-dark-hard",
+   "name": "Gruvbox Dark Hard",
+   "category": "warm",
+   "flavor": "powerline",
+   "blurb": "Retro warm browns, mustard and rust. Hard contrast.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#ebdbb2",
+    "bg": "#1d2021",
+    "cursor": "#ebdbb2",
+    "cursorText": "#1d2021",
+    "selection": "#3c3836",
+    "selectedText": "#ebdbb2",
+    "ansi": [
+     "#282828",
+     "#cc241d",
+     "#98971a",
+     "#d79921",
+     "#458588",
+     "#b16286",
+     "#689d6a",
+     "#a89984",
+     "#928374",
+     "#fb4934",
+     "#b8bb26",
+     "#fabd2f",
+     "#83a598",
+     "#d3869b",
+     "#8ec07c",
+     "#ebdbb2"
+    ]
+   }
+  },
+  {
+   "id": "gruvbox-dark-medium",
+   "name": "Gruvbox Dark",
+   "category": "warm",
+   "flavor": "powerline",
+   "blurb": "The canonical Gruvbox dark.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#ebdbb2",
+    "bg": "#282828",
+    "cursor": "#ebdbb2",
+    "cursorText": "#282828",
+    "selection": "#3c3836",
+    "selectedText": "#ebdbb2",
+    "ansi": [
+     "#282828",
+     "#cc241d",
+     "#98971a",
+     "#d79921",
+     "#458588",
+     "#b16286",
+     "#689d6a",
+     "#a89984",
+     "#928374",
+     "#fb4934",
+     "#b8bb26",
+     "#fabd2f",
+     "#83a598",
+     "#d3869b",
+     "#8ec07c",
+     "#ebdbb2"
+    ]
+   }
+  },
+  {
+   "id": "gruvbox-dark-soft",
+   "name": "Gruvbox Dark Soft",
+   "category": "warm",
+   "flavor": "powerline",
+   "blurb": "Gruvbox with the background lifted a shade.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#ebdbb2",
+    "bg": "#32302f",
+    "cursor": "#ebdbb2",
+    "cursorText": "#32302f",
+    "selection": "#3c3836",
+    "selectedText": "#ebdbb2",
+    "ansi": [
+     "#282828",
+     "#cc241d",
+     "#98971a",
+     "#d79921",
+     "#458588",
+     "#b16286",
+     "#689d6a",
+     "#a89984",
+     "#928374",
+     "#fb4934",
+     "#b8bb26",
+     "#fabd2f",
+     "#83a598",
+     "#d3869b",
+     "#8ec07c",
+     "#ebdbb2"
+    ]
+   }
+  },
+  {
+   "id": "gruvbox-light",
+   "name": "Gruvbox Light",
+   "category": "light",
+   "flavor": "powerline",
+   "blurb": "Gruvbox by daylight \u2014 cream paper, earthy ink.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#3c3836",
+    "bg": "#fbf1c7",
+    "cursor": "#3c3836",
+    "cursorText": "#fbf1c7",
+    "selection": "#ebdbb2",
+    "selectedText": "#3c3836",
+    "ansi": [
+     "#fbf1c7",
+     "#cc241d",
+     "#98971a",
+     "#d79921",
+     "#458588",
+     "#b16286",
+     "#689d6a",
+     "#7c6f64",
+     "#928374",
+     "#9d0006",
+     "#79740e",
+     "#b57614",
+     "#076678",
+     "#8f3f71",
+     "#427b58",
+     "#3c3836"
+    ]
+   }
+  },
+  {
+   "id": "gruvbox-material-dark",
+   "name": "Gruvbox Material",
+   "category": "warm",
+   "flavor": "lean2",
+   "blurb": "Gruvbox with the saturation pulled back. Matte and calm.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d4be98",
+    "bg": "#282828",
+    "cursor": "#d4be98",
+    "cursorText": "#282828",
+    "selection": "#45403d",
+    "selectedText": "#d4be98",
+    "ansi": [
+     "#3c3836",
+     "#ea6962",
+     "#a9b665",
+     "#d8a657",
+     "#7daea3",
+     "#d3869b",
+     "#89b482",
+     "#d4be98",
+     "#45403d",
+     "#ea6962",
+     "#a9b665",
+     "#d8a657",
+     "#7daea3",
+     "#d3869b",
+     "#89b482",
+     "#d4be98"
+    ]
+   }
+  },
+  {
+   "id": "nord",
+   "name": "Nord",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "Arctic slate, frost blues, snow. Evenly muted.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dee9",
+    "bg": "#2e3440",
+    "cursor": "#d8dee9",
+    "cursorText": "#2e3440",
+    "selection": "#434c5e",
+    "selectedText": "#d8dee9",
+    "ansi": [
+     "#3b4252",
+     "#bf616a",
+     "#a3be8c",
+     "#ebcb8b",
+     "#81a1c1",
+     "#b48ead",
+     "#88c0d0",
+     "#e5e9f0",
+     "#4c566a",
+     "#bf616a",
+     "#a3be8c",
+     "#ebcb8b",
+     "#81a1c1",
+     "#b48ead",
+     "#8fbcbb",
+     "#eceff4"
+    ]
+   }
+  },
+  {
+   "id": "nightfox",
+   "name": "Nightfox",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "EdenNight's flagship \u2014 deep blue-grey, well-tempered accents.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#cdcecf",
+    "bg": "#192330",
+    "cursor": "#cdcecf",
+    "cursorText": "#192330",
+    "selection": "#2b3b51",
+    "selectedText": "#cdcecf",
+    "ansi": [
+     "#393b44",
+     "#c94f6d",
+     "#81b29a",
+     "#dbc074",
+     "#719cd6",
+     "#9d79d6",
+     "#63cdcf",
+     "#dbdcdd",
+     "#575860",
+     "#d16983",
+     "#8ebaa4",
+     "#e0c989",
+     "#86abdc",
+     "#baa1e2",
+     "#7ad5d6",
+     "#e4e4e5"
+    ]
+   }
+  },
+  {
+   "id": "duskfox",
+   "name": "Duskfox",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Nightfox at dusk \u2014 violet ground, rosy highlights.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#e0def4",
+    "bg": "#232136",
+    "cursor": "#e0def4",
+    "cursorText": "#232136",
+    "selection": "#433c59",
+    "selectedText": "#e0def4",
+    "ansi": [
+     "#393552",
+     "#eb6f92",
+     "#a3be8c",
+     "#f6c177",
+     "#569fba",
+     "#c4a7e7",
+     "#9ccfd8",
+     "#e0def4",
+     "#47407d",
+     "#eb98c3",
+     "#a3be8c",
+     "#f6c177",
+     "#65b1d3",
+     "#ecb4d3",
+     "#9ccfd8",
+     "#e0def4"
+    ]
+   }
+  },
+  {
+   "id": "carbonfox",
+   "name": "Carbonfox",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "IBM Carbon in the dark \u2014 crisp, high-legibility, techy.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#f2f4f8",
+    "bg": "#161616",
+    "cursor": "#f2f4f8",
+    "cursorText": "#161616",
+    "selection": "#2a2a2a",
+    "selectedText": "#f2f4f8",
+    "ansi": [
+     "#282828",
+     "#ee5396",
+     "#25be6a",
+     "#08bdba",
+     "#78a9ff",
+     "#be95ff",
+     "#33b1ff",
+     "#dfdfe0",
+     "#484848",
+     "#ee5396",
+     "#46c880",
+     "#2dc7c4",
+     "#8cb6ff",
+     "#c8a5ff",
+     "#52bdff",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "terafox",
+   "name": "Terafox",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Earthy teal-and-terracotta take on Nightfox.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#e6eaea",
+    "bg": "#152528",
+    "cursor": "#e6eaea",
+    "cursorText": "#152528",
+    "selection": "#293e40",
+    "selectedText": "#e6eaea",
+    "ansi": [
+     "#2f3239",
+     "#e85c51",
+     "#7aa4a1",
+     "#fda47f",
+     "#5a93aa",
+     "#ad5c7c",
+     "#a1cdd8",
+     "#eaeeee",
+     "#4e5157",
+     "#eb746b",
+     "#8eb2af",
+     "#fdb292",
+     "#73a3b7",
+     "#c58c98",
+     "#b3cbd2",
+     "#eeeeee"
+    ]
+   }
+  },
+  {
+   "id": "kanagawa-wave",
+   "name": "Kanagawa Wave",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Hokusai sumi-ink black, one wave-blue, dry gold, a sakura spark.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dcd7ba",
+    "bg": "#1f1f28",
+    "cursor": "#c8c093",
+    "cursorText": "#1f1f28",
+    "selection": "#2d4f67",
+    "selectedText": "#dcd7ba",
+    "ansi": [
+     "#090618",
+     "#c34043",
+     "#76946a",
+     "#c0a36e",
+     "#7e9cd8",
+     "#957fb8",
+     "#6a9589",
+     "#c8c093",
+     "#727169",
+     "#e82424",
+     "#98bb6c",
+     "#e6c384",
+     "#7fb4ca",
+     "#938aa9",
+     "#7aa89f",
+     "#dcd7ba"
+    ]
+   }
+  },
+  {
+   "id": "kanagawa-dragon",
+   "name": "Kanagawa Dragon",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Kanagawa's darker, greyer, dragon-scale variant.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#c5c9c5",
+    "bg": "#181616",
+    "cursor": "#c8c093",
+    "cursorText": "#181616",
+    "selection": "#2d4f67",
+    "selectedText": "#c5c9c5",
+    "ansi": [
+     "#0d0c0c",
+     "#c4746e",
+     "#8a9a7b",
+     "#c4b28a",
+     "#8ba4b0",
+     "#a292a3",
+     "#8ea4a2",
+     "#c8c093",
+     "#a6a69c",
+     "#e46876",
+     "#87a987",
+     "#e6c384",
+     "#7fb4ca",
+     "#938aa9",
+     "#7aa89f",
+     "#c5c9c5"
+    ]
+   }
+  },
+  {
+   "id": "kanagawa-lotus",
+   "name": "Kanagawa Lotus",
+   "category": "light",
+   "flavor": "lean2",
+   "blurb": "Kanagawa by day \u2014 warm parchment and muted ink.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#545464",
+    "bg": "#f2ecbc",
+    "cursor": "#43436c",
+    "cursorText": "#f2ecbc",
+    "selection": "#c9cbd1",
+    "selectedText": "#545464",
+    "ansi": [
+     "#d5cea3",
+     "#c84053",
+     "#6f894e",
+     "#77713f",
+     "#4d699b",
+     "#b35b79",
+     "#597b75",
+     "#545464",
+     "#8a8980",
+     "#d7474b",
+     "#6e915f",
+     "#836f4a",
+     "#6693bf",
+     "#624c83",
+     "#5e857a",
+     "#43436c"
+    ]
+   }
+  },
+  {
+   "id": "everforest-dark",
+   "name": "Everforest Dark",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "Earthy green-grey, matte and low-contrast.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d3c6aa",
+    "bg": "#2d353b",
+    "cursor": "#d3c6aa",
+    "cursorText": "#2d353b",
+    "selection": "#475258",
+    "selectedText": "#d3c6aa",
+    "ansi": [
+     "#4b565c",
+     "#e67e80",
+     "#a7c080",
+     "#dbbc7f",
+     "#7fbbb3",
+     "#d699b6",
+     "#83c092",
+     "#d3c6aa",
+     "#5c6a72",
+     "#e67e80",
+     "#a7c080",
+     "#dbbc7f",
+     "#7fbbb3",
+     "#d699b6",
+     "#83c092",
+     "#d3c6aa"
+    ]
+   }
+  },
+  {
+   "id": "everforest-light",
+   "name": "Everforest Light",
+   "category": "light",
+   "flavor": "minimal",
+   "blurb": "Everforest daylight \u2014 pale sage paper.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#5c6a72",
+    "bg": "#fdf6e3",
+    "cursor": "#5c6a72",
+    "cursorText": "#fdf6e3",
+    "selection": "#edeada",
+    "selectedText": "#5c6a72",
+    "ansi": [
+     "#e6e2cc",
+     "#f85552",
+     "#8da101",
+     "#dfa000",
+     "#3a94c5",
+     "#df69ba",
+     "#35a77c",
+     "#5c6a72",
+     "#939f91",
+     "#f85552",
+     "#8da101",
+     "#dfa000",
+     "#3a94c5",
+     "#df69ba",
+     "#35a77c",
+     "#5c6a72"
+    ]
+   }
+  },
+  {
+   "id": "dracula",
+   "name": "Dracula",
+   "category": "dark",
+   "flavor": "rainbow",
+   "blurb": "The classic \u2014 bright green, pink, purple on bruise-grey.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#f8f8f2",
+    "bg": "#282a36",
+    "cursor": "#f8f8f2",
+    "cursorText": "#282a36",
+    "selection": "#44475a",
+    "selectedText": "#f8f8f2",
+    "ansi": [
+     "#21222c",
+     "#ff5555",
+     "#50fa7b",
+     "#f1fa8c",
+     "#bd93f9",
+     "#ff79c6",
+     "#8be9fd",
+     "#f8f8f2",
+     "#6272a4",
+     "#ff6e6e",
+     "#69ff94",
+     "#ffffa5",
+     "#d6acff",
+     "#ff92df",
+     "#a4ffff",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "one-dark",
+   "name": "One Dark",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Atom's One Dark. Familiar, neutral, mid-contrast.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#abb2bf",
+    "bg": "#282c34",
+    "cursor": "#abb2bf",
+    "cursorText": "#282c34",
+    "selection": "#3e4451",
+    "selectedText": "#abb2bf",
+    "ansi": [
+     "#3f4451",
+     "#e05561",
+     "#8cc265",
+     "#d18f52",
+     "#4aa5f0",
+     "#c162de",
+     "#42b3c2",
+     "#e6e6e6",
+     "#4f5666",
+     "#ff616e",
+     "#a5e075",
+     "#f0a45d",
+     "#4dc4ff",
+     "#de73ff",
+     "#4cd1e0",
+     "#d7dae0"
+    ]
+   }
+  },
+  {
+   "id": "one-light",
+   "name": "One Light",
+   "category": "light",
+   "flavor": "powerline",
+   "blurb": "One Dark's daylight counterpart.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#383a42",
+    "bg": "#fafafa",
+    "cursor": "#383a42",
+    "cursorText": "#fafafa",
+    "selection": "#e5e5e6",
+    "selectedText": "#383a42",
+    "ansi": [
+     "#383a42",
+     "#e45649",
+     "#50a14f",
+     "#c18401",
+     "#4078f2",
+     "#a626a4",
+     "#0184bc",
+     "#a0a1a7",
+     "#4f525d",
+     "#e06c75",
+     "#98c379",
+     "#e5c07b",
+     "#61afef",
+     "#c678dd",
+     "#56b6c2",
+     "#090a0b"
+    ]
+   }
+  },
+  {
+   "id": "solarized-dark",
+   "name": "Solarized Dark",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Ethan Schoonover's precisely-balanced teal-and-tan.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#839496",
+    "bg": "#002b36",
+    "cursor": "#93a1a1",
+    "cursorText": "#002b36",
+    "selection": "#073642",
+    "selectedText": "#93a1a1",
+    "ansi": [
+     "#073642",
+     "#dc322f",
+     "#859900",
+     "#b58900",
+     "#268bd2",
+     "#d33682",
+     "#2aa198",
+     "#eee8d5",
+     "#002b36",
+     "#cb4b16",
+     "#586e75",
+     "#657b83",
+     "#839496",
+     "#6c71c4",
+     "#93a1a1",
+     "#fdf6e3"
+    ]
+   }
+  },
+  {
+   "id": "solarized-light",
+   "name": "Solarized Light",
+   "category": "light",
+   "flavor": "lean2",
+   "blurb": "Solarized on its cream ground.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#657b83",
+    "bg": "#fdf6e3",
+    "cursor": "#586e75",
+    "cursorText": "#fdf6e3",
+    "selection": "#eee8d5",
+    "selectedText": "#586e75",
+    "ansi": [
+     "#073642",
+     "#dc322f",
+     "#859900",
+     "#b58900",
+     "#268bd2",
+     "#d33682",
+     "#2aa198",
+     "#eee8d5",
+     "#002b36",
+     "#cb4b16",
+     "#586e75",
+     "#657b83",
+     "#839496",
+     "#6c71c4",
+     "#93a1a1",
+     "#fdf6e3"
+    ]
+   }
+  },
+  {
+   "id": "ayu-dark",
+   "name": "Ayu Dark",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "Near-black with a warm amber cursor. Minimal and modern.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#bfbdb6",
+    "bg": "#0b0e14",
+    "cursor": "#e6b450",
+    "cursorText": "#0b0e14",
+    "selection": "#1b3a5b",
+    "selectedText": "#bfbdb6",
+    "ansi": [
+     "#01060e",
+     "#ea6c73",
+     "#91b362",
+     "#f9af4f",
+     "#53bdfa",
+     "#fae994",
+     "#90e1c6",
+     "#c7c7c7",
+     "#686868",
+     "#f07178",
+     "#c2d94c",
+     "#ffb454",
+     "#59c2ff",
+     "#ffee99",
+     "#95e6cb",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "ayu-mirage",
+   "name": "Ayu Mirage",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "The mid Ayu \u2014 muted navy, soft orange accents.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#cbccc6",
+    "bg": "#1f2430",
+    "cursor": "#ffcc66",
+    "cursorText": "#1f2430",
+    "selection": "#33415e",
+    "selectedText": "#cbccc6",
+    "ansi": [
+     "#191e2a",
+     "#ed8274",
+     "#a6cc70",
+     "#fad07b",
+     "#6dcbfa",
+     "#cfbafa",
+     "#90e1c6",
+     "#c7c7c7",
+     "#686868",
+     "#f28779",
+     "#bae67e",
+     "#ffd580",
+     "#73d0ff",
+     "#d4bfff",
+     "#95e6cb",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "ayu-light",
+   "name": "Ayu Light",
+   "category": "light",
+   "flavor": "minimal",
+   "blurb": "Ayu by day \u2014 bright, clean, warm-accented.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#5c6166",
+    "bg": "#fcfcfc",
+    "cursor": "#ff9940",
+    "cursorText": "#fcfcfc",
+    "selection": "#8fb3ff",
+    "selectedText": "#5c6166",
+    "ansi": [
+     "#010101",
+     "#e7666a",
+     "#6cbf43",
+     "#f2ae49",
+     "#3199e1",
+     "#9e75c7",
+     "#46ba94",
+     "#c7c7c7",
+     "#686868",
+     "#f0717a",
+     "#86b300",
+     "#f2ae49",
+     "#399ee6",
+     "#a37acc",
+     "#4cbf99",
+     "#fcfcfc"
+    ]
+   }
+  },
+  {
+   "id": "material-ocean",
+   "name": "Material Ocean",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Material Theme at its deepest blue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#8f93a2",
+    "bg": "#0f111a",
+    "cursor": "#ffcc00",
+    "cursorText": "#0f111a",
+    "selection": "#1f2233",
+    "selectedText": "#8f93a2",
+    "ansi": [
+     "#546e7a",
+     "#ff5370",
+     "#c3e88d",
+     "#ffcb6b",
+     "#82aaff",
+     "#c792ea",
+     "#89ddff",
+     "#ffffff",
+     "#546e7a",
+     "#ff5370",
+     "#c3e88d",
+     "#ffcb6b",
+     "#82aaff",
+     "#c792ea",
+     "#89ddff",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "material-palenight",
+   "name": "Material Palenight",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Material's soft violet-grey. A crowd favourite.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#a6accd",
+    "bg": "#292d3e",
+    "cursor": "#ffcc00",
+    "cursorText": "#292d3e",
+    "selection": "#444267",
+    "selectedText": "#a6accd",
+    "ansi": [
+     "#292d3e",
+     "#f07178",
+     "#c3e88d",
+     "#ffcb6b",
+     "#82aaff",
+     "#c792ea",
+     "#89ddff",
+     "#d0d0d0",
+     "#434758",
+     "#ff8b92",
+     "#ddffa7",
+     "#ffe585",
+     "#9cc4ff",
+     "#ddb0f6",
+     "#a3f7ff",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "material-darker",
+   "name": "Material Darker",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Near-black Material \u2014 high contrast, low colour.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#eeffff",
+    "bg": "#212121",
+    "cursor": "#ffcc00",
+    "cursorText": "#212121",
+    "selection": "#404040",
+    "selectedText": "#eeffff",
+    "ansi": [
+     "#000000",
+     "#ff5370",
+     "#c3e88d",
+     "#ffcb6b",
+     "#82aaff",
+     "#c792ea",
+     "#89ddff",
+     "#ffffff",
+     "#545454",
+     "#ff5370",
+     "#c3e88d",
+     "#ffcb6b",
+     "#82aaff",
+     "#c792ea",
+     "#89ddff",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "monokai",
+   "name": "Monokai",
+   "category": "dark",
+   "flavor": "rainbow",
+   "blurb": "The Sublime Text original \u2014 lime, magenta, cyan on olive-black.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#f8f8f2",
+    "bg": "#272822",
+    "cursor": "#f8f8f0",
+    "cursorText": "#272822",
+    "selection": "#49483e",
+    "selectedText": "#f8f8f2",
+    "ansi": [
+     "#272822",
+     "#f92672",
+     "#a6e22e",
+     "#f4bf75",
+     "#66d9ef",
+     "#ae81ff",
+     "#a1efe4",
+     "#f8f8f2",
+     "#75715e",
+     "#f92672",
+     "#a6e22e",
+     "#f4bf75",
+     "#66d9ef",
+     "#ae81ff",
+     "#a1efe4",
+     "#f9f8f5"
+    ]
+   }
+  },
+  {
+   "id": "monokai-pro",
+   "name": "Monokai Pro",
+   "category": "dark",
+   "flavor": "rainbow",
+   "blurb": "Monokai refined: warmer ground, gentler accents.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#fcfcfa",
+    "bg": "#2d2a2e",
+    "cursor": "#fcfcfa",
+    "cursorText": "#2d2a2e",
+    "selection": "#5b595c",
+    "selectedText": "#fcfcfa",
+    "ansi": [
+     "#403e41",
+     "#ff6188",
+     "#a9dc76",
+     "#ffd866",
+     "#fc9867",
+     "#ab9df2",
+     "#78dce8",
+     "#fcfcfa",
+     "#727072",
+     "#ff6188",
+     "#a9dc76",
+     "#ffd866",
+     "#fc9867",
+     "#ab9df2",
+     "#78dce8",
+     "#fcfcfa"
+    ]
+   }
+  },
+  {
+   "id": "github-dark",
+   "name": "GitHub Dark",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "GitHub's own dark theme. Neutral and readable.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#c9d1d9",
+    "bg": "#0d1117",
+    "cursor": "#58a6ff",
+    "cursorText": "#0d1117",
+    "selection": "#264f78",
+    "selectedText": "#c9d1d9",
+    "ansi": [
+     "#484f58",
+     "#ff7b72",
+     "#3fb950",
+     "#d29922",
+     "#58a6ff",
+     "#bc8cff",
+     "#39c5cf",
+     "#b1bac4",
+     "#6e7681",
+     "#ffa198",
+     "#56d364",
+     "#e3b341",
+     "#79c0ff",
+     "#d2a8ff",
+     "#56d4dd",
+     "#f0f6fc"
+    ]
+   }
+  },
+  {
+   "id": "github-light",
+   "name": "GitHub Light",
+   "category": "light",
+   "flavor": "lean2",
+   "blurb": "GitHub light \u2014 the web's default code look.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#24292f",
+    "bg": "#ffffff",
+    "cursor": "#0969da",
+    "cursorText": "#ffffff",
+    "selection": "#add6ff",
+    "selectedText": "#24292f",
+    "ansi": [
+     "#24292f",
+     "#cf222e",
+     "#116329",
+     "#4d2d00",
+     "#0969da",
+     "#8250df",
+     "#1b7c83",
+     "#6e7781",
+     "#57606a",
+     "#a40e26",
+     "#1a7f37",
+     "#633c01",
+     "#218bff",
+     "#a475f9",
+     "#3192aa",
+     "#8c959f"
+    ]
+   }
+  },
+  {
+   "id": "github-dark-dimmed",
+   "name": "GitHub Dimmed",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "GitHub dark with the contrast eased for night work.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#adbac7",
+    "bg": "#22272e",
+    "cursor": "#539bf5",
+    "cursorText": "#22272e",
+    "selection": "#2d333b",
+    "selectedText": "#adbac7",
+    "ansi": [
+     "#545d68",
+     "#f47067",
+     "#57ab5a",
+     "#c69026",
+     "#539bf5",
+     "#b083f0",
+     "#39c5cf",
+     "#909dab",
+     "#636e7b",
+     "#ff938a",
+     "#6bc46d",
+     "#daaa3f",
+     "#6cb6ff",
+     "#dcbdfb",
+     "#56d4dd",
+     "#cdd9e5"
+    ]
+   }
+  },
+  {
+   "id": "night-owl",
+   "name": "Night Owl",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Sarah Drasner's deep-ocean blue, tuned for low light.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d6deeb",
+    "bg": "#011627",
+    "cursor": "#80a4c2",
+    "cursorText": "#011627",
+    "selection": "#1d3b53",
+    "selectedText": "#d6deeb",
+    "ansi": [
+     "#011627",
+     "#ef5350",
+     "#22da6e",
+     "#c5e478",
+     "#82aaff",
+     "#c792ea",
+     "#21c7a8",
+     "#ffffff",
+     "#575656",
+     "#ef5350",
+     "#22da6e",
+     "#ffeb95",
+     "#82aaff",
+     "#c792ea",
+     "#7fdbca",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "light-owl",
+   "name": "Light Owl",
+   "category": "light",
+   "flavor": "lean2",
+   "blurb": "Night Owl's daylight sibling.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#403f53",
+    "bg": "#fbfbfb",
+    "cursor": "#90a7b2",
+    "cursorText": "#fbfbfb",
+    "selection": "#dbf0ff",
+    "selectedText": "#403f53",
+    "ansi": [
+     "#403f53",
+     "#de3d3b",
+     "#08916a",
+     "#e0af02",
+     "#288ed7",
+     "#d6438a",
+     "#2aa298",
+     "#f0f0f0",
+     "#626262",
+     "#de3d3b",
+     "#08916a",
+     "#daaa01",
+     "#288ed7",
+     "#d6438a",
+     "#2aa298",
+     "#090a0b"
+    ]
+   }
+  },
+  {
+   "id": "synthwave-84",
+   "name": "Synthwave '84",
+   "category": "neon",
+   "flavor": "rainbow",
+   "blurb": "Neon magenta and cyan on a purple night. Loud on purpose.",
+   "window": {
+    "transparency": 0.12,
+    "blur": 28,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#ffffff",
+    "bg": "#262335",
+    "cursor": "#ff7edb",
+    "cursorText": "#262335",
+    "selection": "#463465",
+    "selectedText": "#ffffff",
+    "ansi": [
+     "#262335",
+     "#fe4450",
+     "#72f1b8",
+     "#fede5d",
+     "#03edf9",
+     "#ff7edb",
+     "#03edf9",
+     "#ffffff",
+     "#495495",
+     "#fe4450",
+     "#72f1b8",
+     "#fede5d",
+     "#03edf9",
+     "#ff7edb",
+     "#03edf9",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "horizon",
+   "name": "Horizon",
+   "category": "dark",
+   "flavor": "pill",
+   "blurb": "Warm coral and teal on plum-grey. Soft but vivid.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d5d8da",
+    "bg": "#1c1e26",
+    "cursor": "#fab795",
+    "cursorText": "#1c1e26",
+    "selection": "#2e303e",
+    "selectedText": "#d5d8da",
+    "ansi": [
+     "#16161c",
+     "#e95678",
+     "#29d398",
+     "#fab795",
+     "#26bbd9",
+     "#ee64ac",
+     "#59e1e3",
+     "#d5d8da",
+     "#2e303e",
+     "#ec6a88",
+     "#3fdaa4",
+     "#fbc3a7",
+     "#3fc4de",
+     "#f075b5",
+     "#6be4e6",
+     "#d5d8da"
+    ]
+   }
+  },
+  {
+   "id": "panda",
+   "name": "Panda",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Friendly, clean, high-contrast \u2014 mint, pink, blue on graphite.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#e6e6e6",
+    "bg": "#292a2b",
+    "cursor": "#ff2c6d",
+    "cursorText": "#292a2b",
+    "selection": "#3b3c3d",
+    "selectedText": "#e6e6e6",
+    "ansi": [
+     "#292a2b",
+     "#ff2c6d",
+     "#19f9d8",
+     "#ffb86c",
+     "#45a9f9",
+     "#ff75b5",
+     "#6fc1ff",
+     "#e6e6e6",
+     "#676b79",
+     "#ff2c6d",
+     "#19f9d8",
+     "#ffcc95",
+     "#6fc1ff",
+     "#ff9ac1",
+     "#6fc1ff",
+     "#fefeff"
+    ]
+   }
+  },
+  {
+   "id": "snazzy",
+   "name": "Hyper Snazzy",
+   "category": "dark",
+   "flavor": "pill",
+   "blurb": "Hyper's signature look \u2014 punchy pastels on slate.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#eff0eb",
+    "bg": "#282a36",
+    "cursor": "#97979b",
+    "cursorText": "#282a36",
+    "selection": "#3f4451",
+    "selectedText": "#eff0eb",
+    "ansi": [
+     "#282a36",
+     "#ff5c57",
+     "#5af78e",
+     "#f3f99d",
+     "#57c7ff",
+     "#ff6ac1",
+     "#9aedfe",
+     "#f1f1f0",
+     "#686868",
+     "#ff5c57",
+     "#5af78e",
+     "#f3f99d",
+     "#57c7ff",
+     "#ff6ac1",
+     "#9aedfe",
+     "#eff0eb"
+    ]
+   }
+  },
+  {
+   "id": "cobalt2",
+   "name": "Cobalt2",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Wes Bos's blue \u2014 saturated, confident, yellow-accented.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#ffffff",
+    "bg": "#132738",
+    "cursor": "#f8dd00",
+    "cursorText": "#132738",
+    "selection": "#18384c",
+    "selectedText": "#ffffff",
+    "ansi": [
+     "#000000",
+     "#ff0000",
+     "#38de21",
+     "#ffe50a",
+     "#1460d2",
+     "#ff005d",
+     "#00bbbb",
+     "#bbbbbb",
+     "#555555",
+     "#f40e17",
+     "#3bd01d",
+     "#edc809",
+     "#5555ff",
+     "#ff55ff",
+     "#6ae3fa",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "oceanic-next",
+   "name": "Oceanic Next",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Deep sea-green with restrained accents.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dee9",
+    "bg": "#1b2b34",
+    "cursor": "#cdd3de",
+    "cursorText": "#1b2b34",
+    "selection": "#4f5b66",
+    "selectedText": "#d8dee9",
+    "ansi": [
+     "#343d46",
+     "#ec5f67",
+     "#99c794",
+     "#fac863",
+     "#6699cc",
+     "#c594c5",
+     "#5fb3b3",
+     "#d8dee9",
+     "#65737e",
+     "#ec5f67",
+     "#99c794",
+     "#fac863",
+     "#6699cc",
+     "#c594c5",
+     "#5fb3b3",
+     "#d8dee9"
+    ]
+   }
+  },
+  {
+   "id": "palenight",
+   "name": "Palenight",
+   "category": "dark",
+   "flavor": "pill",
+   "blurb": "Palenight on its own \u2014 the softer Material violet.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#bfc7d5",
+    "bg": "#292d3e",
+    "cursor": "#ffcc00",
+    "cursorText": "#292d3e",
+    "selection": "#3c435e",
+    "selectedText": "#bfc7d5",
+    "ansi": [
+     "#292d3e",
+     "#f07178",
+     "#c3e88d",
+     "#ffcb6b",
+     "#82aaff",
+     "#c792ea",
+     "#89ddff",
+     "#ffffff",
+     "#676e95",
+     "#f07178",
+     "#c3e88d",
+     "#ffcb6b",
+     "#82aaff",
+     "#c792ea",
+     "#89ddff",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "zenburn",
+   "name": "Zenburn",
+   "category": "warm",
+   "flavor": "minimal",
+   "blurb": "The original low-contrast theme. Grey-green, restful.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dcdccc",
+    "bg": "#3f3f3f",
+    "cursor": "#8faf9f",
+    "cursorText": "#3f3f3f",
+    "selection": "#585858",
+    "selectedText": "#dcdccc",
+    "ansi": [
+     "#4d4d4d",
+     "#705050",
+     "#60b48a",
+     "#dfaf8f",
+     "#506070",
+     "#dc8cc3",
+     "#8cd0d3",
+     "#dcdccc",
+     "#709080",
+     "#dca3a3",
+     "#c3bf9f",
+     "#f0dfaf",
+     "#94bff3",
+     "#ec93d3",
+     "#93e0e3",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "tomorrow-night",
+   "name": "Tomorrow Night",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Chris Kempson's balanced dark. The base16 wellspring.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#c5c8c6",
+    "bg": "#1d1f21",
+    "cursor": "#c5c8c6",
+    "cursorText": "#1d1f21",
+    "selection": "#373b41",
+    "selectedText": "#c5c8c6",
+    "ansi": [
+     "#1d1f21",
+     "#cc6666",
+     "#b5bd68",
+     "#f0c674",
+     "#81a2be",
+     "#b294bb",
+     "#8abeb7",
+     "#c5c8c6",
+     "#969896",
+     "#cc6666",
+     "#b5bd68",
+     "#f0c674",
+     "#81a2be",
+     "#b294bb",
+     "#8abeb7",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "iceberg",
+   "name": "Iceberg",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "Bluish-grey with a cold, even palette. Vim classic.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#c6c8d1",
+    "bg": "#161821",
+    "cursor": "#c6c8d1",
+    "cursorText": "#161821",
+    "selection": "#272c42",
+    "selectedText": "#c6c8d1",
+    "ansi": [
+     "#1e2132",
+     "#e27878",
+     "#b4be82",
+     "#e2a478",
+     "#84a0c6",
+     "#a093c7",
+     "#89b8c2",
+     "#c6c8d1",
+     "#6b7089",
+     "#e98989",
+     "#c0ca8e",
+     "#e9b189",
+     "#91acd1",
+     "#ada0d3",
+     "#95c4ce",
+     "#d2d4de"
+    ]
+   }
+  },
+  {
+   "id": "poimandres",
+   "name": "Poimandres",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Teal, rose and pale blue on near-black. Very 2021.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#a6accd",
+    "bg": "#1b1e28",
+    "cursor": "#a6accd",
+    "cursorText": "#1b1e28",
+    "selection": "#303340",
+    "selectedText": "#a6accd",
+    "ansi": [
+     "#1b1e28",
+     "#d0679d",
+     "#5de4c7",
+     "#fffac2",
+     "#89ddff",
+     "#fcc5e9",
+     "#add7ff",
+     "#ffffff",
+     "#a6accd",
+     "#d0679d",
+     "#5de4c7",
+     "#fffac2",
+     "#add7ff",
+     "#fae4fc",
+     "#add7ff",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "vitesse-dark",
+   "name": "Vitesse Dark",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "Anthony Fu's editor theme \u2014 muted, warm-neutral, precise.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dbd7ca",
+    "bg": "#121212",
+    "cursor": "#dbd7ca",
+    "cursorText": "#121212",
+    "selection": "#191919",
+    "selectedText": "#dbd7ca",
+    "ansi": [
+     "#393a34",
+     "#cb7676",
+     "#4d9375",
+     "#e6cc77",
+     "#6394bf",
+     "#9e7cb0",
+     "#5eaab5",
+     "#dbd7ca",
+     "#5a5b53",
+     "#d17070",
+     "#87ae94",
+     "#f0d999",
+     "#74add4",
+     "#c586c0",
+     "#8bcdcf",
+     "#f5f4ec"
+    ]
+   }
+  },
+  {
+   "id": "vitesse-light",
+   "name": "Vitesse Light",
+   "category": "light",
+   "flavor": "minimal",
+   "blurb": "Vitesse by day.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#393a34",
+    "bg": "#ffffff",
+    "cursor": "#393a34",
+    "cursorText": "#ffffff",
+    "selection": "#e5e5e5",
+    "selectedText": "#393a34",
+    "ansi": [
+     "#121212",
+     "#ab5959",
+     "#4d9375",
+     "#bda437",
+     "#296aa3",
+     "#a35ca3",
+     "#2993a3",
+     "#dbd7ca",
+     "#777777",
+     "#ab5959",
+     "#4d9375",
+     "#bda437",
+     "#296aa3",
+     "#a35ca3",
+     "#2993a3",
+     "#393a34"
+    ]
+   }
+  },
+  {
+   "id": "flexoki-dark",
+   "name": "Flexoki Dark",
+   "category": "warm",
+   "flavor": "lean2",
+   "blurb": "Steph Ango's ink-on-paper system, dark mode.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#cecdc3",
+    "bg": "#100f0f",
+    "cursor": "#cecdc3",
+    "cursorText": "#100f0f",
+    "selection": "#282726",
+    "selectedText": "#cecdc3",
+    "ansi": [
+     "#1c1b1a",
+     "#d14d41",
+     "#879a39",
+     "#d0a215",
+     "#4385be",
+     "#ce5d97",
+     "#3aa99f",
+     "#cecdc3",
+     "#575653",
+     "#d14d41",
+     "#879a39",
+     "#d0a215",
+     "#4385be",
+     "#ce5d97",
+     "#3aa99f",
+     "#fffcf0"
+    ]
+   }
+  },
+  {
+   "id": "flexoki-light",
+   "name": "Flexoki Light",
+   "category": "light",
+   "flavor": "lean2",
+   "blurb": "Flexoki light \u2014 warm paper, saturated but calm ink.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#100f0f",
+    "bg": "#fffcf0",
+    "cursor": "#100f0f",
+    "cursorText": "#fffcf0",
+    "selection": "#e6e4d9",
+    "selectedText": "#100f0f",
+    "ansi": [
+     "#100f0f",
+     "#af3029",
+     "#66800b",
+     "#ad8301",
+     "#205ea6",
+     "#a02f6f",
+     "#24837b",
+     "#6f6e69",
+     "#b7b5ac",
+     "#d14d41",
+     "#879a39",
+     "#d0a215",
+     "#4385be",
+     "#ce5d97",
+     "#3aa99f",
+     "#cecdc3"
+    ]
+   }
+  },
+  {
+   "id": "aura",
+   "name": "Aura",
+   "category": "dark",
+   "flavor": "rainbow",
+   "blurb": "Purple-forward with electric mint. Bold and modern.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#edecee",
+    "bg": "#15141b",
+    "cursor": "#edecee",
+    "cursorText": "#15141b",
+    "selection": "#3d375e",
+    "selectedText": "#61ffca",
+    "ansi": [
+     "#110f18",
+     "#ff6767",
+     "#61ffca",
+     "#a1efd3",
+     "#a277ff",
+     "#a277ff",
+     "#61ffca",
+     "#edecee",
+     "#6d6d6d",
+     "#ff6767",
+     "#61ffca",
+     "#c9a0ff",
+     "#a277ff",
+     "#a277ff",
+     "#61ffca",
+     "#edecee"
+    ]
+   }
+  },
+  {
+   "id": "molokai",
+   "name": "Molokai",
+   "category": "dark",
+   "flavor": "rainbow",
+   "blurb": "Monokai's punchier Vim cousin.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#f8f8f2",
+    "bg": "#1b1d1e",
+    "cursor": "#f8f8f2",
+    "cursorText": "#1b1d1e",
+    "selection": "#403d3d",
+    "selectedText": "#f8f8f2",
+    "ansi": [
+     "#1b1d1e",
+     "#f92672",
+     "#82b414",
+     "#fd971f",
+     "#56c2d6",
+     "#8c54fe",
+     "#465457",
+     "#ccccc6",
+     "#505354",
+     "#ff669d",
+     "#9fd016",
+     "#fd971f",
+     "#56c2d6",
+     "#8c54fe",
+     "#465457",
+     "#f8f8f2"
+    ]
+   }
+  },
+  {
+   "id": "railscasts",
+   "name": "Railscasts",
+   "category": "warm",
+   "flavor": "powerline",
+   "blurb": "The mid-2000s screencast staple \u2014 warm, brown, amber.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#e6e1dc",
+    "bg": "#2b2b2b",
+    "cursor": "#e6e1dc",
+    "cursorText": "#2b2b2b",
+    "selection": "#4b4b4b",
+    "selectedText": "#e6e1dc",
+    "ansi": [
+     "#2b2b2b",
+     "#da4939",
+     "#a5c261",
+     "#ffc66d",
+     "#6d9cbe",
+     "#b6b3eb",
+     "#519f50",
+     "#e6e1dc",
+     "#5a647e",
+     "#da4939",
+     "#a5c261",
+     "#ffc66d",
+     "#6d9cbe",
+     "#b6b3eb",
+     "#519f50",
+     "#f9f7f3"
+    ]
+   }
+  },
+  {
+   "id": "spacegray",
+   "name": "Spacegray",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "Understated blue-grey with muted accents.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#b3b8c3",
+    "bg": "#20242d",
+    "cursor": "#b3b8c3",
+    "cursorText": "#20242d",
+    "selection": "#16181e",
+    "selectedText": "#b3b8c3",
+    "ansi": [
+     "#000000",
+     "#b04b57",
+     "#87b379",
+     "#e5c179",
+     "#7d8fa4",
+     "#a47996",
+     "#85a7a5",
+     "#b3b8c3",
+     "#000000",
+     "#b04b57",
+     "#87b379",
+     "#e5c179",
+     "#7d8fa4",
+     "#a47996",
+     "#85a7a5",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "twilight",
+   "name": "Twilight",
+   "category": "warm",
+   "flavor": "lean2",
+   "blurb": "Old TextMate warmth \u2014 tan, olive, dusty blue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#ffffff",
+    "bg": "#141414",
+    "cursor": "#ffffff",
+    "cursorText": "#141414",
+    "selection": "#313131",
+    "selectedText": "#ffffff",
+    "ansi": [
+     "#141414",
+     "#c06d4d",
+     "#cf9a4e",
+     "#87af5f",
+     "#5f87af",
+     "#5f5f87",
+     "#5f8787",
+     "#ffffd7",
+     "#262626",
+     "#c06d4d",
+     "#cf9a4e",
+     "#87af5f",
+     "#5f87af",
+     "#5f5f87",
+     "#5f8787",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "modern-cli",
+   "name": "Modern CLI",
+   "category": "stack",
+   "flavor": "powerline",
+   "blurb": "Catppuccin Frapp\u00e9 + a modern toolbelt: eza, bat, fzf, fd, zoxide, delta.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "JetBrainsMono Nerd Font"
+   },
+   "tools": [
+    "eza",
+    "bat",
+    "fd",
+    "fzf",
+    "zoxide",
+    "git-delta",
+    "zsh-fast-syntax-highlighting"
+   ],
+   "colors": {
+    "fg": "#c6d0f5",
+    "bg": "#303446",
+    "cursor": "#f2d5cf",
+    "cursorText": "#303446",
+    "selection": "#414559",
+    "selectedText": "#c6d0f5",
+    "ansi": [
+     "#51576d",
+     "#e78284",
+     "#a6d189",
+     "#e5c890",
+     "#8caaee",
+     "#f4b8e4",
+     "#81c8be",
+     "#b5bfe2",
+     "#626880",
+     "#e78284",
+     "#a6d189",
+     "#e5c890",
+     "#8caaee",
+     "#f4b8e4",
+     "#81c8be",
+     "#a5adce"
+    ]
+   }
+  },
+  {
+   "id": "dev-stack",
+   "name": "Dev Stack",
+   "category": "stack",
+   "flavor": "powerline",
+   "blurb": "Gruvbox + eza, bat, fzf, zoxide, atuin, delta, btop. The works.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "eza",
+    "bat",
+    "fzf",
+    "zoxide",
+    "atuin",
+    "git-delta",
+    "btop"
+   ],
+   "colors": {
+    "fg": "#ebdbb2",
+    "bg": "#1d2021",
+    "cursor": "#ebdbb2",
+    "cursorText": "#1d2021",
+    "selection": "#3c3836",
+    "selectedText": "#ebdbb2",
+    "ansi": [
+     "#282828",
+     "#cc241d",
+     "#98971a",
+     "#d79921",
+     "#458588",
+     "#b16286",
+     "#689d6a",
+     "#a89984",
+     "#928374",
+     "#fb4934",
+     "#b8bb26",
+     "#fabd2f",
+     "#83a598",
+     "#d3869b",
+     "#8ec07c",
+     "#ebdbb2"
+    ]
+   }
+  },
+  {
+   "id": "ember",
+   "name": "Ember",
+   "category": "warm",
+   "flavor": "lean2",
+   "blurb": "Ember \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfdad8",
+    "bg": "#16100e",
+    "cursor": "#dfa849",
+    "cursorText": "#16100e",
+    "selection": "#402e26",
+    "selectedText": "#dfdad8",
+    "ansi": [
+     "#302621",
+     "#df495a",
+     "#5adf49",
+     "#bedf49",
+     "#4980df",
+     "#a849df",
+     "#494edf",
+     "#dfdad8",
+     "#7a655c",
+     "#f17482",
+     "#82f174",
+     "#d6f174",
+     "#74a2f1",
+     "#c374f1",
+     "#7579f0",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "rust",
+   "name": "Rust",
+   "category": "warm",
+   "flavor": "powerline",
+   "blurb": "Rust \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfd9d8",
+    "bg": "#160f0e",
+    "cursor": "#d29856",
+    "cursorText": "#160f0e",
+    "selection": "#402b26",
+    "selectedText": "#dfd9d8",
+    "ansi": [
+     "#302421",
+     "#d25671",
+     "#71d256",
+     "#c4d256",
+     "#5690d2",
+     "#9856d2",
+     "#5666d2",
+     "#dfd9d8",
+     "#7a625c",
+     "#e87d94",
+     "#94e87d",
+     "#dce87d",
+     "#7dafe8",
+     "#b67de8",
+     "#7e8ce7",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "amberglow",
+   "name": "Amber Glow",
+   "category": "warm",
+   "flavor": "minimal",
+   "blurb": "Amber Glow \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfdcd8",
+    "bg": "#16130e",
+    "cursor": "#e1dc47",
+    "cursorText": "#16130e",
+    "selection": "#403626",
+    "selectedText": "#dfdcd8",
+    "ansi": [
+     "#302b21",
+     "#e16847",
+     "#47e168",
+     "#8ce147",
+     "#474ce1",
+     "#dc47e1",
+     "#7547e1",
+     "#dfdcd8",
+     "#7a6f5c",
+     "#f38e72",
+     "#72f38e",
+     "#acf372",
+     "#7277f3",
+     "#ee72f3",
+     "#9974f1",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "espresso",
+   "name": "Espresso",
+   "category": "warm",
+   "flavor": "lean2",
+   "blurb": "Espresso \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfdbd8",
+    "bg": "#16110d",
+    "cursor": "#bfab69",
+    "cursorText": "#16110d",
+    "selection": "#403126",
+    "selectedText": "#dfdbd8",
+    "ansi": [
+     "#302821",
+     "#bf6a69",
+     "#69bf6a",
+     "#a1bf69",
+     "#697dbf",
+     "#ab69bf",
+     "#7269bf",
+     "#dfdbd8",
+     "#7a695c",
+     "#da8c8b",
+     "#8bda8c",
+     "#beda8b",
+     "#8b9dda",
+     "#c88bda",
+     "#948cd9",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "sandstone",
+   "name": "Sandstone",
+   "category": "warm",
+   "flavor": "minimal",
+   "blurb": "Sandstone \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#3e3932",
+    "bg": "#f6f4f1",
+    "cursor": "#988f3e",
+    "cursorText": "#f6f4f1",
+    "selection": "#e4dcd2",
+    "selectedText": "#3e3932",
+    "ansi": [
+     "#eae6e1",
+     "#984c3e",
+     "#3e984c",
+     "#6d983e",
+     "#3e4798",
+     "#8f3e98",
+     "#533e98",
+     "#3e3932",
+     "#9c8e7c",
+     "#8d392a",
+     "#2a8d39",
+     "#5d8d2a",
+     "#2a348d",
+     "#832a8d",
+     "#422c8c",
+     "#201f1d"
+    ]
+   }
+  },
+  {
+   "id": "clay",
+   "name": "Clay",
+   "category": "warm",
+   "flavor": "lean2",
+   "blurb": "Clay \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#3e3632",
+    "bg": "#f6f3f1",
+    "cursor": "#967940",
+    "cursorText": "#f6f3f1",
+    "selection": "#e4d8d2",
+    "selectedText": "#3e3632",
+    "ansi": [
+     "#eae4e1",
+     "#964047",
+     "#479640",
+     "#819640",
+     "#405d96",
+     "#794096",
+     "#404096",
+     "#3e3632",
+     "#9c877c",
+     "#8c2c34",
+     "#348c2c",
+     "#748c2c",
+     "#2c4c8c",
+     "#6c2c8c",
+     "#2e2e8a",
+     "#201e1d"
+    ]
+   }
+  },
+  {
+   "id": "moss",
+   "name": "Moss",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "Moss \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d9dfd8",
+    "bg": "#0f150e",
+    "cursor": "#64c474",
+    "cursorText": "#0f150e",
+    "selection": "#2b4026",
+    "selectedText": "#d9dfd8",
+    "ansi": [
+     "#243021",
+     "#9cc464",
+     "#649cc4",
+     "#64c4ac",
+     "#c464b4",
+     "#c47464",
+     "#c46494",
+     "#d9dfd8",
+     "#617a5c",
+     "#bade87",
+     "#87bade",
+     "#87dec8",
+     "#de87d0",
+     "#de9587",
+     "#dd88b2",
+     "#f7f8f7"
+    ]
+   }
+  },
+  {
+   "id": "fern",
+   "name": "Fern",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Fern \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dfd9",
+    "bg": "#0e1510",
+    "cursor": "#5ccc94",
+    "cursorText": "#0e1510",
+    "selection": "#26402b",
+    "selectedText": "#d8dfd9",
+    "ansi": [
+     "#213024",
+     "#78cc5c",
+     "#5c78cc",
+     "#5cc2cc",
+     "#cc5c94",
+     "#cc945c",
+     "#cc5c6f",
+     "#d8dfd9",
+     "#5c7a61",
+     "#9ae382",
+     "#829ae3",
+     "#82dbe3",
+     "#e382b3",
+     "#e3b282",
+     "#e28393",
+     "#f7f8f7"
+    ]
+   }
+  },
+  {
+   "id": "pine",
+   "name": "Pine",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Pine \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dfdc",
+    "bg": "#0e1512",
+    "cursor": "#60c7bf",
+    "cursorText": "#0e1512",
+    "selection": "#264035",
+    "selectedText": "#d8dfdc",
+    "ansi": [
+     "#21302a",
+     "#60c772",
+     "#7260c7",
+     "#6094c7",
+     "#c76069",
+     "#c7bf60",
+     "#c77a60",
+     "#d8dfdc",
+     "#5c7a6e",
+     "#85e094",
+     "#9485e0",
+     "#85b2e0",
+     "#e0858c",
+     "#e0d985",
+     "#df9c86",
+     "#f7f8f7"
+    ]
+   }
+  },
+  {
+   "id": "matcha",
+   "name": "Matcha",
+   "category": "light",
+   "flavor": "minimal",
+   "blurb": "Matcha \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#353e32",
+    "bg": "#f2f6f1",
+    "cursor": "#3c9a44",
+    "cursorText": "#f2f6f1",
+    "selection": "#d7e4d2",
+    "selectedText": "#353e32",
+    "ansi": [
+     "#e3eae1",
+     "#7b9a3c",
+     "#3c7b9a",
+     "#3c9a7b",
+     "#9a3c92",
+     "#9a443c",
+     "#9a3c73",
+     "#353e32",
+     "#849c7c",
+     "#6d8f28",
+     "#286d8f",
+     "#288f6d",
+     "#8f2887",
+     "#8f3128",
+     "#8d2a64",
+     "#1e201d"
+    ]
+   }
+  },
+  {
+   "id": "seaglass",
+   "name": "Sea Glass",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Sea Glass \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dfde",
+    "bg": "#0e1515",
+    "cursor": "#5eafc9",
+    "cursorText": "#0e1515",
+    "selection": "#26403e",
+    "selectedText": "#d8dfde",
+    "ansi": [
+     "#21302f",
+     "#5ec994",
+     "#945ec9",
+     "#5e70c9",
+     "#c9795e",
+     "#afc95e",
+     "#c99d5e",
+     "#d8dfde",
+     "#5c7a78",
+     "#83e2b3",
+     "#b283e2",
+     "#8393e2",
+     "#e29b83",
+     "#cae283",
+     "#e0ba85",
+     "#f7f8f8"
+    ]
+   }
+  },
+  {
+   "id": "lagoon",
+   "name": "Lagoon",
+   "category": "dark",
+   "flavor": "pill",
+   "blurb": "Lagoon \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dedf",
+    "bg": "#0e1415",
+    "cursor": "#5694d2",
+    "cursorText": "#0e1415",
+    "selection": "#263b40",
+    "selectedText": "#d8dedf",
+    "ansi": [
+     "#212e30",
+     "#56d2b3",
+     "#b356d2",
+     "#6056d2",
+     "#d29456",
+     "#94d256",
+     "#d2bd56",
+     "#d8dedf",
+     "#5c757a",
+     "#7de8cd",
+     "#cd7de8",
+     "#867de8",
+     "#e8b27d",
+     "#b3e87d",
+     "#e7d57e",
+     "#f7f8f8"
+    ]
+   }
+  },
+  {
+   "id": "tide",
+   "name": "Tide",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Tide \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dcdf",
+    "bg": "#0e1215",
+    "cursor": "#5c78cc",
+    "cursorText": "#0e1215",
+    "selection": "#263540",
+    "selectedText": "#d8dcdf",
+    "ansi": [
+     "#212a30",
+     "#5ccccc",
+     "#cc5ccc",
+     "#815ccc",
+     "#ccb05c",
+     "#78cc5c",
+     "#c2cc5c",
+     "#d8dcdf",
+     "#5c6e7a",
+     "#82e3e3",
+     "#e382e3",
+     "#a282e3",
+     "#e3cb82",
+     "#9ae382",
+     "#dae283",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "abyss",
+   "name": "Abyss",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "Abyss \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dadf",
+    "bg": "#0e1116",
+    "cursor": "#5959cf",
+    "cursorText": "#0e1116",
+    "selection": "#262f40",
+    "selectedText": "#d8dadf",
+    "ansi": [
+     "#212630",
+     "#59b1cf",
+     "#cf59b1",
+     "#9e59cf",
+     "#cfcf59",
+     "#59cf59",
+     "#a8cf59",
+     "#d8dadf",
+     "#5c667a",
+     "#7fcce6",
+     "#e67fcc",
+     "#bb7fe6",
+     "#e6e67f",
+     "#7fe67f",
+     "#c3e481",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "cobalt",
+   "name": "Cobalt",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Cobalt \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dbdf",
+    "bg": "#0e1116",
+    "cursor": "#4955df",
+    "cursorText": "#0e1116",
+    "selection": "#263140",
+    "selectedText": "#d8dbdf",
+    "ansi": [
+     "#212830",
+     "#49c6df",
+     "#df49c6",
+     "#9449df",
+     "#dfd249",
+     "#55df49",
+     "#b9df49",
+     "#d8dbdf",
+     "#5c697a",
+     "#74dcf1",
+     "#f174dc",
+     "#b274f1",
+     "#f1e774",
+     "#7ef174",
+     "#d1f075",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "sapphire",
+   "name": "Sapphire",
+   "category": "dark",
+   "flavor": "pill",
+   "blurb": "Sapphire \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8d9df",
+    "bg": "#0e0f15",
+    "cursor": "#664fd8",
+    "cursorText": "#0e0f15",
+    "selection": "#262b40",
+    "selectedText": "#d8d9df",
+    "ansi": [
+     "#212430",
+     "#4f9fd8",
+     "#d84f9f",
+     "#b64fd8",
+     "#c2d84f",
+     "#4fd866",
+     "#94d84f",
+     "#d8d9df",
+     "#5c617a",
+     "#78bced",
+     "#ed78bc",
+     "#d078ed",
+     "#d9ed78",
+     "#78ed8c",
+     "#b3eb7a",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "indigo-wash",
+   "name": "Indigo Wash",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Indigo Wash \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8d8df",
+    "bg": "#0f0e16",
+    "cursor": "#8c63c5",
+    "cursorText": "#0f0e16",
+    "selection": "#282640",
+    "selectedText": "#d8d8df",
+    "ansi": [
+     "#232130",
+     "#6383c5",
+     "#c56383",
+     "#c563c5",
+     "#9cc563",
+     "#63c58c",
+     "#7bc563",
+     "#d8d8df",
+     "#5f5c7a",
+     "#86a4df",
+     "#df86a4",
+     "#df86df",
+     "#badf86",
+     "#86dfab",
+     "#9ddd88",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "iris",
+   "name": "Iris",
+   "category": "dark",
+   "flavor": "pill",
+   "blurb": "Iris \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dbd8df",
+    "bg": "#110e15",
+    "cursor": "#b159cf",
+    "cursorText": "#110e15",
+    "selection": "#312640",
+    "selectedText": "#dbd8df",
+    "ansi": [
+     "#282130",
+     "#5959cf",
+     "#cf5959",
+     "#cf59a8",
+     "#76cf59",
+     "#59cfb1",
+     "#59cf63",
+     "#dbd8df",
+     "#695c7a",
+     "#7f7fe6",
+     "#e67f7f",
+     "#e67fc4",
+     "#99e67f",
+     "#7fe6cc",
+     "#81e489",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "plum",
+   "name": "Plum",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Plum \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#ded8df",
+    "bg": "#140e16",
+    "cursor": "#c95eb8",
+    "cursorText": "#140e16",
+    "selection": "#3b2640",
+    "selectedText": "#ded8df",
+    "ansi": [
+     "#2e2130",
+     "#8b5ec9",
+     "#c98b5e",
+     "#c95e79",
+     "#5ec970",
+     "#5eb8c9",
+     "#5ec994",
+     "#ded8df",
+     "#755c7a",
+     "#ab83e2",
+     "#e2ab83",
+     "#e2839b",
+     "#83e293",
+     "#83d2e2",
+     "#85e0b3",
+     "#f8f7f8"
+    ]
+   }
+  },
+  {
+   "id": "orchid",
+   "name": "Orchid",
+   "category": "dark",
+   "flavor": "rainbow",
+   "blurb": "Orchid \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfd8de",
+    "bg": "#150e14",
+    "cursor": "#d25694",
+    "cursorText": "#150e14",
+    "selection": "#40263b",
+    "selectedText": "#dfd8de",
+    "ansi": [
+     "#30212e",
+     "#b356d2",
+     "#d2b356",
+     "#d26056",
+     "#56d294",
+     "#5694d2",
+     "#56d2bd",
+     "#dfd8de",
+     "#7a5c75",
+     "#cd7de8",
+     "#e8cd7d",
+     "#e8867d",
+     "#7de8b3",
+     "#7db2e8",
+     "#7ee7d5",
+     "#f8f7f8"
+    ]
+   }
+  },
+  {
+   "id": "mulberry",
+   "name": "Mulberry",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Mulberry \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfd8db",
+    "bg": "#160e12",
+    "cursor": "#ce5a6d",
+    "cursorText": "#160e12",
+    "selection": "#402633",
+    "selectedText": "#dfd8db",
+    "ansi": [
+     "#302129",
+     "#ce5ac4",
+     "#c4ce5a",
+     "#ce8a5a",
+     "#5aceba",
+     "#5a6dce",
+     "#5abace",
+     "#dfd8db",
+     "#7a5c6b",
+     "#e580dd",
+     "#dde580",
+     "#e5aa80",
+     "#80e5d4",
+     "#8091e5",
+     "#82d3e3",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "crimson",
+   "name": "Crimson",
+   "category": "dark",
+   "flavor": "rainbow",
+   "blurb": "Crimson \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfd8d9",
+    "bg": "#160e0f",
+    "cursor": "#d66851",
+    "cursorText": "#160e0f",
+    "selection": "#40262b",
+    "selectedText": "#dfd8d9",
+    "ansi": [
+     "#302124",
+     "#d6519f",
+     "#9fd651",
+     "#d6b551",
+     "#51c0d6",
+     "#6851d6",
+     "#5194d6",
+     "#dfd8d9",
+     "#7a5c61",
+     "#eb7abc",
+     "#bceb7a",
+     "#ebcf7a",
+     "#7ad8eb",
+     "#8d7aeb",
+     "#7bb2ea",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "rosewater",
+   "name": "Rosewater",
+   "category": "light",
+   "flavor": "minimal",
+   "blurb": "Rosewater \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#3e3235",
+    "bg": "#f6f1f2",
+    "cursor": "#964740",
+    "cursorText": "#f6f1f2",
+    "selection": "#e4d2d7",
+    "selectedText": "#3e3235",
+    "ansi": [
+     "#eae1e3",
+     "#964079",
+     "#799640",
+     "#967940",
+     "#408f96",
+     "#474096",
+     "#407296",
+     "#3e3235",
+     "#9c7c84",
+     "#8c2c6c",
+     "#6c8c2c",
+     "#8c6c2c",
+     "#2c848c",
+     "#342c8c",
+     "#2e638a",
+     "#201d1e"
+    ]
+   }
+  },
+  {
+   "id": "slate",
+   "name": "Slate",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "Slate \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dbdf",
+    "bg": "#0f1215",
+    "cursor": "#898d9f",
+    "cursorText": "#0f1215",
+    "selection": "#263340",
+    "selectedText": "#d8dbdf",
+    "ansi": [
+     "#212930",
+     "#899d9f",
+     "#9f899d",
+     "#92899f",
+     "#9f9b89",
+     "#8d9f89",
+     "#9b9f89",
+     "#d8dbdf",
+     "#5c6b7a",
+     "#a2c1c3",
+     "#c3a2c1",
+     "#b0a2c3",
+     "#c3bea2",
+     "#a7c3a2",
+     "#bdc2a3",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "graphite",
+   "name": "Graphite",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Graphite \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dadf",
+    "bg": "#0f1115",
+    "cursor": "#8d8d9a",
+    "cursorText": "#0f1115",
+    "selection": "#262f40",
+    "selectedText": "#d8dadf",
+    "ansi": [
+     "#212630",
+     "#8d979a",
+     "#9a8d97",
+     "#958d9a",
+     "#9a9a8d",
+     "#8d9a8d",
+     "#969a8d",
+     "#d8dadf",
+     "#5c667a",
+     "#a5b9c0",
+     "#c0a5b9",
+     "#b5a5c0",
+     "#c0c0a5",
+     "#a5c0a5",
+     "#b7bfa6",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "gunmetal",
+   "name": "Gunmetal",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Gunmetal \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dcdf",
+    "bg": "#0f1315",
+    "cursor": "#8790a1",
+    "cursorText": "#0f1315",
+    "selection": "#263740",
+    "selectedText": "#d8dcdf",
+    "ansi": [
+     "#212b30",
+     "#87a19f",
+     "#9f87a1",
+     "#8d87a1",
+     "#a19887",
+     "#90a187",
+     "#a1a187",
+     "#d8dcdf",
+     "#5c707a",
+     "#a0c5c2",
+     "#c2a0c5",
+     "#a9a0c5",
+     "#c5b9a0",
+     "#acc5a0",
+     "#c3c3a2",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "ivory",
+   "name": "Ivory",
+   "category": "light",
+   "flavor": "lean2",
+   "blurb": "Ivory \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#3e3b32",
+    "bg": "#f6f5f1",
+    "cursor": "#747660",
+    "cursorText": "#f6f5f1",
+    "selection": "#e4e0d2",
+    "selectedText": "#3e3b32",
+    "ansi": [
+     "#eae8e1",
+     "#766860",
+     "#607668",
+     "#687660",
+     "#626076",
+     "#766074",
+     "#696076",
+     "#3e3b32",
+     "#9c947c",
+     "#705548",
+     "#487055",
+     "#557048",
+     "#4b4870",
+     "#70486d",
+     "#59496e",
+     "#201f1d"
+    ]
+   }
+  },
+  {
+   "id": "porcelain",
+   "name": "Porcelain",
+   "category": "light",
+   "flavor": "minimal",
+   "blurb": "Porcelain \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#32383e",
+    "bg": "#f2f4f5",
+    "cursor": "#656772",
+    "cursorText": "#f2f4f5",
+    "selection": "#d2dbe4",
+    "selectedText": "#32383e",
+    "ansi": [
+     "#e1e6ea",
+     "#657072",
+     "#726570",
+     "#6a6572",
+     "#726f65",
+     "#677265",
+     "#6f7265",
+     "#32383e",
+     "#7c8c9c",
+     "#4b6a6c",
+     "#6c4b6a",
+     "#594b6c",
+     "#6c674b",
+     "#516c4b",
+     "#666a4d",
+     "#1d1f20"
+    ]
+   }
+  },
+  {
+   "id": "linen",
+   "name": "Linen",
+   "category": "light",
+   "flavor": "lean2",
+   "blurb": "Linen \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#3e3932",
+    "bg": "#f6f4f1",
+    "cursor": "#7a785c",
+    "cursorText": "#f6f4f1",
+    "selection": "#e4ddd2",
+    "selectedText": "#3e3932",
+    "ansi": [
+     "#eae6e1",
+     "#7a615c",
+     "#5c7a61",
+     "#6b7a5c",
+     "#5c5f7a",
+     "#785c7a",
+     "#645c7a",
+     "#3e3932",
+     "#9c8f7c",
+     "#744c44",
+     "#44744c",
+     "#5c7444",
+     "#444874",
+     "#704474",
+     "#514672",
+     "#201f1d"
+    ]
+   }
+  },
+  {
+   "id": "blueprint",
+   "name": "Blueprint",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "Blueprint \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dbdf",
+    "bg": "#0d1216",
+    "cursor": "#5969cf",
+    "cursorText": "#0d1216",
+    "selection": "#263240",
+    "selectedText": "#d8dbdf",
+    "ansi": [
+     "#212830",
+     "#59c1cf",
+     "#cf59c1",
+     "#8e59cf",
+     "#cfbf59",
+     "#69cf59",
+     "#b7cf59",
+     "#d8dbdf",
+     "#5c6a7a",
+     "#7fdae6",
+     "#e67fda",
+     "#ad7fe6",
+     "#e6d87f",
+     "#8de67f",
+     "#d0e481",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "nebula",
+   "name": "Nebula",
+   "category": "neon",
+   "flavor": "rainbow",
+   "blurb": "Nebula \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.12,
+    "blur": 28,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dcd8df",
+    "bg": "#130e16",
+    "cursor": "#e039ef",
+    "cursorText": "#130e16",
+    "selection": "#352640",
+    "selectedText": "#dcd8df",
+    "ansi": [
+     "#2a2130",
+     "#5739ef",
+     "#ef5739",
+     "#ef3994",
+     "#48ef39",
+     "#39efe0",
+     "#39ef66",
+     "#dcd8df",
+     "#6e5c7a",
+     "#8168fd",
+     "#fd8168",
+     "#fd68b3",
+     "#75fd68",
+     "#68fdf0",
+     "#6afb8e",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "aurora",
+   "name": "Aurora",
+   "category": "neon",
+   "flavor": "rainbow",
+   "blurb": "Aurora \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.12,
+    "blur": 28,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dfdc",
+    "bg": "#0e1613",
+    "cursor": "#3eeaea",
+    "cursorText": "#0e1613",
+    "selection": "#264037",
+    "selectedText": "#d8dfdc",
+    "ansi": [
+     "#21302b",
+     "#3eea69",
+     "#693eea",
+     "#3e86ea",
+     "#ea3e3e",
+     "#eaea3e",
+     "#ea773e",
+     "#d8dfdc",
+     "#5c7a70",
+     "#6cf98f",
+     "#8f6cf9",
+     "#6ca7f9",
+     "#f96c6c",
+     "#f9f96c",
+     "#f79c6e",
+     "#f7f8f7"
+    ]
+   }
+  },
+  {
+   "id": "vaporwave",
+   "name": "Vaporwave",
+   "category": "neon",
+   "flavor": "rainbow",
+   "blurb": "Vaporwave \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.12,
+    "blur": 28,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfd8df",
+    "bg": "#160e16",
+    "cursor": "#ef39b2",
+    "cursorText": "#160e16",
+    "selection": "#402640",
+    "selectedText": "#dfd8df",
+    "ansi": [
+     "#302130",
+     "#a339ef",
+     "#efa339",
+     "#ef3948",
+     "#39ef76",
+     "#39b2ef",
+     "#39efb2",
+     "#dfd8df",
+     "#7a5c7a",
+     "#bf68fd",
+     "#fdbf68",
+     "#fd6875",
+     "#68fd9a",
+     "#68cbfd",
+     "#6afbcb",
+     "#f8f7f8"
+    ]
+   }
+  },
+  {
+   "id": "miami",
+   "name": "Miami",
+   "category": "neon",
+   "flavor": "pill",
+   "blurb": "Miami \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.12,
+    "blur": 28,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dedf",
+    "bg": "#0e1416",
+    "cursor": "#3994ef",
+    "cursorText": "#0e1416",
+    "selection": "#263b40",
+    "selectedText": "#d8dedf",
+    "ansi": [
+     "#212e30",
+     "#39efc1",
+     "#c139ef",
+     "#4839ef",
+     "#ef9439",
+     "#94ef39",
+     "#efd139",
+     "#d8dedf",
+     "#5c757a",
+     "#68fdd8",
+     "#d868fd",
+     "#7568fd",
+     "#fdb268",
+     "#b3fd68",
+     "#fbe36a",
+     "#f7f8f8"
+    ]
+   }
+  },
+  {
+   "id": "laser",
+   "name": "Laser",
+   "category": "neon",
+   "flavor": "rainbow",
+   "blurb": "Laser \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.12,
+    "blur": 28,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfd8db",
+    "bg": "#160e12",
+    "cursor": "#f43454",
+    "cursorText": "#160e12",
+    "selection": "#402633",
+    "selectedText": "#dfd8db",
+    "ansi": [
+     "#302129",
+     "#f434e4",
+     "#e4f434",
+     "#f48434",
+     "#34f4d4",
+     "#3454f4",
+     "#34d4f4",
+     "#dfd8db",
+     "#7a5c6b",
+     "#ff66f2",
+     "#f2ff66",
+     "#ffa666",
+     "#66ffe5",
+     "#6680ff",
+     "#66e5ff",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "toxic",
+   "name": "Toxic",
+   "category": "neon",
+   "flavor": "minimal",
+   "blurb": "Toxic \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.12,
+    "blur": 28,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dbdfd8",
+    "bg": "#11150e",
+    "cursor": "#44f434",
+    "cursorText": "#11150e",
+    "selection": "#314026",
+    "selectedText": "#dbdfd8",
+    "ansi": [
+     "#283021",
+     "#d4f434",
+     "#34d4f4",
+     "#34f494",
+     "#e434f4",
+     "#f43444",
+     "#f434c4",
+     "#dbdfd8",
+     "#697a5c",
+     "#e5ff66",
+     "#66e5ff",
+     "#66ffb3",
+     "#f266ff",
+     "#ff6673",
+     "#ff66d9",
+     "#f7f8f7"
+    ]
+   }
+  },
+  {
+   "id": "ultraviolet",
+   "name": "Ultraviolet",
+   "category": "neon",
+   "flavor": "rainbow",
+   "blurb": "Ultraviolet \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.12,
+    "blur": 28,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dad8df",
+    "bg": "#100e16",
+    "cursor": "#ad36f2",
+    "cursorText": "#100e16",
+    "selection": "#2e2640",
+    "selectedText": "#dad8df",
+    "ansi": [
+     "#262130",
+     "#364cf2",
+     "#f2364c",
+     "#f236c9",
+     "#7bf236",
+     "#36f2ad",
+     "#3cf236",
+     "#dad8df",
+     "#655c7a",
+     "#6678ff",
+     "#ff6678",
+     "#ff66de",
+     "#9eff66",
+     "#66ffc7",
+     "#6dfd68",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "sunset",
+   "name": "Sunset",
+   "category": "warm",
+   "flavor": "pill",
+   "blurb": "Sunset \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfdad8",
+    "bg": "#16100e",
+    "cursor": "#e1a147",
+    "cursorText": "#16100e",
+    "selection": "#402d26",
+    "selectedText": "#dfdad8",
+    "ansi": [
+     "#302521",
+     "#e14760",
+     "#60e147",
+     "#c7e147",
+     "#4787e1",
+     "#a147e1",
+     "#4754e1",
+     "#dfdad8",
+     "#7a645c",
+     "#f37288",
+     "#88f372",
+     "#ddf372",
+     "#72a8f3",
+     "#bd72f3",
+     "#747ef1",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "dune",
+   "name": "Dune",
+   "category": "warm",
+   "flavor": "lean2",
+   "blurb": "Dune \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfdcd8",
+    "bg": "#16130e",
+    "cursor": "#c3c365",
+    "cursorText": "#16130e",
+    "selection": "#403726",
+    "selectedText": "#dfdcd8",
+    "ansi": [
+     "#302b21",
+     "#c37c65",
+     "#65c37c",
+     "#8cc365",
+     "#6565c3",
+     "#c365c3",
+     "#8465c3",
+     "#dfdcd8",
+     "#7a705c",
+     "#dd9d88",
+     "#88dd9d",
+     "#abdd88",
+     "#8888dd",
+     "#dd88dd",
+     "#a589dc",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "volcano",
+   "name": "Volcano",
+   "category": "warm",
+   "flavor": "rainbow",
+   "blurb": "Volcano \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfd9d8",
+    "bg": "#160f0e",
+    "cursor": "#e18f47",
+    "cursorText": "#160f0e",
+    "selection": "#402a26",
+    "selectedText": "#dfd9d8",
+    "ansi": [
+     "#302321",
+     "#e14772",
+     "#72e147",
+     "#d9e147",
+     "#4799e1",
+     "#8f47e1",
+     "#4766e1",
+     "#dfd9d8",
+     "#7a605c",
+     "#f37297",
+     "#97f372",
+     "#ecf372",
+     "#72b7f3",
+     "#ae72f3",
+     "#748df1",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "mono-amber",
+   "name": "Mono Amber",
+   "category": "mono",
+   "flavor": "minimal",
+   "blurb": "Mono Amber \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.06,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfdcd8",
+    "bg": "#16130d",
+    "cursor": "#efef39",
+    "cursorText": "#16130d",
+    "selection": "#403726",
+    "selectedText": "#dfdcd8",
+    "ansi": [
+     "#302b21",
+     "#ef6639",
+     "#39ef66",
+     "#85ef39",
+     "#3939ef",
+     "#ef39ef",
+     "#7639ef",
+     "#dfdcd8",
+     "#7a705c",
+     "#fd8d68",
+     "#68fd8d",
+     "#a6fd68",
+     "#6868fd",
+     "#fd68fd",
+     "#9a6afb",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "mono-green",
+   "name": "Mono Green",
+   "category": "mono",
+   "flavor": "minimal",
+   "blurb": "Mono Green \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.06,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dfd9",
+    "bg": "#0e160f",
+    "cursor": "#3eea94",
+    "cursorText": "#0e160f",
+    "selection": "#26402b",
+    "selectedText": "#d8dfd9",
+    "ansi": [
+     "#213024",
+     "#69ea3e",
+     "#3e69ea",
+     "#3edbea",
+     "#ea3e94",
+     "#ea943e",
+     "#ea3e5b",
+     "#d8dfd9",
+     "#5c7a61",
+     "#8ff96c",
+     "#6c8ff9",
+     "#6cedf9",
+     "#f96cb3",
+     "#f9b26c",
+     "#f76e85",
+     "#f7f8f7"
+    ]
+   }
+  },
+  {
+   "id": "mono-cyan",
+   "name": "Mono Cyan",
+   "category": "mono",
+   "flavor": "minimal",
+   "blurb": "Mono Cyan \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.06,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dedf",
+    "bg": "#0e1516",
+    "cursor": "#4994df",
+    "cursorText": "#0e1516",
+    "selection": "#263b40",
+    "selectedText": "#d8dedf",
+    "ansi": [
+     "#212e30",
+     "#49dfb9",
+     "#b949df",
+     "#5549df",
+     "#df9449",
+     "#94df49",
+     "#dfc649",
+     "#d8dedf",
+     "#5c757a",
+     "#74f1d2",
+     "#d274f1",
+     "#7e74f1",
+     "#f1b274",
+     "#b3f174",
+     "#f0db75",
+     "#f7f8f8"
+    ]
+   }
+  },
+  {
+   "id": "mono-magenta",
+   "name": "Mono Magenta",
+   "category": "mono",
+   "flavor": "minimal",
+   "blurb": "Mono Magenta \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.06,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfd8dc",
+    "bg": "#160e13",
+    "cursor": "#e1477a",
+    "cursorText": "#160e13",
+    "selection": "#402637",
+    "selectedText": "#dfd8dc",
+    "ansi": [
+     "#30212b",
+     "#d447e1",
+     "#e1d447",
+     "#e16d47",
+     "#47e1ae",
+     "#477ae1",
+     "#47e1e1",
+     "#dfd8dc",
+     "#7a5c70",
+     "#e872f3",
+     "#f3e872",
+     "#f39272",
+     "#72f3c8",
+     "#729df3",
+     "#74f1f1",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "mono-paper",
+   "name": "Mono Paper",
+   "category": "mono",
+   "flavor": "minimal",
+   "blurb": "Mono Paper \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.06,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#3e3a32",
+    "bg": "#f6f4f1",
+    "cursor": "#767660",
+    "cursorText": "#f6f4f1",
+    "selection": "#e4ded2",
+    "selectedText": "#3e3a32",
+    "ansi": [
+     "#eae7e1",
+     "#766660",
+     "#607666",
+     "#697660",
+     "#606076",
+     "#766076",
+     "#686076",
+     "#3e3a32",
+     "#9c927c",
+     "#705248",
+     "#487052",
+     "#587048",
+     "#484870",
+     "#704870",
+     "#56496e",
+     "#201f1d"
+    ]
+   }
+  },
+  {
+   "id": "frost",
+   "name": "Frost",
+   "category": "light",
+   "flavor": "minimal",
+   "blurb": "Frost \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#32393e",
+    "bg": "#f1f4f6",
+    "cursor": "#4b5b8b",
+    "cursorText": "#f1f4f6",
+    "selection": "#d2dde4",
+    "selectedText": "#32393e",
+    "ansi": [
+     "#e1e6ea",
+     "#4b8b8b",
+     "#8b4b8b",
+     "#604b8b",
+     "#8b7b4b",
+     "#5b8b4b",
+     "#868b4b",
+     "#32393e",
+     "#7c8f9c",
+     "#358282",
+     "#823582",
+     "#4f3582",
+     "#826f35",
+     "#498235",
+     "#7a8137",
+     "#1d1f20"
+    ]
+   }
+  },
+  {
+   "id": "glacier",
+   "name": "Glacier",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Glacier \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dddf",
+    "bg": "#0e1416",
+    "cursor": "#6f8eb8",
+    "cursorText": "#0e1416",
+    "selection": "#263940",
+    "selectedText": "#d8dddf",
+    "ansi": [
+     "#212c30",
+     "#6fb8ac",
+     "#ac6fb8",
+     "#7c6fb8",
+     "#b89a6f",
+     "#8eb86f",
+     "#b8b26f",
+     "#d8dddf",
+     "#5c737a",
+     "#8fd6ca",
+     "#ca8fd6",
+     "#9b8fd6",
+     "#d6b88f",
+     "#add68f",
+     "#d4cf91",
+     "#f7f8f8"
+    ]
+   }
+  },
+  {
+   "id": "obsidian",
+   "name": "Obsidian",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Obsidian \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dadf",
+    "bg": "#0e1015",
+    "cursor": "#827ea9",
+    "cursorText": "#0e1015",
+    "selection": "#262d40",
+    "selectedText": "#d8dadf",
+    "ansi": [
+     "#212530",
+     "#7e9ba9",
+     "#a97e9b",
+     "#9b7ea9",
+     "#a6a97e",
+     "#7ea982",
+     "#97a97e",
+     "#d8dadf",
+     "#5c647a",
+     "#9abbcb",
+     "#cb9abb",
+     "#bb9acb",
+     "#c7cb9a",
+     "#9acb9e",
+     "#b6c99c",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "midnight",
+   "name": "Midnight",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Midnight \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8d8df",
+    "bg": "#0e0e16",
+    "cursor": "#7e69bf",
+    "cursorText": "#0e0e16",
+    "selection": "#262840",
+    "selectedText": "#d8d8df",
+    "ansi": [
+     "#212330",
+     "#6994bf",
+     "#bf6994",
+     "#b069bf",
+     "#a9bf69",
+     "#69bf7e",
+     "#8dbf69",
+     "#d8d8df",
+     "#5c5f7a",
+     "#8bb2da",
+     "#da8bb2",
+     "#cd8bda",
+     "#c6da8b",
+     "#8bda9f",
+     "#acd98c",
+     "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "cacao",
+   "name": "Cacao",
+   "category": "warm",
+   "flavor": "minimal",
+   "blurb": "Cacao \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfdbd8",
+    "bg": "#17110d",
+    "cursor": "#baa66d",
+    "cursorText": "#17110d",
+    "selection": "#403026",
+    "selectedText": "#dfdbd8",
+    "ansi": [
+     "#302721",
+     "#ba6d6f",
+     "#6fba6d",
+     "#a2ba6d",
+     "#6d82ba",
+     "#a66dba",
+     "#726dba",
+     "#dfdbd8",
+     "#7a685c",
+     "#d78e8f",
+     "#8fd78e",
+     "#c0d78e",
+     "#8ea1d7",
+     "#c48ed7",
+     "#948fd6",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "honey",
+   "name": "Honey",
+   "category": "warm",
+   "flavor": "pill",
+   "blurb": "Honey \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.03,
+    "blur": 14,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfddd8",
+    "bg": "#16140e",
+    "cursor": "#cfd84f",
+    "cursorText": "#16140e",
+    "selection": "#403926",
+    "selectedText": "#dfddd8",
+    "ansi": [
+     "#302c21",
+     "#d87b4f",
+     "#4fd87b",
+     "#7fd84f",
+     "#584fd8",
+     "#d84fcf",
+     "#864fd8",
+     "#dfddd8",
+     "#7a725c",
+     "#ed9d78",
+     "#78ed9d",
+     "#a1ed78",
+     "#8078ed",
+     "#ed78e5",
+     "#a77aeb",
+     "#f8f8f7"
+    ]
+   }
+  },
+  {
+   "id": "sakura",
+   "name": "Sakura",
+   "category": "light",
+   "flavor": "pill",
+   "blurb": "Sakura \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.0,
+    "blur": 0,
+    "cursor": "bar",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#3e3236",
+    "bg": "#f6f1f3",
+    "cursor": "#983e3e",
+    "cursorText": "#f6f1f3",
+    "selection": "#e4d2d8",
+    "selectedText": "#3e3236",
+    "ansi": [
+     "#eae1e4",
+     "#983e82",
+     "#82983e",
+     "#98733e",
+     "#3e9898",
+     "#3e3e98",
+     "#3e7a98",
+     "#3e3236",
+     "#9c7c87",
+     "#8d2a75",
+     "#758d2a",
+     "#8d642a",
+     "#2a8d8d",
+     "#2a2a8d",
+     "#2c6c8c",
+     "#201d1e"
+    ]
+   }
+  },
+  {
+   "id": "jade",
+   "name": "Jade",
+   "category": "dark",
+   "flavor": "pill",
+   "blurb": "Jade \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dfdb",
+    "bg": "#0e1512",
+    "cursor": "#59cfbb",
+    "cursorText": "#0e1512",
+    "selection": "#264033",
+    "selectedText": "#d8dfdb",
+    "ansi": [
+     "#213029",
+     "#59cf63",
+     "#6359cf",
+     "#599ecf",
+     "#cf596d",
+     "#cfbb59",
+     "#cf6d59",
+     "#d8dfdb",
+     "#5c7a6b",
+     "#7fe688",
+     "#887fe6",
+     "#7fbbe6",
+     "#e67f90",
+     "#e6d57f",
+     "#e49181",
+     "#f7f8f7"
+    ]
+   }
+  },
+  {
+   "id": "teal-noir",
+   "name": "Teal Noir",
+   "category": "dark",
+   "flavor": "minimal",
+   "blurb": "Teal Noir \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dfdf",
+    "bg": "#0e1616",
+    "cursor": "#749fb4",
+    "cursorText": "#0e1616",
+    "selection": "#264040",
+    "selectedText": "#d8dfdf",
+    "ansi": [
+     "#213030",
+     "#74b499",
+     "#9974b4",
+     "#7479b4",
+     "#b48974",
+     "#9fb474",
+     "#b49f74",
+     "#d8dfdf",
+     "#5c7a7a",
+     "#92d3b8",
+     "#b892d3",
+     "#9298d3",
+     "#d3a892",
+     "#bdd392",
+     "#d1bd94",
+     "#f7f8f8"
+    ]
+   }
+  },
+  {
+   "id": "wine",
+   "name": "Wine",
+   "category": "dark",
+   "flavor": "lean2",
+   "blurb": "Wine \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#dfd8da",
+    "bg": "#160e10",
+    "cursor": "#c46c64",
+    "cursorText": "#160e10",
+    "selection": "#40262d",
+    "selectedText": "#dfd8da",
+    "ansi": [
+     "#302125",
+     "#c464a4",
+     "#a4c464",
+     "#c4a464",
+     "#64bcc4",
+     "#6c64c4",
+     "#649cc4",
+     "#dfd8da",
+     "#7a5c64",
+     "#de87c1",
+     "#c1de87",
+     "#dec187",
+     "#87d7de",
+     "#8e87de",
+     "#88badd",
+     "#f8f7f7"
+    ]
+   }
+  },
+  {
+   "id": "marina",
+   "name": "Marina",
+   "category": "dark",
+   "flavor": "powerline",
+   "blurb": "Marina \u2014 a generated palette built around one hue.",
+   "window": {
+    "transparency": 0.05,
+    "blur": 20,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [],
+   "colors": {
+    "fg": "#d8dcdf",
+    "bg": "#0e1315",
+    "cursor": "#5e82c9",
+    "cursorText": "#0e1315",
+    "selection": "#263740",
+    "selectedText": "#d8dcdf",
+    "ansi": [
+     "#212b30",
+     "#5ec9c1",
+     "#c15ec9",
+     "#795ec9",
+     "#c9a65e",
+     "#82c95e",
+     "#c9c95e",
+     "#d8dcdf",
+     "#5c707a",
+     "#83e2da",
+     "#da83e2",
+     "#9b83e2",
+     "#e2c283",
+     "#a3e283",
+     "#e0e085",
+     "#f7f7f8"
+    ]
+   }
+  }
+ ]
+}

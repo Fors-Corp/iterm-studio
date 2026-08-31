@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>iTerm Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root{
+    --ground:#e9e7e1; --surface:#fbfaf7; --surface-2:#f2f0ea; --hairline:#d8d2c4;
+    --ink:#1f1d19; --ink-dim:#57524a; --ink-faint:#7c766a;
+    --accent:#985f00; --accent-fg:#fff; --bad:#a3341f; --good:#1f7a4d;
+    --shadow:0 1px 2px rgba(30,26,18,.07),0 12px 32px rgba(30,26,18,.11);
+    --focus:0 0 0 2px var(--surface),0 0 0 4px var(--accent);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#100f0d; --surface:#191713; --surface-2:#211e19; --hairline:#332f26;
+      --ink:#efeae0; --ink-dim:#b3aa9a; --ink-faint:#867d6e;
+      --accent:#e0ab4c; --accent-fg:#1a1610; --bad:#eb8a7d; --good:#7fd0a3;
+      --shadow:0 1px 2px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.55);
+      --focus:0 0 0 2px var(--surface),0 0 0 4px var(--accent);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#100f0d; --surface:#191713; --surface-2:#211e19; --hairline:#332f26;
+    --ink:#efeae0; --ink-dim:#b3aa9a; --ink-faint:#867d6e;
+    --accent:#e0ab4c; --accent-fg:#1a1610; --bad:#eb8a7d; --good:#7fd0a3;
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16.5px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1260px;margin:0 auto;padding:clamp(24px,5vw,60px) clamp(16px,4vw,48px) 128px}
+  a{color:var(--accent)}
+  :where(button,select,input,a,[tabindex]):focus-visible{outline:none;box-shadow:var(--focus);border-radius:8px}
+
+  .skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--accent-fg);padding:10px 16px;z-index:100}
+  .skip:focus{left:8px;top:8px}
+
+  .topline{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+  .lang{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-dim)}
+  .lang select{
+    font:inherit;font-size:13px;padding:5px 8px;border-radius:8px;
+    background:var(--surface);border:1px solid var(--hairline);color:var(--ink);cursor:pointer;
+  }
+  h1{
+    font-family:"Bricolage Grotesque","Instrument Sans",sans-serif;font-weight:800;
+    font-size:clamp(2.3rem,6vw,3.9rem);line-height:1.03;letter-spacing:-.02em;
+    text-wrap:balance;margin:0 0 20px;
+  }
+  h1 em{font-style:normal;color:var(--accent)}
+  .lede{max-width:64ch;font-size:clamp(1.02rem,2vw,1.18rem);color:var(--ink-dim);margin:0 0 26px}
+
+  .howto{border:1px solid var(--hairline);border-radius:14px;background:var(--surface);padding:20px 22px;margin-bottom:18px;box-shadow:var(--shadow);display:grid;gap:9px}
+  .howto h2{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 3px}
+  .howto p{margin:0;font-size:14.5px;color:var(--ink-dim)}
+  .howto code,.howto kbd{font-family:"JetBrains Mono",monospace;font-size:.86em;background:var(--surface-2);border:1px solid var(--hairline);border-radius:6px;padding:2px 6px;color:var(--ink)}
+  body.m-web .only-local,body.m-local .only-web{display:none}
+
+  .controls{position:sticky;top:0;z-index:30;background:var(--ground);padding:14px 0 12px;margin-bottom:14px;border-bottom:1px solid var(--hairline)}
+  .statusbar{
+    display:none;align-items:center;gap:14px;flex-wrap:wrap;
+    border:1px solid var(--accent);border-radius:12px;
+    background:color-mix(in oklab,var(--accent) 13%,var(--surface));
+    padding:11px 15px;margin-bottom:12px;
+  }
+  body.m-local .statusbar{display:flex}
+  .statusbar .dot{width:9px;height:9px;border-radius:50%;background:var(--ink-faint);flex:none}
+  .statusbar.on .dot{background:var(--good)}
+  .statusbar #stName{font-weight:600;font-size:14.5px}
+  .statusbar .sd{font-size:13px;color:var(--ink-dim);display:flex;align-items:center;gap:6px;cursor:pointer}
+  .statusbar .sb-btn{margin-left:auto;font:inherit;font-size:13px;cursor:pointer;background:var(--surface);border:1px solid var(--hairline);border-radius:8px;padding:8px 14px;color:var(--ink)}
+  .statusbar .sb-btn:hover{border-color:var(--accent)}
+  .statusbar .sb-hint{flex-basis:100%;font-size:12px;color:var(--ink-faint);margin:0}
+
+  .searchrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .search{flex:1;min-width:200px;position:relative}
+  .search input{
+    width:100%;font:inherit;font-size:14px;padding:9px 12px 9px 34px;border-radius:10px;
+    background:var(--surface);border:1px solid var(--hairline);color:var(--ink);
+  }
+  .search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;opacity:.5}
+  .count{font-size:13px;color:var(--ink-faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .filters{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .filters button{
+    font:inherit;font-size:13px;cursor:pointer;min-height:34px;
+    border:1px solid var(--hairline);background:var(--surface);color:var(--ink-dim);
+    border-radius:999px;padding:5px 14px;transition:background .15s,color .15s;
+  }
+  .filters button:hover{color:var(--ink)}
+  .filters button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);font-weight:600}
+  .filters button b{font-variant-numeric:tabular-nums;opacity:.6;margin-left:5px;font-weight:400}
+
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  .empty{padding:60px 0;text-align:center;color:var(--ink-faint)}
+  .card{
+    border:1px solid var(--hairline);border-radius:16px;background:var(--surface);
+    overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
+    transition:border-color .15s,transform .15s;
+  }
+  .card.hidden{display:none}
+  .card:hover{transform:translateY(-2px)}
+  .card.is-active{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in oklab,var(--accent) 50%,transparent),var(--shadow)}
+
+  .term{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:10.6px;line-height:1.6;height:320px;overflow:hidden;position:relative}
+  .term .bar{display:flex;align-items:center;gap:6px;padding:7px 11px;border-bottom:1px solid rgba(128,128,128,.16)}
+  .term .bar i{width:9px;height:9px;border-radius:50%}
+  .term .bar span{margin-left:6px;font-size:10px;opacity:.6}
+  .term .body{padding:11px 13px;white-space:pre-wrap;word-break:break-word}
+  .term .tln{min-height:1.6em}
+  .term .gap{height:.7em}
+  .term .cur{display:inline-block;width:.55em;height:1em;vertical-align:-.14em;margin-left:2px}
+  .term .gho{font-style:italic;opacity:.72}
+  .term::after{content:"";position:absolute;left:0;right:0;bottom:0;height:44px;pointer-events:none;background:linear-gradient(transparent,var(--term-bg,var(--surface-2)))}
+
+  .meta{display:flex;flex-wrap:wrap;gap:6px;padding:13px 15px 0}
+  .chip{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.03em;border:1px solid var(--hairline);border-radius:5px;padding:2px 7px;color:var(--ink-dim);text-transform:uppercase}
+  .chip.cat{border-color:var(--accent);color:var(--accent)}
+
+  .sw{display:flex;gap:2px;padding:12px 15px 0}
+  .sw i{flex:1;height:13px;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(128,128,128,.18)}
+
+  .body-txt{padding:12px 15px 0;flex:1}
+  .body-txt h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:-.01em;margin:0 0 5px}
+  .body-txt p{margin:0;font-size:13.5px;color:var(--ink-dim);line-height:1.5}
+
+  .actions{display:flex;gap:8px;padding:14px 15px 16px;align-items:center}
+  .actions .apply{flex:1;font:inherit;font-weight:600;font-size:13.5px;cursor:pointer;min-height:40px;background:var(--accent);color:var(--accent-fg);border:0;border-radius:9px;padding:9px 12px;transition:filter .15s}
+  .actions .apply:hover{filter:brightness(1.08)}
+  .actions button[disabled]{opacity:.55;cursor:progress}
+  .actions .ghost{font:inherit;font-size:13px;cursor:pointer;min-height:40px;background:var(--surface-2);color:var(--ink-dim);border:1px solid var(--hairline);border-radius:9px;padding:9px 11px;white-space:nowrap}
+  .actions .ghost:hover{color:var(--ink)}
+
+  .section-h{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:clamp(1.5rem,3vw,2rem);letter-spacing:-.015em;margin:60px 0 6px}
+  .section-sub{color:var(--ink-dim);margin:0 0 22px;font-size:15px;max-width:60ch}
+  .tools{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+  .tool{border:1px solid var(--hairline);border-radius:13px;background:var(--surface);padding:15px 16px;display:flex;flex-direction:column;gap:8px}
+  .tool h4{margin:0;font-size:15px;font-family:"JetBrains Mono",monospace;font-weight:700}
+  .tool p{margin:0;font-size:13px;color:var(--ink-dim);flex:1;line-height:1.5}
+  .tool button{font:inherit;font-size:12px;cursor:pointer;text-align:left;background:var(--surface-2);border:1px solid var(--hairline);border-radius:7px;padding:7px 9px;color:var(--ink);font-family:"JetBrains Mono",monospace;min-height:34px}
+  .tool button:hover{border-color:var(--accent);color:var(--accent)}
+  .tool button[disabled]{opacity:.55;cursor:progress}
+
+  .cmdbar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--surface);border-top:1px solid var(--hairline);box-shadow:0 -8px 30px rgba(0,0,0,.18);transform:translateY(110%);transition:transform .28s cubic-bezier(.2,.7,.2,1)}
+  .cmdbar.show{transform:none}
+  .cmdbar .inner{max-width:1260px;margin:0 auto;padding:13px clamp(16px,4vw,48px);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .cmdbar .lbl{font-size:13px;color:var(--ink-dim)}
+  .cmdbar input{flex:1;min-width:210px;font-family:"JetBrains Mono",monospace;font-size:13.5px;background:var(--ground);border:1px solid var(--hairline);border-radius:9px;padding:10px 12px;color:var(--ink)}
+  .cmdbar .copy{font:inherit;font-weight:600;font-size:13.5px;cursor:pointer;background:var(--accent);color:var(--accent-fg);border:0;border-radius:9px;padding:10px 16px}
+  .cmdbar .x{font:inherit;cursor:pointer;background:transparent;border:0;color:var(--ink-faint);font-size:22px;line-height:1;padding:2px 8px}
+  .cmdbar .hint{flex-basis:100%;font-size:12px;color:var(--ink-faint);margin:0}
+
+  .toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--ground);font-size:13.5px;font-weight:500;padding:10px 17px;border-radius:999px;opacity:0;transition:opacity .2s,transform .2s;z-index:50;pointer-events:none;max-width:92vw;text-align:center}
+  .toast.show{opacity:1;transform:translateX(-50%)}
+  .toast.err{background:var(--bad);color:#fff}
+
+  footer{margin-top:64px;border-top:1px solid var(--hairline);padding-top:24px;font-size:13px;color:var(--ink-faint);display:grid;gap:6px}
+  footer code{font-family:"JetBrains Mono",monospace;color:var(--ink-dim)}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::after{transition:none!important;animation:none!important}
+    .card:hover{transform:none}
+  }
+</style>
+
+<a class="skip" href="#grid" data-i="skip">Skip to styles</a>
+<div class="wrap">
+  <header>
+    <div class="topline">
+      <p class="eyebrow" id="eyebrow">iTerm Studio</p>
+      <label class="lang"><span data-i="langLabel">Language</span>
+        <select id="lang" aria-label="Language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </label>
+    </div>
+    <h1 id="h1"></h1>
+    <p class="lede" id="lede"></p>
+
+    <div class="howto">
+      <h2 data-i="howtoH">How “Apply” works</h2>
+      <p class="only-local" data-i="howtoLocal"></p>
+      <p class="only-web" data-i="howtoWeb"></p>
+      <p data-i="howtoCommon"></p>
+    </div>
+  </header>
+
+  <main>
+    <div class="controls">
+      <div class="statusbar" id="statusbar" role="status" aria-live="polite">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="stName"></span>
+        <label class="sd"><input type="checkbox" id="setDefault"> <span data-i="setDefault">Also set as default iTerm profile</span></label>
+        <button class="sb-btn" id="revertBtn" data-i="revert">Revert</button>
+        <p class="sb-hint" id="stHint"></p>
+      </div>
+
+      <div class="searchrow">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="q" type="search" autocomplete="off" spellcheck="false" aria-label="Search styles">
+        </div>
+        <span class="count" id="count" aria-live="polite"></span>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden data-i="noMatch">Nothing matches that search.</p>
+
+    <h2 class="section-h" data-i="powerupsH">Power-ups</h2>
+    <p class="section-sub" data-i="powerupsSub"></p>
+    <div class="tools" id="tools"></div>
+  </main>
+
+  <footer>
+    <div>Profile → <code>~/Library/Application Support/iTerm2/DynamicProfiles/iterm-studio.json</code></div>
+    <div>Managed blocks → <code>~/.p10k.zsh</code> · <code>~/.zshrc</code> (between <code>iterm-studio</code> markers)</div>
+    <div>Backups → <code>~/.p10k.zsh.iterm-studio-orig</code> · <code>~/.zshrc.bak-*</code> · <code>~/.p10k.zsh.bak-*</code></div>
+  </footer>
+</div>
+
+<div class="cmdbar" id="cmdbar">
+  <div class="inner">
+    <span class="lbl" data-i="cmdLabel">Run in your terminal:</span>
+    <input id="cmdinput" readonly value="" aria-label="Command to run">
+    <button class="copy" id="cmdcopy" data-i="cmdCopy">Copy</button>
+    <button class="x" id="cmdx" aria-label="Dismiss">&times;</button>
+    <p class="hint" data-i="cmdHint"></p>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="assertive"></div>
+
+<script>
+const MODE = "__MODE__", TOKEN = "__TOKEN__";
+const PRESETS = window.ITERM_STUDIO_PRESETS = /*__PRESETS__*/[];
+const $ = s => document.querySelector(s);
+const N = PRESETS.length;
+
+/* ------------------------------------------------------------------ i18n */
+const I18N = {
+ en:{
+  langLabel:"Language", skip:"Skip to styles",
+  h1_pre:"", h1_em:"apply", h1_post:" it.", h1_lead:N+" terminals. Pick one, ",
+  lede:"Every card is a full treatment — iTerm2 colours, transparency, blur, cursor, font, and a Powerlevel10k prompt shape. The preview shows the same session in every palette, so you're comparing colour, not content.",
+  howtoH:"How “Apply” works",
+  howtoLocal:"This page is served locally by iterm-studio serve, so Apply runs for real — one click writes the iTerm profile and prompt, no copy-paste. Keep that terminal open while you experiment; Ctrl-C stops it.",
+  howtoWeb:"A web page can't reach into macOS. For one-click applying run iterm-studio serve and use the page it opens. Otherwise each Apply here copies the exact command to paste.",
+  howtoCommon:"Applying writes an iTerm profile called “Studio” plus two clearly-marked blocks in ~/.p10k.zsh and ~/.zshrc. Undo everything with iterm-studio revert.",
+  setDefault:"Also set as default iTerm profile",
+  revert:"Revert",
+  stHint:"Colours change when you select the Studio profile in iTerm (⌘I). The prompt updates on the next new shell — exec zsh.",
+  stNone:"No style applied yet", stActive:"Active — ",
+  searchPh:"Search "+N+" styles by name, colour family, prompt…",
+  all:"All", showing:n=>n+" of "+N, noMatch:"Nothing matches that search.",
+  cat:{dark:"Dark",light:"Light",warm:"Warm",neon:"Neon",mono:"Mono",stack:"Stacks"},
+  apply:"Apply", applyThemeOnly:"Apply (theme only)", plusTools:"+ tools", copyCmd:"copy command",
+  applyAria:n=>"Apply "+n, toolsAria:n=>"Apply "+n+" with its CLI tools",
+  powerupsH:"Power-ups",
+  powerupsSub:"Standalone tools that change how the terminal feels day to day. Independent of the themes above — mix in whichever you want.",
+  install:"Install",
+  cmdLabel:"Run in your terminal:", cmdCopy:"Copy", cmdHint:"Or run iterm-studio serve for one-click applying.",
+  tApplying:"Applying…", tInstallTools:"Installing tools — this can take a minute…",
+  tInstall:n=>"Installing "+n+" — this can take a minute…",
+  tCopied:"Copied — paste in your terminal", tCopiedCmd:"Copied command",
+  tSelectCopy:"Select the line and copy it", ok:"✓ ", err:"✗ "
+ },
+ es:{
+  langLabel:"Idioma", skip:"Saltar a los estilos",
+  h1_pre:"", h1_em:"aplícalo", h1_post:".", h1_lead:N+" terminales. Elige uno y ",
+  lede:"Cada tarjeta es un tratamiento completo: colores de iTerm2, transparencia, desenfoque, cursor, tipografía y una forma de prompt de Powerlevel10k. La vista previa muestra la misma sesión en cada paleta, así comparas el color, no el contenido.",
+  howtoH:"Cómo funciona “Aplicar”",
+  howtoLocal:"Esta página la sirve localmente iterm-studio serve, así que Aplicar se ejecuta de verdad: un clic escribe el perfil de iTerm y el prompt, sin copiar y pegar. Deja esa terminal abierta mientras pruebas; Ctrl-C la detiene.",
+  howtoWeb:"Una página web no puede tocar macOS. Para aplicar con un clic ejecuta iterm-studio serve y usa la página que abre. Si no, cada Aplicar copia el comando exacto para pegarlo.",
+  howtoCommon:"Aplicar escribe un perfil de iTerm llamado “Studio” y dos bloques bien marcados en ~/.p10k.zsh y ~/.zshrc. Deshaz todo con iterm-studio revert.",
+  setDefault:"También como perfil predeterminado de iTerm",
+  revert:"Revertir",
+  stHint:"Los colores cambian al seleccionar el perfil Studio en iTerm (⌘I). El prompt se actualiza en la siguiente shell nueva — exec zsh.",
+  stNone:"Ningún estilo aplicado todavía", stActive:"Activo — ",
+  searchPh:"Busca entre "+N+" estilos por nombre, familia de color, prompt…",
+  all:"Todos", showing:n=>n+" de "+N, noMatch:"Nada coincide con esa búsqueda.",
+  cat:{dark:"Oscuro",light:"Claro",warm:"Cálido",neon:"Neón",mono:"Mono",stack:"Packs"},
+  apply:"Aplicar", applyThemeOnly:"Aplicar (solo tema)", plusTools:"+ herramientas", copyCmd:"copiar comando",
+  applyAria:n=>"Aplicar "+n, toolsAria:n=>"Aplicar "+n+" con sus herramientas de terminal",
+  powerupsH:"Extras",
+  powerupsSub:"Herramientas independientes que cambian cómo se siente la terminal a diario. Independientes de los temas de arriba: combina las que quieras.",
+  install:"Instalar",
+  cmdLabel:"Ejecuta en tu terminal:", cmdCopy:"Copiar", cmdHint:"O ejecuta iterm-studio serve para aplicar con un clic.",
+  tApplying:"Aplicando…", tInstallTools:"Instalando herramientas — puede tardar un minuto…",
+  tInstall:n=>"Instalando "+n+" — puede tardar un minuto…",
+  tCopied:"Copiado — pégalo en tu terminal", tCopiedCmd:"Comando copiado",
+  tSelectCopy:"Selecciona la línea y cópiala", ok:"✓ ", err:"✗ "
+ }
+};
+let LANG = "en", L = I18N.en;
+try{ LANG = (localStorage.getItem("iterm-studio-lang") || navigator.language || "en").slice(0,2); }catch(e){}
+if(!I18N[LANG]) LANG = "en";
+
+document.body.classList.add("m-" + MODE);
+
+/* ------------------------------------------------------------ transcript */
+const T = [
+ {s:[["╭─ ","rail"],["~/Claude/Habit Tracker","blue"],["  on ","dim"],[" main","yellow"],["            ","dim"],["took 4.2s","dim"]]},
+ {s:[["╰─","rail"],["❯ ","prompt"],["eza","green"],[" -la --git --icons","fg"]]},
+ {s:[["drwxr-xr-x  ","dim"],["- marcfors ","dim"],["14 Aug 09:12 ","dim"],[" src","blue"]]},
+ {s:[[".rw-r--r-- ","dim"],["2.4k marcfors ","dim"],[" 3 Aug 22:41 ","dim"],[" package.json  ","fg"],["M","yellow"]]},
+ {s:[[".rw-r--r-- ","dim"],["918 marcfors ","dim"],[" 1 Aug 11:03 ","dim"],[" vitest.config.ts  ","fg"],["?","red"]]},
+ {gap:1},
+ {s:[["╰─","rail"],["❯ ","prompt"],["git","green"],[" status -sb","fg"]]},
+ {s:[["## ","dim"],["main","green"],["...origin/main ","dim"],["[ahead 1]","yellow"]]},
+ {s:[[" M ","yellow"],["src/lib/theme.ts","fg"]]},
+ {s:[["?? ","red"],["src/lib/iterm.ts","fg"]]},
+ {gap:1},
+ {s:[["╰─","rail"],["❯ ","prompt"],["npm","green"],[" test","fg"]]},
+ {s:[[" ✓ ","green"],["src/lib/timelineLayout.test.ts ","fg"],["(12)","dim"]]},
+ {s:[[" ✗ ","red"],["src/lib/validation.test.ts ","fg"],["(1)","dim"]]},
+ {s:[["   → expected ","dim"],["200","magenta"],[" to be ","dim"],["404","magenta"]]},
+ {s:[["Tests  ","fg"],["1 failed","red"],[" | ","dim"],["338 passed","green"],[" (339)","dim"]]},
+ {gap:1},
+ {s:[["╰─","rail"],["❯ ","prompt"],["bat","green"],[" iterm-studio.json","fg"]]},
+ {s:[["{ ","dim"],["\"theme\"","cyan"],[": ","dim"],["\"studio\"","green"],[", ","dim"],["\"blur\"","cyan"],[": ","dim"],["24","magenta"],[", ","dim"],["\"transparency\"","cyan"],[": ","dim"],["0.05","magenta"],[" }","dim"]]},
+ {gap:1},
+ {s:[["╰─","rail"],["❯ ","prompt"],["tsc","green"],[" --noEmit","fg"]]},
+ {s:[["src/app/page.tsx","fg"],["(","dim"],["42,7","yellow"],[")","dim"],[": ","dim"],["error","red"],[" TS2322: ","fg"],["Type 'string' is not assignable","dim"]]},
+ {gap:1},
+ {s:[["╭─ ","rail"],["~/Claude/Habit Tracker","blue"],["  on ","dim"],[" main","yellow"]]},
+ {s:[["╰─","rail"],["❯ ","prompt"],["git checkout ","fg"],["-b iterm-studio","gho"],["   ⇥","gho"]]},
+ {s:[["╰─","rail"],["❯ ","prompt"],["","cur"]]},
+];
+function palette(p){
+  const a=p.colors.ansi;
+  return {fg:p.colors.fg,bg:p.colors.bg,dim:a[8],red:a[1],green:a[2],yellow:a[3],
+          blue:a[4],magenta:a[5],cyan:a[6],rail:a[8],prompt:a[4],cur:p.colors.cursor,gho:a[8]};
+}
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function termInner(p){
+  const c=palette(p); let rows="";
+  for(const ln of T){
+    if(ln.gap){rows+='<div class="gap"></div>';continue;}
+    let r='<div class="tln">';
+    for(const [t,k] of ln.s){
+      if(k==="cur"){r+=`<span class="cur" style="background:${c.cur}"></span>`;continue;}
+      r+=`<span${k==="gho"?' class="gho"':''} style="color:${c[k]||c.fg}">${esc(t)}</span>`;
+    }
+    rows+=r+'</div>';
+  }
+  return `<div class="bar" style="background:${c.bg}">
+      <i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+      <span style="color:${c.fg}">studio — zsh</span>
+    </div><div class="body">${rows}</div>`;
+}
+
+/* --------------------------------------------------------------- render */
+const grid=$("#grid"), toolsEl=$("#tools"), fEl=$("#filters"),
+      toast=$("#toast"), bar=$("#cmdbar"), input=$("#cmdinput"),
+      qEl=$("#q"), countEl=$("#count"), emptyEl=$("#empty");
+
+function cardHTML(p){
+  const w=p.window, a=p.colors.ansi, c=palette(p);
+  const sw=a.map(h=>`<i style="background:${h}"></i>`).join("");
+  const tl=p.tools.length?` · +${p.tools.length} tools`:"";
+  const applyLbl = p.tools.length ? L.applyThemeOnly : L.apply;
+  const extra=p.tools.length
+    ? `<button class="ghost" data-act="tools" aria-label="${L.toolsAria(p.name)}">${L.plusTools}</button>`
+    : `<button class="ghost" data-act="copy" aria-label="${L.copyCmd}: iterm-studio apply ${p.id}" title="${L.copyCmd}">⧉</button>`;
+  return `<article class="card" data-cat="${p.category}" data-id="${p.id}"
+      data-search="${(p.id+' '+p.name+' '+p.category+' '+p.flavor+' '+p.blurb).toLowerCase()}">
+    <div class="term" style="background:${c.bg};color:${c.fg};--term-bg:${c.bg}" role="img" aria-label="Preview: ${p.name}">${termInner(p)}</div>
+    <div class="meta">
+      <span class="chip cat">${L.cat[p.category]||p.category}</span>
+      <span class="chip">${p.flavor}</span>
+      <span class="chip">α ${Math.round(w.transparency*100)}%</span>
+      <span class="chip">blur ${w.blur}</span>
+      <span class="chip">${w.cursor}</span>
+    </div>
+    <div class="sw" aria-hidden="true">${sw}</div>
+    <div class="body-txt"><h3>${p.name}</h3><p>${p.blurb}${tl}</p></div>
+    <div class="actions">
+      <button class="apply" data-act="apply" aria-label="${L.applyAria(p.name)}">${applyLbl}</button>
+      ${extra}
+    </div>
+  </article>`;
+}
+
+const TOOLS=[
+ ["starship","Cross-shell prompt — fast, minimal, one TOML file."],
+ ["eza","Modern <code>ls</code>: colours, icons, a <code>--git</code> column, <code>--tree</code>."],
+ ["bat","<code>cat</code> with syntax highlighting, line numbers and a git gutter."],
+ ["fzf","Fuzzy finder wired into ⌃R history, ⌃T files, <code>**⇥</code> completion."],
+ ["zoxide","A <code>cd</code> that learns — <code>z habit</code> jumps to the dir you mean."],
+ ["atuin","Shell history as a searchable, syncable SQLite TUI (⌃R)."],
+ ["git-delta","Side-by-side, syntax-highlighted <code>git diff</code> / <code>git blame</code>."],
+ ["tmux","Splits, windows and sessions that survive a closed terminal."],
+ ["btop","A resource monitor that's actually nice to look at."],
+ ["tlrc","<code>tldr tar</code> — community cheat-sheets instead of full man pages."],
+ ["thefuck","Type <code>fuck</code> after a mistyped command and it fixes it."],
+ ["nerd-fonts","Icon-patched fonts (JetBrainsMono, Hack, Meslo) for prompt glyphs."],
+];
+
+const PMAP = Object.fromEntries(PRESETS.map(p=>[p.id,p]));
+grid.innerHTML = PRESETS.map(cardHTML).join("");
+toolsEl.innerHTML = TOOLS.map(([n,d])=>`<div class="tool" data-tool="${n}">
+  <h4>${n}</h4><p>${d}</p>
+  <button data-act="tool">${MODE==="local"?L.install:"$ brew install "+n}</button></div>`).join("");
+
+/* filters + search */
+const cats = [...new Set(PRESETS.map(p=>p.category))];
+const cnt = c => c==="all" ? N : PRESETS.filter(p=>p.category===c).length;
+let curCat = "all", curQ = "";
+function renderFilters(){
+  fEl.innerHTML = ["all",...cats].map(c=>{
+    const label = c==="all" ? L.all : (L.cat[c]||c);
+    return `<button data-f="${c}" aria-pressed="${c===curCat}">${label}<b>${cnt(c)}</b></button>`;
+  }).join("");
+}
+function applyFilter(){
+  let shown=0;
+  for(const card of grid.children){
+    const okCat = curCat==="all" || card.dataset.cat===curCat;
+    const okQ = !curQ || card.dataset.search.includes(curQ);
+    const vis = okCat && okQ;
+    card.classList.toggle("hidden", !vis);
+    if(vis) shown++;
+  }
+  countEl.textContent = L.showing(shown);
+  emptyEl.hidden = shown>0;
+}
+fEl.addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  curCat=b.dataset.f;
+  [...fEl.children].forEach(x=>x.setAttribute("aria-pressed", x===b));
+  applyFilter();
+});
+qEl.addEventListener("input",()=>{ curQ=qEl.value.trim().toLowerCase(); applyFilter(); });
+
+/* ------------------------------------------------------------- i18n paint */
+function applyLang(){
+  L = I18N[LANG];
+  document.documentElement.lang = LANG;
+  try{ localStorage.setItem("iterm-studio-lang", LANG); }catch(e){}
+  $("#lang").value = LANG;
+  document.querySelectorAll("[data-i]").forEach(el=>{
+    const v = L[el.dataset.i]; if(typeof v==="string") el.textContent = v;
+  });
+  $("#h1").innerHTML = esc(L.h1_lead)+'<em>'+esc(L.h1_em)+'</em>'+esc(L.h1_post);
+  qEl.placeholder = L.searchPh;
+  renderFilters();
+  // re-render card + tool button labels that carry translated text
+  [...grid.children].forEach(card=>{
+    const p=PMAP[card.dataset.id];
+    card.querySelector(".chip.cat").textContent = L.cat[p.category]||p.category;
+    const ap=card.querySelector(".apply");
+    ap.textContent = p.tools.length ? L.applyThemeOnly : L.apply;
+    ap.setAttribute("aria-label", L.applyAria(p.name));
+    const g=card.querySelector(".ghost");
+    if(g && g.dataset.act==="tools"){ g.textContent=L.plusTools; g.setAttribute("aria-label",L.toolsAria(p.name)); }
+  });
+  [...toolsEl.children].forEach(t=>{
+    const b=t.querySelector("button");
+    b.textContent = MODE==="local" ? L.install : "$ brew install "+t.dataset.tool;
+  });
+  $("#stName").textContent = statusCache.active ? L.stActive+statusCache.name : L.stNone;
+  $("#stHint").textContent = L.stHint;
+  applyFilter();
+}
+$("#lang").addEventListener("change",e=>{ LANG=e.target.value; applyLang(); });
+
+/* -------------------------------------------------------------- feedback */
+let toastT;
+function showToast(msg,err){
+  toast.textContent=msg; toast.classList.toggle("err",!!err); toast.classList.add("show");
+  clearTimeout(toastT); toastT=setTimeout(()=>toast.classList.remove("show"), err?4600:2800);
+}
+function setBusy(btn,on,label){
+  if(on){ btn.dataset.txt=btn.textContent; btn.textContent=label||"…"; btn.disabled=true; }
+  else{ btn.textContent=btn.dataset.txt; btn.disabled=false; }
+}
+let statusCache = {active:null,name:null};
+
+/* ============================ WEB MODE ============================ */
+function initWeb(){
+  async function copy(text){
+    try{ await navigator.clipboard.writeText(text); return true; }
+    catch(e){ try{ input.focus(); input.select(); document.execCommand("copy"); return true; }catch(_){ return false; } }
+  }
+  function openBar(cmd){
+    input.value=cmd; bar.classList.add("show");
+    copy(cmd).then(ok=>{ input.select(); showToast(ok?L.tCopied:L.tSelectCopy); });
+  }
+  document.body.addEventListener("click",e=>{
+    const el=e.target.closest("[data-act]"); if(!el) return;
+    const card=el.closest(".card"), tool=el.closest(".tool");
+    if(card) openBar("iterm-studio apply "+card.dataset.id+(el.dataset.act==="tools"?" --with-tools":""));
+    else if(tool) openBar("brew install "+tool.dataset.tool);
+  });
+  $("#cmdcopy").addEventListener("click",()=>openBar(input.value));
+  $("#cmdx").addEventListener("click",()=>bar.classList.remove("show"));
+}
+
+/* =========================== LOCAL MODE =========================== */
+function initLocal(){
+  const H={"Content-Type":"application/json","X-Studio-Token":TOKEN};
+  async function api(path,body){
+    const r=await fetch(path,{method:"POST",headers:H,body:JSON.stringify(body||{})});
+    const j=await r.json().catch(()=>({ok:false,message:"bad response"}));
+    if(!j.ok) throw new Error(j.message||("HTTP "+r.status));
+    return j;
+  }
+  function paint(s){
+    statusCache={active:s.active,name:s.name};
+    $("#statusbar").classList.toggle("on",!!s.active);
+    $("#stName").textContent = s.active ? L.stActive+s.name : L.stNone;
+    if(typeof s.setDefault==="boolean") $("#setDefault").checked=s.setDefault;
+    [...grid.children].forEach(c=>c.classList.toggle("is-active",c.dataset.id===s.active));
+  }
+  fetch("/api/state",{headers:{"X-Studio-Token":TOKEN}}).then(r=>r.json()).then(paint).catch(()=>{});
+
+  grid.addEventListener("click",async e=>{
+    const btn=e.target.closest("[data-act]"); if(!btn) return;
+    const card=btn.closest(".card"), id=card.dataset.id, act=btn.dataset.act;
+    if(act==="copy"){
+      try{ await navigator.clipboard.writeText("iterm-studio apply "+id); showToast(L.tCopiedCmd); }catch(_){}
+      return;
+    }
+    const tools=act==="tools";
+    setBusy(btn,true,tools?"…":"…");
+    showToast(tools?L.tInstallTools:L.tApplying);
+    try{
+      const j=await api("/api/apply",{id,tools,setDefault:$("#setDefault").checked});
+      paint({active:j.active,name:j.name,setDefault:$("#setDefault").checked});
+      showToast(L.ok+j.message);
+    }catch(err){ showToast(L.err+err.message,true); }
+    finally{ setBusy(btn,false); }
+  });
+  $("#revertBtn").addEventListener("click",async()=>{
+    const b=$("#revertBtn"); setBusy(b,true,"…");
+    try{ const j=await api("/api/revert"); paint({active:null,name:null,setDefault:false}); showToast(L.ok+j.message); }
+    catch(err){ showToast(L.err+err.message,true); }
+    finally{ setBusy(b,false); }
+  });
+  toolsEl.addEventListener("click",async e=>{
+    const btn=e.target.closest("[data-act='tool']"); if(!btn) return;
+    const name=btn.closest(".tool").dataset.tool;
+    setBusy(btn,true,"…"); showToast(L.tInstall(name));
+    try{ const j=await api("/api/tool",{name}); showToast(L.ok+j.message); }
+    catch(err){ showToast(L.err+err.message,true); }
+    finally{ setBusy(btn,false); }
+  });
+}
+
+applyLang();
+(MODE==="local"?initLocal:initWeb)();
+</script>

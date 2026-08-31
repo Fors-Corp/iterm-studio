@@ -1,0 +1,8 @@
+extend-include = ["iterm-studio"]
+line-length = 120
+target-version = "py39"
+
+[lint]
+# real-error rules only — syntax errors and pyflakes (undefined names,
+# unused imports, f-string bugs). Style is deliberately not enforced.
+select = ["E9", "F"]

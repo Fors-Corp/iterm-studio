@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ruff_cache/
+
+# editor
+.vscode/
+.idea/
+
+# local runtime state (lives in ~/.config/iterm-studio, never in the repo)
+/active
+/prev-default-guid
+*.log
