@@ -2522,102 +2522,6 @@
    }
   },
   {
-   "id": "modern-cli",
-   "name": "Modern CLI",
-   "category": "stack",
-   "flavor": "powerline",
-   "blurb": "Catppuccin Frapp\u00e9 + a modern toolbelt: eza, bat, fzf, fd, zoxide, delta.",
-   "window": {
-    "transparency": 0.04,
-    "blur": 18,
-    "cursor": "block",
-    "font": "JetBrainsMono Nerd Font"
-   },
-   "tools": [
-    "eza",
-    "bat",
-    "fd",
-    "fzf",
-    "zoxide",
-    "git-delta",
-    "zsh-fast-syntax-highlighting"
-   ],
-   "colors": {
-    "fg": "#c6d0f5",
-    "bg": "#303446",
-    "cursor": "#f2d5cf",
-    "cursorText": "#303446",
-    "selection": "#414559",
-    "selectedText": "#c6d0f5",
-    "ansi": [
-     "#51576d",
-     "#e78284",
-     "#a6d189",
-     "#e5c890",
-     "#8caaee",
-     "#f4b8e4",
-     "#81c8be",
-     "#b5bfe2",
-     "#626880",
-     "#e78284",
-     "#a6d189",
-     "#e5c890",
-     "#8caaee",
-     "#f4b8e4",
-     "#81c8be",
-     "#a5adce"
-    ]
-   }
-  },
-  {
-   "id": "dev-stack",
-   "name": "Dev Stack",
-   "category": "stack",
-   "flavor": "powerline",
-   "blurb": "Gruvbox + eza, bat, fzf, zoxide, atuin, delta, btop. The works.",
-   "window": {
-    "transparency": 0.04,
-    "blur": 18,
-    "cursor": "block",
-    "font": "MesloLGS NF"
-   },
-   "tools": [
-    "eza",
-    "bat",
-    "fzf",
-    "zoxide",
-    "atuin",
-    "git-delta",
-    "btop"
-   ],
-   "colors": {
-    "fg": "#ebdbb2",
-    "bg": "#1d2021",
-    "cursor": "#ebdbb2",
-    "cursorText": "#1d2021",
-    "selection": "#3c3836",
-    "selectedText": "#ebdbb2",
-    "ansi": [
-     "#282828",
-     "#cc241d",
-     "#98971a",
-     "#d79921",
-     "#458588",
-     "#b16286",
-     "#689d6a",
-     "#a89984",
-     "#928374",
-     "#fb4934",
-     "#b8bb26",
-     "#fabd2f",
-     "#83a598",
-     "#d3869b",
-     "#8ec07c",
-     "#ebdbb2"
-    ]
-   }
-  },
-  {
    "id": "ember",
    "name": "Ember",
    "category": "warm",
@@ -4854,6 +4758,929 @@
      "#a3e283",
      "#e0e085",
      "#f7f7f8"
+    ]
+   }
+  },
+  {
+   "id": "modern-cli",
+   "name": "Modern CLI",
+   "category": "stack",
+   "flavor": "powerline",
+   "blurb": "The everyday upgrade \u2014 ls\u2192eza, cat\u2192bat, plus fd, fzf and zoxide (z) wired in.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "JetBrainsMono Nerd Font"
+   },
+   "tools": [
+    "eza",
+    "bat",
+    "fd",
+    "fzf",
+    "zoxide",
+    "git-delta"
+   ],
+   "colors": {
+    "fg": "#c6d0f5",
+    "bg": "#303446",
+    "cursor": "#f2d5cf",
+    "cursorText": "#303446",
+    "selection": "#414559",
+    "selectedText": "#c6d0f5",
+    "ansi": [
+     "#51576d",
+     "#e78284",
+     "#a6d189",
+     "#e5c890",
+     "#8caaee",
+     "#f4b8e4",
+     "#81c8be",
+     "#b5bfe2",
+     "#626880",
+     "#e78284",
+     "#a6d189",
+     "#e5c890",
+     "#8caaee",
+     "#f4b8e4",
+     "#81c8be",
+     "#a5adce"
+    ]
+   }
+  },
+  {
+   "id": "dev-stack",
+   "name": "Dev Stack",
+   "category": "stack",
+   "flavor": "powerline",
+   "blurb": "Modern CLI plus atuin shell history and the btop monitor. A well-rounded daily driver.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "eza",
+    "bat",
+    "fd",
+    "fzf",
+    "zoxide",
+    "git-delta",
+    "atuin",
+    "btop"
+   ],
+   "colors": {
+    "fg": "#ebdbb2",
+    "bg": "#1d2021",
+    "cursor": "#ebdbb2",
+    "cursorText": "#1d2021",
+    "selection": "#3c3836",
+    "selectedText": "#ebdbb2",
+    "ansi": [
+     "#282828",
+     "#cc241d",
+     "#98971a",
+     "#d79921",
+     "#458588",
+     "#b16286",
+     "#689d6a",
+     "#a89984",
+     "#928374",
+     "#fb4934",
+     "#b8bb26",
+     "#fabd2f",
+     "#83a598",
+     "#d3869b",
+     "#8ec07c",
+     "#ebdbb2"
+    ]
+   }
+  },
+  {
+   "id": "git-power",
+   "name": "Git Power",
+   "category": "stack",
+   "flavor": "powerline",
+   "blurb": "lazygit + gitui TUIs, gh, difftastic and git-absorb. Live in your history.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "lazygit",
+    "gitui",
+    "gh",
+    "difftastic",
+    "git-delta",
+    "git-absorb"
+   ],
+   "colors": {
+    "fg": "#cad3f5",
+    "bg": "#24273a",
+    "cursor": "#f4dbd6",
+    "cursorText": "#24273a",
+    "selection": "#494d64",
+    "selectedText": "#cad3f5",
+    "ansi": [
+     "#494d64",
+     "#ed8796",
+     "#a6da95",
+     "#eed49f",
+     "#8aadf4",
+     "#f5bde6",
+     "#8bd5ca",
+     "#b8c0e0",
+     "#5b6078",
+     "#ed8796",
+     "#a6da95",
+     "#eed49f",
+     "#8aadf4",
+     "#f5bde6",
+     "#8bd5ca",
+     "#a5adcb"
+    ]
+   }
+  },
+  {
+   "id": "cloud-native",
+   "name": "Cloud Native",
+   "category": "stack",
+   "flavor": "powerline",
+   "blurb": "kubectl, k9s, kubectx/kubens, helm and stern \u2014 a full Kubernetes cockpit \u2014 with OpenTofu alongside.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "kubectl",
+    "k9s",
+    "kubectx",
+    "helm",
+    "stern",
+    "opentofu"
+   ],
+   "colors": {
+    "fg": "#d8dee9",
+    "bg": "#2e3440",
+    "cursor": "#d8dee9",
+    "cursorText": "#2e3440",
+    "selection": "#434c5e",
+    "selectedText": "#d8dee9",
+    "ansi": [
+     "#3b4252",
+     "#bf616a",
+     "#a3be8c",
+     "#ebcb8b",
+     "#81a1c1",
+     "#b48ead",
+     "#88c0d0",
+     "#e5e9f0",
+     "#4c566a",
+     "#bf616a",
+     "#a3be8c",
+     "#ebcb8b",
+     "#81a1c1",
+     "#b48ead",
+     "#8fbcbb",
+     "#eceff4"
+    ]
+   }
+  },
+  {
+   "id": "container-ops",
+   "name": "Container Ops",
+   "category": "stack",
+   "flavor": "powerline",
+   "blurb": "lazydocker, dive image-layer inspection and the ctop live view.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "lazydocker",
+    "dive",
+    "ctop"
+   ],
+   "colors": {
+    "fg": "#f2f4f8",
+    "bg": "#161616",
+    "cursor": "#f2f4f8",
+    "cursorText": "#161616",
+    "selection": "#2a2a2a",
+    "selectedText": "#f2f4f8",
+    "ansi": [
+     "#282828",
+     "#ee5396",
+     "#25be6a",
+     "#08bdba",
+     "#78a9ff",
+     "#be95ff",
+     "#33b1ff",
+     "#dfdfe0",
+     "#484848",
+     "#ee5396",
+     "#46c880",
+     "#2dc7c4",
+     "#8cb6ff",
+     "#c8a5ff",
+     "#52bdff",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "data-wrangler",
+   "name": "Data Wrangler",
+   "category": "stack",
+   "flavor": "lean2",
+   "blurb": "jq + yq for JSON/YAML, jless and fx to browse it, Miller and csvlens for CSV, VisiData for the rest.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "jq",
+    "yq",
+    "jless",
+    "fx",
+    "miller",
+    "csvlens",
+    "visidata"
+   ],
+   "colors": {
+    "fg": "#dcd7ba",
+    "bg": "#1f1f28",
+    "cursor": "#c8c093",
+    "cursorText": "#1f1f28",
+    "selection": "#2d4f67",
+    "selectedText": "#dcd7ba",
+    "ansi": [
+     "#090618",
+     "#c34043",
+     "#76946a",
+     "#c0a36e",
+     "#7e9cd8",
+     "#957fb8",
+     "#6a9589",
+     "#c8c093",
+     "#727169",
+     "#e82424",
+     "#98bb6c",
+     "#e6c384",
+     "#7fb4ca",
+     "#938aa9",
+     "#7aa89f",
+     "#dcd7ba"
+    ]
+   }
+  },
+  {
+   "id": "infra-as-code",
+   "name": "Infra as Code",
+   "category": "stack",
+   "flavor": "minimal",
+   "blurb": "OpenTofu, Terragrunt, tflint and Ansible \u2014 plan, lint and converge.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "opentofu",
+    "terragrunt",
+    "tflint",
+    "ansible"
+   ],
+   "colors": {
+    "fg": "#d3c6aa",
+    "bg": "#2d353b",
+    "cursor": "#d3c6aa",
+    "cursorText": "#2d353b",
+    "selection": "#475258",
+    "selectedText": "#d3c6aa",
+    "ansi": [
+     "#4b565c",
+     "#e67e80",
+     "#a7c080",
+     "#dbbc7f",
+     "#7fbbb3",
+     "#d699b6",
+     "#83c092",
+     "#d3c6aa",
+     "#5c6a72",
+     "#e67e80",
+     "#a7c080",
+     "#dbbc7f",
+     "#7fbbb3",
+     "#d699b6",
+     "#83c092",
+     "#d3c6aa"
+    ]
+   }
+  },
+  {
+   "id": "python-dev",
+   "name": "Python Dev",
+   "category": "stack",
+   "flavor": "lean2",
+   "blurb": "uv (the fast installer/runner), ruff, pipx, IPython and pyenv \u2014 with pyenv init wired.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "uv",
+    "ruff",
+    "pipx",
+    "ipython",
+    "pyenv"
+   ],
+   "colors": {
+    "fg": "#c0caf5",
+    "bg": "#24283b",
+    "cursor": "#c0caf5",
+    "cursorText": "#24283b",
+    "selection": "#364a82",
+    "selectedText": "#c0caf5",
+    "ansi": [
+     "#1d202f",
+     "#f7768e",
+     "#9ece6a",
+     "#e0af68",
+     "#7aa2f7",
+     "#bb9af7",
+     "#7dcfff",
+     "#a9b1d6",
+     "#414868",
+     "#f7768e",
+     "#9ece6a",
+     "#e0af68",
+     "#7aa2f7",
+     "#bb9af7",
+     "#7dcfff",
+     "#c0caf5"
+    ]
+   }
+  },
+  {
+   "id": "node-dev",
+   "name": "Node Dev",
+   "category": "stack",
+   "flavor": "lean2",
+   "blurb": "fnm (auto-switch on cd), pnpm, Deno and Watchman.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "fnm",
+    "pnpm",
+    "deno",
+    "watchman"
+   ],
+   "colors": {
+    "fg": "#d6deeb",
+    "bg": "#011627",
+    "cursor": "#80a4c2",
+    "cursorText": "#011627",
+    "selection": "#1d3b53",
+    "selectedText": "#d6deeb",
+    "ansi": [
+     "#011627",
+     "#ef5350",
+     "#22da6e",
+     "#c5e478",
+     "#82aaff",
+     "#c792ea",
+     "#21c7a8",
+     "#ffffff",
+     "#575656",
+     "#ef5350",
+     "#22da6e",
+     "#ffeb95",
+     "#82aaff",
+     "#c792ea",
+     "#7fdbca",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "rust-dev",
+   "name": "Rust Dev",
+   "category": "stack",
+   "flavor": "lean2",
+   "blurb": "rustup on PATH, plus bacon, hyperfine and tokei.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "rustup",
+    "bacon",
+    "hyperfine",
+    "tokei"
+   ],
+   "colors": {
+    "fg": "#d4be98",
+    "bg": "#282828",
+    "cursor": "#d4be98",
+    "cursorText": "#282828",
+    "selection": "#45403d",
+    "selectedText": "#d4be98",
+    "ansi": [
+     "#3c3836",
+     "#ea6962",
+     "#a9b665",
+     "#d8a657",
+     "#7daea3",
+     "#d3869b",
+     "#89b482",
+     "#d4be98",
+     "#45403d",
+     "#ea6962",
+     "#a9b665",
+     "#d8a657",
+     "#7daea3",
+     "#d3869b",
+     "#89b482",
+     "#d4be98"
+    ]
+   }
+  },
+  {
+   "id": "go-dev",
+   "name": "Go Dev",
+   "category": "stack",
+   "flavor": "powerline",
+   "blurb": "The Go toolchain, golangci-lint, Delve and GoReleaser; ~/go/bin on PATH.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "go",
+    "golangci-lint",
+    "delve",
+    "goreleaser"
+   ],
+   "colors": {
+    "fg": "#abb2bf",
+    "bg": "#282c34",
+    "cursor": "#abb2bf",
+    "cursorText": "#282c34",
+    "selection": "#3e4451",
+    "selectedText": "#abb2bf",
+    "ansi": [
+     "#3f4451",
+     "#e05561",
+     "#8cc265",
+     "#d18f52",
+     "#4aa5f0",
+     "#c162de",
+     "#42b3c2",
+     "#e6e6e6",
+     "#4f5666",
+     "#ff616e",
+     "#a5e075",
+     "#f0a45d",
+     "#4dc4ff",
+     "#de73ff",
+     "#4cd1e0",
+     "#d7dae0"
+    ]
+   }
+  },
+  {
+   "id": "observability",
+   "name": "Observability",
+   "category": "stack",
+   "flavor": "minimal",
+   "blurb": "bottom, procs, dust, duf and bandwhich \u2014 see what your machine is actually doing.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "bottom",
+    "procs",
+    "dust",
+    "duf",
+    "bandwhich"
+   ],
+   "colors": {
+    "fg": "#cbccc6",
+    "bg": "#1f2430",
+    "cursor": "#ffcc66",
+    "cursorText": "#1f2430",
+    "selection": "#33415e",
+    "selectedText": "#cbccc6",
+    "ansi": [
+     "#191e2a",
+     "#ed8274",
+     "#a6cc70",
+     "#fad07b",
+     "#6dcbfa",
+     "#cfbafa",
+     "#90e1c6",
+     "#c7c7c7",
+     "#686868",
+     "#f28779",
+     "#bae67e",
+     "#ffd580",
+     "#73d0ff",
+     "#d4bfff",
+     "#95e6cb",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "search-nav",
+   "name": "Search & Nav",
+   "category": "stack",
+   "flavor": "lean2",
+   "blurb": "ripgrep, fd, fzf, zoxide and the broot tree navigator, plus tldr pages.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "ripgrep",
+    "fd",
+    "fzf",
+    "zoxide",
+    "broot",
+    "tlrc"
+   ],
+   "colors": {
+    "fg": "#e0def4",
+    "bg": "#191724",
+    "cursor": "#e0def4",
+    "cursorText": "#191724",
+    "selection": "#403d52",
+    "selectedText": "#e0def4",
+    "ansi": [
+     "#26233a",
+     "#eb6f92",
+     "#31748f",
+     "#f6c177",
+     "#9ccfd8",
+     "#c4a7e7",
+     "#ebbcba",
+     "#e0def4",
+     "#6e6a86",
+     "#eb6f92",
+     "#31748f",
+     "#f6c177",
+     "#9ccfd8",
+     "#c4a7e7",
+     "#ebbcba",
+     "#e0def4"
+    ]
+   }
+  },
+  {
+   "id": "editor-tui",
+   "name": "Editor TUI",
+   "category": "stack",
+   "flavor": "lean2",
+   "blurb": "Neovim, tmux, lazygit, fzf and ripgrep \u2014 a terminal IDE in five installs.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "neovim",
+    "tmux",
+    "lazygit",
+    "fzf",
+    "ripgrep"
+   ],
+   "colors": {
+    "fg": "#c5c9c5",
+    "bg": "#181616",
+    "cursor": "#c8c093",
+    "cursorText": "#181616",
+    "selection": "#2d4f67",
+    "selectedText": "#c5c9c5",
+    "ansi": [
+     "#0d0c0c",
+     "#c4746e",
+     "#8a9a7b",
+     "#c4b28a",
+     "#8ba4b0",
+     "#a292a3",
+     "#8ea4a2",
+     "#c8c093",
+     "#a6a69c",
+     "#e46876",
+     "#87a987",
+     "#e6c384",
+     "#7fb4ca",
+     "#938aa9",
+     "#7aa89f",
+     "#c5c9c5"
+    ]
+   }
+  },
+  {
+   "id": "shell-sugar",
+   "name": "Shell Sugar",
+   "category": "stack",
+   "flavor": "rainbow",
+   "blurb": "zoxide, atuin, fzf, thefuck and direnv \u2014 every quality-of-life hook, wired up.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "zoxide",
+    "atuin",
+    "fzf",
+    "thefuck",
+    "direnv"
+   ],
+   "colors": {
+    "fg": "#f8f8f2",
+    "bg": "#282a36",
+    "cursor": "#f8f8f2",
+    "cursorText": "#282a36",
+    "selection": "#44475a",
+    "selectedText": "#f8f8f2",
+    "ansi": [
+     "#21222c",
+     "#ff5555",
+     "#50fa7b",
+     "#f1fa8c",
+     "#bd93f9",
+     "#ff79c6",
+     "#8be9fd",
+     "#f8f8f2",
+     "#6272a4",
+     "#ff6e6e",
+     "#69ff94",
+     "#ffffa5",
+     "#d6acff",
+     "#ff92df",
+     "#a4ffff",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "docs-writer",
+   "name": "Docs Writer",
+   "category": "stack",
+   "flavor": "lean2",
+   "blurb": "glow to preview Markdown, pandoc to convert it, Vale to lint prose, lychee to check links.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "glow",
+    "pandoc",
+    "vale",
+    "lychee"
+   ],
+   "colors": {
+    "fg": "#575279",
+    "bg": "#faf4ed",
+    "cursor": "#575279",
+    "cursorText": "#faf4ed",
+    "selection": "#dfdad9",
+    "selectedText": "#575279",
+    "ansi": [
+     "#f2e9e1",
+     "#b4637a",
+     "#286983",
+     "#ea9d34",
+     "#56949f",
+     "#907aa9",
+     "#d7827e",
+     "#575279",
+     "#9893a5",
+     "#b4637a",
+     "#286983",
+     "#ea9d34",
+     "#56949f",
+     "#907aa9",
+     "#d7827e",
+     "#575279"
+    ]
+   }
+  },
+  {
+   "id": "security",
+   "name": "Security",
+   "category": "stack",
+   "flavor": "minimal",
+   "blurb": "gitleaks and grype/trivy scanning, age encryption and sops for secrets.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "gitleaks",
+    "trivy",
+    "grype",
+    "age",
+    "sops"
+   ],
+   "colors": {
+    "fg": "#d8dfd9",
+    "bg": "#0e160f",
+    "cursor": "#3eea94",
+    "cursorText": "#0e160f",
+    "selection": "#26402b",
+    "selectedText": "#d8dfd9",
+    "ansi": [
+     "#213024",
+     "#69ea3e",
+     "#3e69ea",
+     "#3edbea",
+     "#ea3e94",
+     "#ea943e",
+     "#ea3e5b",
+     "#d8dfd9",
+     "#5c7a61",
+     "#8ff96c",
+     "#6c8ff9",
+     "#6cedf9",
+     "#f96cb3",
+     "#f9b26c",
+     "#f76e85",
+     "#f7f8f7"
+    ]
+   }
+  },
+  {
+   "id": "network",
+   "name": "Network",
+   "category": "stack",
+   "flavor": "powerline",
+   "blurb": "HTTPie + xh + curlie for APIs, doggo for DNS, gping for latency.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "httpie",
+    "xh",
+    "curlie",
+    "doggo",
+    "gping"
+   ],
+   "colors": {
+    "fg": "#ffffff",
+    "bg": "#132738",
+    "cursor": "#f8dd00",
+    "cursorText": "#132738",
+    "selection": "#18384c",
+    "selectedText": "#ffffff",
+    "ansi": [
+     "#000000",
+     "#ff0000",
+     "#38de21",
+     "#ffe50a",
+     "#1460d2",
+     "#ff005d",
+     "#00bbbb",
+     "#bbbbbb",
+     "#555555",
+     "#f40e17",
+     "#3bd01d",
+     "#edc809",
+     "#5555ff",
+     "#ff55ff",
+     "#6ae3fa",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "media",
+   "name": "Media",
+   "category": "stack",
+   "flavor": "rainbow",
+   "blurb": "ffmpeg, ImageMagick, yt-dlp, exiftool and chafa (images in the terminal).",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "ffmpeg",
+    "imagemagick",
+    "yt-dlp",
+    "exiftool",
+    "chafa"
+   ],
+   "colors": {
+    "fg": "#ffffff",
+    "bg": "#262335",
+    "cursor": "#ff7edb",
+    "cursorText": "#262335",
+    "selection": "#463465",
+    "selectedText": "#ffffff",
+    "ansi": [
+     "#262335",
+     "#fe4450",
+     "#72f1b8",
+     "#fede5d",
+     "#03edf9",
+     "#ff7edb",
+     "#03edf9",
+     "#ffffff",
+     "#495495",
+     "#fe4450",
+     "#72f1b8",
+     "#fede5d",
+     "#03edf9",
+     "#ff7edb",
+     "#03edf9",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "fast-path",
+   "name": "Fast Path",
+   "category": "stack",
+   "flavor": "minimal",
+   "blurb": "The speed picks only \u2014 eza, bat, fd, ripgrep, fzf, zoxide \u2014 nothing you won't use daily.",
+   "window": {
+    "transparency": 0.04,
+    "blur": 18,
+    "cursor": "block",
+    "font": "MesloLGS NF"
+   },
+   "tools": [
+    "eza",
+    "bat",
+    "fd",
+    "ripgrep",
+    "fzf",
+    "zoxide"
+   ],
+   "colors": {
+    "fg": "#dbd7ca",
+    "bg": "#121212",
+    "cursor": "#dbd7ca",
+    "cursorText": "#121212",
+    "selection": "#191919",
+    "selectedText": "#dbd7ca",
+    "ansi": [
+     "#393a34",
+     "#cb7676",
+     "#4d9375",
+     "#e6cc77",
+     "#6394bf",
+     "#9e7cb0",
+     "#5eaab5",
+     "#dbd7ca",
+     "#5a5b53",
+     "#d17070",
+     "#87ae94",
+     "#f0d999",
+     "#74add4",
+     "#c586c0",
+     "#8bcdcf",
+     "#f5f4ec"
     ]
    }
   }

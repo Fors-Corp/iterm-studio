@@ -67,6 +67,17 @@ class Presets(unittest.TestCase):
             for t in p["tools"]:
                 self.assertIn(t, its.TOOLS, f"{p['id']} references unknown tool {t!r}")
 
+    def test_stacks(self):
+        stacks = [p for p in self.presets if p["category"] == "stack"]
+        self.assertGreaterEqual(len(stacks), 20, "want at least 20 stack presets")
+        for s in stacks:
+            self.assertGreaterEqual(len(s["tools"]), 3, f"{s['id']}: a stack should bundle 3+ tools")
+            self.assertEqual(len(s["tools"]), len(set(s["tools"])), f"{s['id']}: duplicate tool")
+
+    def test_tool_hooks_reference_known_tools(self):
+        for k in list(its.TOOL_INIT) + list(its.TOOL_ALIAS):
+            self.assertIn(k, its.TOOLS, f"TOOL_INIT/ALIAS key {k!r} is not in TOOLS")
+
     def test_blurbs_present(self):
         missing = [p["id"] for p in self.presets if not p["blurb"].strip()]
         self.assertEqual(missing, [], f"presets without a blurb: {missing}")

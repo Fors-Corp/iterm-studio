@@ -8,10 +8,11 @@
   iterm-studio revert
   iterm-studio version
 
-Applies three things:
+Applies, as marker-delimited blocks it fully owns:
   * an iTerm2 Dynamic Profile named "Studio"  (colours, transparency, blur, cursor, font)
-  * a managed block in ~/.p10k.zsh            (Powerlevel10k prompt shape + palette)
-  * a managed block in ~/.zshrc               (syntax-highlight + autosuggest colours)
+  * ~/.p10k.zsh   >>> iterm-studio prompt >>>   (Powerlevel10k prompt shape + palette)
+  * ~/.zshrc      >>> iterm-studio shell >>>    (syntax-highlight + autosuggest colours)
+  * ~/.zshrc      >>> iterm-studio tools >>>    (stack presets only: tool hooks + aliases)
 Nothing else in your dotfiles is touched. `revert` removes all of it.
 """
 import json, re, secrets, subprocess, sys, threading, pathlib
@@ -37,14 +38,75 @@ GUID   = "ITERM-STUDIO-PROFILE-0001"
 P10K_BEGIN, P10K_END = "# >>> iterm-studio prompt >>>", "# <<< iterm-studio prompt <<<"
 ZSH_BEGIN,  ZSH_END  = "# >>> iterm-studio shell >>>",  "# <<< iterm-studio shell <<<"
 
-# brew targets for the Power-ups shelf + the two stack presets
+# brew targets for the Power-ups shelf + the stack presets.
+# name -> `brew install` args. Everything here is (or was) a homebrew-core
+# formula; a name brew no longer knows just prints a note and is skipped.
 TOOLS = {
+ # power-ups shelf
  "starship":["starship"], "eza":["eza"], "bat":["bat"], "fzf":["fzf"], "fd":["fd"],
  "zoxide":["zoxide"], "atuin":["atuin"], "git-delta":["git-delta"], "tmux":["tmux"],
  "btop":["btop"], "tlrc":["tlrc"], "thefuck":["thefuck"],
- "zsh-fast-syntax-highlighting":["zsh-fast-syntax-highlighting"],
  "nerd-fonts":["--cask","font-jetbrains-mono-nerd-font"],
+ # search / navigation
+ "ripgrep":["ripgrep"], "broot":["broot"], "hyperfine":["hyperfine"], "tokei":["tokei"],
+ # git
+ "lazygit":["lazygit"], "gh":["gh"], "difftastic":["difftastic"], "gitui":["gitui"],
+ "git-absorb":["git-absorb"],
+ # kubernetes / cloud / iac
+ "kubectl":["kubernetes-cli"], "k9s":["k9s"], "kubectx":["kubectx"], "helm":["helm"],
+ "stern":["stern"], "opentofu":["opentofu"], "terragrunt":["terragrunt"], "tflint":["tflint"],
+ "ansible":["ansible"], "awscli":["awscli"],
+ # containers
+ "lazydocker":["lazydocker"], "dive":["dive"], "ctop":["ctop"],
+ # data
+ "jq":["jq"], "yq":["yq"], "jless":["jless"], "fx":["fx"], "miller":["miller"],
+ "visidata":["visidata"], "csvlens":["csvlens"],
+ # language toolchains
+ "uv":["uv"], "ruff":["ruff"], "pipx":["pipx"], "ipython":["ipython"], "pyenv":["pyenv"],
+ "fnm":["fnm"], "pnpm":["pnpm"], "deno":["deno"], "watchman":["watchman"],
+ "rustup":["rustup"], "bacon":["bacon"],
+ "go":["go"], "golangci-lint":["golangci-lint"], "delve":["delve"], "goreleaser":["goreleaser"],
+ # system / observability
+ "bottom":["bottom"], "procs":["procs"], "dust":["dust"], "duf":["duf"], "bandwhich":["bandwhich"],
+ # editors
+ "neovim":["neovim"], "direnv":["direnv"],
+ # docs
+ "glow":["glow"], "pandoc":["pandoc"], "vale":["vale"], "lychee":["lychee"],
+ # security
+ "gitleaks":["gitleaks"], "trivy":["trivy"], "grype":["grype"], "age":["age"], "sops":["sops"],
+ # network
+ "httpie":["httpie"], "xh":["xh"], "curlie":["curlie"], "doggo":["doggo"], "gping":["gping"],
+ # media
+ "ffmpeg":["ffmpeg"], "imagemagick":["imagemagick"], "yt-dlp":["yt-dlp"], "exiftool":["exiftool"],
+ "chafa":["chafa"],
 }
+
+# zsh lines a tool needs to actually work (guarded so a missing tool is a no-op)
+TOOL_INIT = {
+ "zoxide":  'command -v zoxide >/dev/null && eval "$(zoxide init zsh)"',
+ "atuin":   'command -v atuin  >/dev/null && eval "$(atuin init zsh)"',
+ "fzf":     'command -v fzf    >/dev/null && source <(fzf --zsh 2>/dev/null)',
+ "thefuck": 'command -v thefuck>/dev/null && eval "$(thefuck --alias 2>/dev/null)"',
+ "direnv":  'command -v direnv >/dev/null && eval "$(direnv hook zsh)"',
+ "pyenv":   'command -v pyenv  >/dev/null && eval "$(pyenv init - zsh)"',
+ "fnm":     'command -v fnm    >/dev/null && eval "$(fnm env --use-on-cd 2>/dev/null)"',
+ "rustup":  'export PATH="$HOME/.cargo/bin:$PATH"',
+ "go":      'export PATH="$HOME/go/bin:$PATH"',
+}
+# convenience aliases, emitted only when the tool is part of the applied stack
+TOOL_ALIAS = {
+ "eza":    ["alias ls='eza --group-directories-first --icons=auto'",
+           "alias ll='eza -la --git --group-directories-first --icons=auto'",
+           "alias tree='eza --tree --icons=auto'"],
+ "bat":    ["alias cat='bat --paging=never --style=plain'"],
+ "dust":   ["alias du='dust'"],
+ "duf":    ["alias df='duf'"],
+ "btop":   ["alias top='btop'"],
+ "procs":  ["alias ps='procs'"],
+ "neovim": ["alias vim='nvim'", "alias vi='nvim'"],
+ "difftastic": ["alias difft='difft'"],
+}
+TOOLS_BEGIN, TOOLS_END = "# >>> iterm-studio tools >>>", "# <<< iterm-studio tools <<<"
 
 C = dict(reset="\033[0m", dim="\033[2m", b="\033[1m", grn="\033[32m", ylw="\033[33m", red="\033[31m", cyn="\033[36m")
 def say(m): print(m)
@@ -53,8 +115,12 @@ def die(m): print(f"{C['red']}error:{C['reset']} {m}", file=sys.stderr); sys.exi
 # --------------------------------------------------------------------------- #
 #  file helpers
 # --------------------------------------------------------------------------- #
+def _tidy(text):
+    return re.sub(r"\n{3,}", "\n\n", text)
+
 def strip_block(text, begin, end):
-    return re.sub(r"\n?" + re.escape(begin) + r".*?" + re.escape(end) + r"[^\n]*\n?", "\n", text, flags=re.S)
+    text = re.sub(r"\n?" + re.escape(begin) + r".*?" + re.escape(end) + r"[^\n]*\n?", "\n", text, flags=re.S)
+    return _tidy(text)
 
 def hexcomp(h):
     h = h.lstrip("#")
@@ -214,7 +280,32 @@ def upsert_zsh(block):
         t = strip_block(t, ZSH_BEGIN, ZSH_END)
     anchor = "source $ZSH/oh-my-zsh.sh"
     t = t.replace(anchor, anchor + "\n\n" + block, 1) if anchor in t else t.rstrip() + "\n\n" + block
-    ZSHRC.write_text(t)
+    ZSHRC.write_text(_tidy(t))
+
+def tools_block(p):
+    """zsh init + aliases for a stack preset's tools, or None for a plain theme."""
+    if not p["tools"]:
+        return None
+    lines = [TOOLS_BEGIN, f"# managed by `iterm-studio` — the \"{p['name']}\" stack"]
+    for t in p["tools"]:
+        if t in TOOL_INIT:
+            lines.append(TOOL_INIT[t])
+    for t in p["tools"]:
+        lines += TOOL_ALIAS.get(t, [])
+    lines.append(TOOLS_END)
+    return "\n".join(lines) + "\n"
+
+def upsert_tools(block):
+    """Replace / remove the tools block. It sits just after the shell block."""
+    t = ZSHRC.read_text()
+    if TOOLS_BEGIN in t:
+        t = strip_block(t, TOOLS_BEGIN, TOOLS_END)
+    if block:
+        if ZSH_END in t:
+            t = t.replace(ZSH_END, ZSH_END + "\n\n" + block, 1)
+        else:
+            t = t.rstrip() + "\n\n" + block
+    ZSHRC.write_text(_tidy(t))
 
 # --------------------------------------------------------------------------- #
 #  core operations  (return dicts, no printing)
@@ -234,8 +325,9 @@ def do_apply(pid, with_tools=False, set_default=False):
         orig.write_text(P10K.read_text())
 
     t = P10K.read_text() if P10K.exists() else ""
-    P10K.write_text(strip_block(t, P10K_BEGIN, P10K_END).rstrip() + "\n\n" + p10k_block(p))
+    P10K.write_text(_tidy(strip_block(t, P10K_BEGIN, P10K_END).rstrip() + "\n\n" + p10k_block(p)))
     upsert_zsh(zsh_block(p))
+    upsert_tools(tools_block(p))          # stack -> init+aliases block; plain theme -> removed
     write_profile(p)
 
     installed = ""
@@ -244,7 +336,9 @@ def do_apply(pid, with_tools=False, set_default=False):
         for tname in p["tools"]:
             pkgs += TOOLS.get(tname, [tname])
         r = subprocess.run(["brew", "install", *pkgs], capture_output=True, text=True)
-        installed = f" · brew {'ok' if r.returncode == 0 else 'had issues'} ({', '.join(p['tools'])})"
+        installed = f" · brew {'ok' if r.returncode == 0 else 'had issues'} ({len(p['tools'])} tools)"
+    elif p["tools"]:
+        installed = f" · {len(p['tools'])} tools wired (re-run with --with-tools to brew install them)"
 
     if set_default:
         cur = subprocess.run(["defaults", "read", "com.googlecode.iterm2", "Default Bookmark Guid"],
@@ -266,7 +360,9 @@ def do_revert():
     if P10K.exists():
         P10K.write_text(strip_block(P10K.read_text(), P10K_BEGIN, P10K_END).rstrip() + "\n")
     if ZSHRC.exists():
-        ZSHRC.write_text(strip_block(ZSHRC.read_text(), ZSH_BEGIN, ZSH_END))
+        z = strip_block(ZSHRC.read_text(), ZSH_BEGIN, ZSH_END)
+        z = strip_block(z, TOOLS_BEGIN, TOOLS_END)
+        ZSHRC.write_text(z)
     DPFILE.unlink(missing_ok=True)
     if PREVGUID.exists():
         subprocess.run(["defaults", "write", "com.googlecode.iterm2", "Default Bookmark Guid", "-string",

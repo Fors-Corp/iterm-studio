@@ -6,6 +6,22 @@ this project aims to follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- **20 stack presets** (was 2): Modern CLI, Dev Stack, Fast Path, Git Power,
+  Cloud Native, Container Ops, Infra as Code, Data Wrangler, Python/Node/Rust/Go
+  Dev, Observability, Search & Nav, Editor TUI, Shell Sugar, Docs Writer,
+  Security, Network, Media. Preset total 121 → 139.
+- Stacks now wire up **shell integration**: a `# >>> iterm-studio tools >>>`
+  block in `~/.zshrc` with `eval "$(… init zsh)"` hooks (zoxide, atuin, fzf,
+  direnv, pyenv, fnm) and aliases (`ls`→eza, `cat`→bat, `top`→btop, …), each
+  guarded so an uninstalled tool is a no-op. Applied whether or not
+  `--with-tools` runs `brew install`; removed when you switch to a plain theme.
+- `TOOLS` allow-list expanded from 14 to ~70 Homebrew formulae.
+
+### Fixed
+- Repeated apply/switch no longer accumulates blank lines in `~/.zshrc` /
+  `~/.p10k.zsh` (`_tidy` collapses 3+ newlines on every managed write).
+
 ## [1.0.0] — 2026-08-31
 
 ### Added

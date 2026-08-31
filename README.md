@@ -1,10 +1,10 @@
 # iTerm Studio
 
-Pick a terminal look from **121 presets** and apply it to this Mac — colours,
+Pick a terminal look from **139 presets** and apply it to this Mac — colours,
 transparency, blur, cursor, font, and a matching Powerlevel10k prompt — in one
 click.
 
-**Browse all 121 → https://marcfs31.github.io/iterm-studio/**
+**Browse all 139 → https://marcfs31.github.io/iterm-studio/**
 
 [![CI](https://github.com/marcfs31/iterm-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/marcfs31/iterm-studio/actions/workflows/ci.yml)
 [![Pages](https://github.com/marcfs31/iterm-studio/actions/workflows/pages.yml/badge.svg)](https://github.com/marcfs31/iterm-studio/actions/workflows/pages.yml)
@@ -19,27 +19,34 @@ hand-editing an `.itermcolors` profile, finding a Nerd Font, and re-running
 `p10k configure` — and undoing it later is guesswork. **iTerm Studio turns the
 whole look into one atomic, reversible operation.**
 
-- **`build.py`** is the single source of truth: **121 presets** compiled to
+- **`build.py`** is the single source of truth: **139 presets** compiled to
   `presets.json`. Roughly two-thirds are faithful ports of well-known schemes
   (Tokyo Night, Catppuccin, Rosé Pine, Gruvbox, Kanagawa, Nightfox, Dracula,
   Nord, Solarized, Ayu, Material, GitHub, Monokai, Night Owl, …); the rest are
   procedurally generated single-hue palettes (Ember, Moss, Lagoon, Iris, Nebula,
   Mono Amber, Blueprint, …). Six families — **dark 67 · light 20 · warm 19 ·
-  neon 8 · mono 5 · stacks 2** — and five Powerlevel10k prompt shapes
+  neon 8 · mono 5 · stacks 20** — and five Powerlevel10k prompt shapes
   (`lean2`, `powerline`, `pill`, `minimal`, `rainbow`) with a right-aligned
   command-execution-time segment.
 - **Two front-ends, one page.** The static gallery on GitHub Pages lets you
-  compare all 121 (every preview is the *same* shell session, so you judge
+  compare all 139 (every preview is the *same* shell session, so you judge
   colour not content) and copy the command. `iterm-studio serve` serves the
   identical page from `127.0.0.1`, where the buttons hit a tiny local API and
   **apply for real on one click** — with a live "what's active" bar and a
   **Revert** button.
-- **Applying is three managed pieces:** an iTerm2 Dynamic Profile named
-  *Studio*, a marker-delimited block in `~/.p10k.zsh`, and one in `~/.zshrc`.
-  `iterm-studio revert` removes exactly those and restores your previous default
-  profile; your original `~/.p10k.zsh` is copied to
-  `~/.p10k.zsh.iterm-studio-orig` first. Nothing else in your dotfiles is
-  touched.
+- **Applying is a few marker-delimited pieces it fully owns:** an iTerm2 Dynamic
+  Profile named *Studio*, a block in `~/.p10k.zsh` (prompt), a block in
+  `~/.zshrc` (highlight colours) — and, for a **stack** preset, a fourth block
+  with that stack's shell hooks and aliases. `iterm-studio revert` removes
+  exactly those and restores your previous default profile; your original
+  `~/.p10k.zsh` is copied to `~/.p10k.zsh.iterm-studio-orig` first. Nothing else
+  in your dotfiles is touched.
+- **20 stacks** pair a theme with a purpose-built tool bundle — *Modern CLI*,
+  *Git Power*, *Cloud Native*, *Data Wrangler*, *Python / Node / Rust / Go Dev*,
+  *Observability*, *Security*, *Network*, *Editor TUI*, … `apply <stack>
+  --with-tools` `brew install`s the bundle; either way the shell integration
+  (`zoxide`/`atuin`/`fzf`/`direnv` hooks, `ls`→`eza`, `cat`→`bat`, …) is wired
+  into the managed block, guarded so a missing tool is a no-op.
 - **No runtime dependencies.** `iterm-studio` is a single Python 3.9+ script,
   standard library only — it runs on a clean macOS with no `pip install`.
 
@@ -64,7 +71,7 @@ Live search + category filters, and the fully-translated Spanish UI:
 
 | Search & filter | Español |
 |---|---|
-| ![Searching the 121 presets](docs/screenshots/search.png) | ![Spanish interface](docs/screenshots/espanol.png) |
+| ![Searching the presets](docs/screenshots/search.png) | ![Spanish interface](docs/screenshots/espanol.png) |
 
 ## Quick start
 
@@ -99,13 +106,50 @@ iterm-studio version
 | `~/Library/Application Support/iTerm2/DynamicProfiles/iterm-studio.json` | an iTerm2 profile named **Studio** — 16 ANSI colours + fg/bg/cursor/selection, transparency, blur, cursor shape, font, unlimited scrollback |
 | `~/.p10k.zsh` | a block between `# >>> iterm-studio prompt >>>` markers — prompt shape (`lean2` / `powerline` / `pill` / `minimal` / `rainbow`) + palette + a `command_execution_time` segment |
 | `~/.zshrc` | a block between `# >>> iterm-studio shell >>>` markers — zsh-syntax-highlighting + autosuggestion colours to match |
+| `~/.zshrc` | *stack presets only* — a `# >>> iterm-studio tools >>>` block with the stack's shell hooks (`eval "$(zoxide init zsh)"` …) and aliases |
 
 Colours show once you select the **Studio** profile in iTerm (⌘I), or pass
 `--set-default`. The prompt updates on the next new shell (`exec zsh`).
 
-`iterm-studio revert` deletes the profile and both managed blocks and restores
+`iterm-studio revert` deletes the profile and every managed block and restores
 the previous default-profile GUID. Your original `~/.p10k.zsh` is also kept at
 `~/.p10k.zsh.iterm-studio-orig`.
+
+## Stacks
+
+Twenty presets bundle a theme with a curated set of Homebrew tools for a
+workflow:
+
+| Stack | Bundle |
+|---|---|
+| **Modern CLI** | eza · bat · fd · fzf · zoxide · git-delta |
+| **Dev Stack** | Modern CLI + atuin + btop |
+| **Fast Path** | eza · bat · fd · ripgrep · fzf · zoxide (speed picks only) |
+| **Git Power** | lazygit · gitui · gh · difftastic · git-delta · git-absorb |
+| **Cloud Native** | kubectl · k9s · kubectx · helm · stern · opentofu |
+| **Container Ops** | lazydocker · dive · ctop |
+| **Infra as Code** | opentofu · terragrunt · tflint · ansible |
+| **Data Wrangler** | jq · yq · jless · fx · miller · csvlens · visidata |
+| **Python Dev** | uv · ruff · pipx · ipython · pyenv |
+| **Node Dev** | fnm · pnpm · deno · watchman |
+| **Rust Dev** | rustup · bacon · hyperfine · tokei |
+| **Go Dev** | go · golangci-lint · delve · goreleaser |
+| **Observability** | bottom · procs · dust · duf · bandwhich |
+| **Search & Nav** | ripgrep · fd · fzf · zoxide · broot · tlrc |
+| **Editor TUI** | neovim · tmux · lazygit · fzf · ripgrep |
+| **Shell Sugar** | zoxide · atuin · fzf · thefuck · direnv |
+| **Docs Writer** | glow · pandoc · vale · lychee |
+| **Security** | gitleaks · trivy · grype · age · sops |
+| **Network** | httpie · xh · curlie · doggo · gping |
+| **Media** | ffmpeg · imagemagick · yt-dlp · exiftool · chafa |
+
+```bash
+iterm-studio apply data-wrangler --with-tools   # theme + brew install the bundle
+iterm-studio apply data-wrangler                # theme + wire the hooks; install later
+```
+
+Switching to a non-stack theme removes the tools block; `revert` removes
+everything.
 
 ## Power-ups
 
@@ -136,7 +180,7 @@ must run on a clean macOS with no `pip install`.
 | File | Role |
 |---|---|
 | `iterm-studio` | CLI + local one-click server (Python 3.9+, stdlib only) |
-| `build.py` | source of truth for the 121 presets |
+| `build.py` | source of truth for the 139 presets |
 | `presets.json` / `presets.js` | generated — committed, never hand-edited |
 | `app.html` | the picker UI (`__MODE__` = `local` when served, `web` when published) |
 | `tests/` | run by CI (`.github/workflows/ci.yml`) and `make test` |

@@ -22,11 +22,6 @@ WIN = {
 }
 FLAVOR_CYCLE = ["lean2", "powerline", "pill", "minimal", "rainbow"]
 
-TOOLS = {
-    "modern-cli": ["eza", "bat", "fd", "fzf", "zoxide", "git-delta", "zsh-fast-syntax-highlighting"],
-    "dev-stack":  ["eza", "bat", "fzf", "zoxide", "atuin", "git-delta", "btop"],
-}
-
 _presets = []
 
 def P(pid, name, cat, flavor, base6, ansi16, *, font="MesloLGS NF", win=None, tools=None):
@@ -40,7 +35,7 @@ def P(pid, name, cat, flavor, base6, ansi16, *, font="MesloLGS NF", win=None, to
         "id": pid, "name": name, "category": cat, "flavor": flavor,
         "blurb": BLURB.get(pid, ""),
         "window": {"transparency": t, "blur": b, "cursor": c, "font": font},
-        "tools": tools or TOOLS.get(pid, []),
+        "tools": tools or [],
         "colors": {
             "fg": "#" + fg, "bg": "#" + bg, "cursor": "#" + cur, "cursorText": "#" + curT,
             "selection": "#" + sel, "selectedText": "#" + selT, "ansi": ["#" + x for x in ansi],
@@ -112,8 +107,6 @@ BLURB = {
  "railscasts": "The mid-2000s screencast staple — warm, brown, amber.",
  "spacegray": "Understated blue-grey with muted accents.",
  "twilight": "Old TextMate warmth — tan, olive, dusty blue.",
- "modern-cli": "Catppuccin Frappé + a modern toolbelt: eza, bat, fzf, fd, zoxide, delta.",
- "dev-stack": "Gruvbox + eza, bat, fzf, zoxide, atuin, delta, btop. The works.",
 }
 
 # ---- curated schemes ----------------------------------------------------- #
@@ -306,14 +299,6 @@ P("spacegray","Spacegray","dark","minimal",
 P("twilight","Twilight","warm","lean2",
   "ffffff 141414 ffffff 141414 313131 ffffff",
   "141414 c06d4d cf9a4e 87af5f 5f87af 5f5f87 5f8787 ffffd7 262626 c06d4d cf9a4e 87af5f 5f87af 5f5f87 5f8787 ffffff")
-P("modern-cli","Modern CLI","stack","powerline",
-  "c6d0f5 303446 f2d5cf 303446 414559 c6d0f5",
-  "51576d e78284 a6d189 e5c890 8caaee f4b8e4 81c8be b5bfe2 626880 e78284 a6d189 e5c890 8caaee f4b8e4 81c8be a5adce",
-  font="JetBrainsMono Nerd Font")
-P("dev-stack","Dev Stack","stack","powerline",
-  "ebdbb2 1d2021 ebdbb2 1d2021 3c3836 ebdbb2",
-  "282828 cc241d 98971a d79921 458588 b16286 689d6a a89984 928374 fb4934 b8bb26 fabd2f 83a598 d3869b 8ec07c ebdbb2")
-
 # --------------------------------------------------------------------------- #
 #  procedurally generated "creative" families — coherent HSL ramps
 # --------------------------------------------------------------------------- #
@@ -413,6 +398,84 @@ GEN = [
 ]
 for g in GEN:
     make(g[0], g[1], g[2], g[3], g[4], mode=g[5], accent_s=g[6], tint=g[7])
+
+# --------------------------------------------------------------------------- #
+#  stacks — a theme + a tool bundle. `iterm-studio apply <id> --with-tools`
+#  brew-installs the tools; either way the shell hooks + aliases get wired in.
+#  Colours are borrowed from an existing preset so the palette stays curated.
+# --------------------------------------------------------------------------- #
+def STACK(pid, name, base_id, flavor, blurb, tools, font="MesloLGS NF"):
+    src = next(p for p in _presets if p["id"] == base_id)
+    c = src["colors"]
+    BLURB[pid] = blurb
+    P(pid, name, "stack", flavor,
+      " ".join(c[k][1:] for k in ("fg", "bg", "cursor", "cursorText", "selection", "selectedText")),
+      " ".join(x[1:] for x in c["ansi"]), font=font, tools=tools)
+
+STACKS = [
+ ("modern-cli", "Modern CLI", "catppuccin-frappe", "powerline",
+  "The everyday upgrade — ls→eza, cat→bat, plus fd, fzf and zoxide (z) wired in.",
+  ["eza", "bat", "fd", "fzf", "zoxide", "git-delta"], "JetBrainsMono Nerd Font"),
+ ("dev-stack", "Dev Stack", "gruvbox-dark-hard", "powerline",
+  "Modern CLI plus atuin shell history and the btop monitor. A well-rounded daily driver.",
+  ["eza", "bat", "fd", "fzf", "zoxide", "git-delta", "atuin", "btop"]),
+ ("git-power", "Git Power", "catppuccin-macchiato", "powerline",
+  "lazygit + gitui TUIs, gh, difftastic and git-absorb. Live in your history.",
+  ["lazygit", "gitui", "gh", "difftastic", "git-delta", "git-absorb"]),
+ ("cloud-native", "Cloud Native", "nord", "powerline",
+  "kubectl, k9s, kubectx/kubens, helm and stern — a full Kubernetes cockpit — with OpenTofu alongside.",
+  ["kubectl", "k9s", "kubectx", "helm", "stern", "opentofu"]),
+ ("container-ops", "Container Ops", "carbonfox", "powerline",
+  "lazydocker, dive image-layer inspection and the ctop live view.",
+  ["lazydocker", "dive", "ctop"]),
+ ("data-wrangler", "Data Wrangler", "kanagawa-wave", "lean2",
+  "jq + yq for JSON/YAML, jless and fx to browse it, Miller and csvlens for CSV, VisiData for the rest.",
+  ["jq", "yq", "jless", "fx", "miller", "csvlens", "visidata"]),
+ ("infra-as-code", "Infra as Code", "everforest-dark", "minimal",
+  "OpenTofu, Terragrunt, tflint and Ansible — plan, lint and converge.",
+  ["opentofu", "terragrunt", "tflint", "ansible"]),
+ ("python-dev", "Python Dev", "tokyo-night", "lean2",
+  "uv (the fast installer/runner), ruff, pipx, IPython and pyenv — with pyenv init wired.",
+  ["uv", "ruff", "pipx", "ipython", "pyenv"]),
+ ("node-dev", "Node Dev", "night-owl", "lean2",
+  "fnm (auto-switch on cd), pnpm, Deno and Watchman.",
+  ["fnm", "pnpm", "deno", "watchman"]),
+ ("rust-dev", "Rust Dev", "gruvbox-material-dark", "lean2",
+  "rustup on PATH, plus bacon, hyperfine and tokei.",
+  ["rustup", "bacon", "hyperfine", "tokei"]),
+ ("go-dev", "Go Dev", "one-dark", "powerline",
+  "The Go toolchain, golangci-lint, Delve and GoReleaser; ~/go/bin on PATH.",
+  ["go", "golangci-lint", "delve", "goreleaser"]),
+ ("observability", "Observability", "ayu-mirage", "minimal",
+  "bottom, procs, dust, duf and bandwhich — see what your machine is actually doing.",
+  ["bottom", "procs", "dust", "duf", "bandwhich"]),
+ ("search-nav", "Search & Nav", "rose-pine", "lean2",
+  "ripgrep, fd, fzf, zoxide and the broot tree navigator, plus tldr pages.",
+  ["ripgrep", "fd", "fzf", "zoxide", "broot", "tlrc"]),
+ ("editor-tui", "Editor TUI", "kanagawa-dragon", "lean2",
+  "Neovim, tmux, lazygit, fzf and ripgrep — a terminal IDE in five installs.",
+  ["neovim", "tmux", "lazygit", "fzf", "ripgrep"]),
+ ("shell-sugar", "Shell Sugar", "dracula", "rainbow",
+  "zoxide, atuin, fzf, thefuck and direnv — every quality-of-life hook, wired up.",
+  ["zoxide", "atuin", "fzf", "thefuck", "direnv"]),
+ ("docs-writer", "Docs Writer", "rose-pine-dawn", "lean2",
+  "glow to preview Markdown, pandoc to convert it, Vale to lint prose, lychee to check links.",
+  ["glow", "pandoc", "vale", "lychee"]),
+ ("security", "Security", "mono-green", "minimal",
+  "gitleaks and grype/trivy scanning, age encryption and sops for secrets.",
+  ["gitleaks", "trivy", "grype", "age", "sops"]),
+ ("network", "Network", "cobalt2", "powerline",
+  "HTTPie + xh + curlie for APIs, doggo for DNS, gping for latency.",
+  ["httpie", "xh", "curlie", "doggo", "gping"]),
+ ("media", "Media", "synthwave-84", "rainbow",
+  "ffmpeg, ImageMagick, yt-dlp, exiftool and chafa (images in the terminal).",
+  ["ffmpeg", "imagemagick", "yt-dlp", "exiftool", "chafa"]),
+ ("fast-path", "Fast Path", "vitesse-dark", "minimal",
+  "The speed picks only — eza, bat, fd, ripgrep, fzf, zoxide — nothing you won't use daily.",
+  ["eza", "bat", "fd", "ripgrep", "fzf", "zoxide"]),
+]
+for s in STACKS:
+    STACK(*s)
 
 # --------------------------------------------------------------------------- #
 for i, p in enumerate(_presets):
