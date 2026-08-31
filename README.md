@@ -4,7 +4,13 @@ Pick a terminal look from **121 presets** and apply it to this Mac — colours,
 transparency, blur, cursor, font, and a matching Powerlevel10k prompt — in one
 click.
 
-![CI](https://img.shields.io/badge/tests-passing-brightgreen)
+**Browse all 121 → https://marcfs31.github.io/iterm-studio/**
+
+[![CI](https://github.com/marcfs31/iterm-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/marcfs31/iterm-studio/actions/workflows/ci.yml)
+[![Pages](https://github.com/marcfs31/iterm-studio/actions/workflows/pages.yml/badge.svg)](https://github.com/marcfs31/iterm-studio/actions/workflows/pages.yml)
+
+The hosted page is the read-only gallery — each **Apply** copies the exact
+command. For real one-click applying, run `iterm-studio serve` locally (below).
 
 ## Quick start
 
