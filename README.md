@@ -12,6 +12,60 @@ click.
 The hosted page is the read-only gallery — each **Apply** copies the exact
 command. For real one-click applying, run `iterm-studio serve` locally (below).
 
+## About
+
+Trying a new terminal look on macOS normally means three chores in three places:
+hand-editing an `.itermcolors` profile, finding a Nerd Font, and re-running
+`p10k configure` — and undoing it later is guesswork. **iTerm Studio turns the
+whole look into one atomic, reversible operation.**
+
+- **`build.py`** is the single source of truth: **121 presets** compiled to
+  `presets.json`. Roughly two-thirds are faithful ports of well-known schemes
+  (Tokyo Night, Catppuccin, Rosé Pine, Gruvbox, Kanagawa, Nightfox, Dracula,
+  Nord, Solarized, Ayu, Material, GitHub, Monokai, Night Owl, …); the rest are
+  procedurally generated single-hue palettes (Ember, Moss, Lagoon, Iris, Nebula,
+  Mono Amber, Blueprint, …). Six families — **dark 67 · light 20 · warm 19 ·
+  neon 8 · mono 5 · stacks 2** — and five Powerlevel10k prompt shapes
+  (`lean2`, `powerline`, `pill`, `minimal`, `rainbow`) with a right-aligned
+  command-execution-time segment.
+- **Two front-ends, one page.** The static gallery on GitHub Pages lets you
+  compare all 121 (every preview is the *same* shell session, so you judge
+  colour not content) and copy the command. `iterm-studio serve` serves the
+  identical page from `127.0.0.1`, where the buttons hit a tiny local API and
+  **apply for real on one click** — with a live "what's active" bar and a
+  **Revert** button.
+- **Applying is three managed pieces:** an iTerm2 Dynamic Profile named
+  *Studio*, a marker-delimited block in `~/.p10k.zsh`, and one in `~/.zshrc`.
+  `iterm-studio revert` removes exactly those and restores your previous default
+  profile; your original `~/.p10k.zsh` is copied to
+  `~/.p10k.zsh.iterm-studio-orig` first. Nothing else in your dotfiles is
+  touched.
+- **No runtime dependencies.** `iterm-studio` is a single Python 3.9+ script,
+  standard library only — it runs on a clean macOS with no `pip install`.
+
+The picker also has live search, category filters, keyboard-accessible controls,
+`prefers-reduced-motion` / `prefers-color-scheme` support, and an
+**English / Español** toggle.
+
+## Screenshots
+
+The gallery, in the viewer's light or dark theme:
+
+| Dark | Light |
+|---|---|
+| ![iTerm Studio picker, dark theme](docs/screenshots/picker-dark.png) | ![iTerm Studio picker, light theme](docs/screenshots/picker-light.png) |
+
+One-click apply when served locally — the status bar tracks what's active and
+the toast confirms the profile and prompt were written:
+
+![Applying Kanagawa Wave with one click](docs/screenshots/apply.png)
+
+Live search + category filters, and the fully-translated Spanish UI:
+
+| Search & filter | Español |
+|---|---|
+| ![Searching the 121 presets](docs/screenshots/search.png) | ![Spanish interface](docs/screenshots/espanol.png) |
+
 ## Quick start
 
 ```bash
