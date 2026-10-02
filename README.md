@@ -8,6 +8,7 @@ click.
 
 [![CI](https://github.com/marcfs31/iterm-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/marcfs31/iterm-studio/actions/workflows/ci.yml)
 [![Pages](https://github.com/marcfs31/iterm-studio/actions/workflows/pages.yml/badge.svg)](https://github.com/marcfs31/iterm-studio/actions/workflows/pages.yml)
+[![Support · 1,99 €](https://img.shields.io/badge/Support-1%2C99_%E2%82%AC-2f855a)](https://marcfors.com/donate?from=iterm-studio)
 
 The hosted page is the read-only gallery — each **Apply** copies the exact
 command. For real one-click applying, run `iterm-studio serve` locally (below).
@@ -188,3 +189,5 @@ must run on a clean macOS with no `pip install`.
 ## License
 
 [MIT](LICENSE) © 2026 Marc Fors
+
+If this project is useful to you, you can [support it with 1,99 €](https://marcfors.com/donate?from=iterm-studio).

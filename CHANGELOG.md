@@ -7,6 +7,7 @@ this project aims to follow [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Support · 1,99 € link in the picker footer (English and Spanish) and a README badge.
 - **20 stack presets** (was 2): Modern CLI, Dev Stack, Fast Path, Git Power,
   Cloud Native, Container Ops, Infra as Code, Data Wrangler, Python/Node/Rust/Go
   Dev, Observability, Search & Nav, Editor TUI, Shell Sugar, Docs Writer,
