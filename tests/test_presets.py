@@ -111,6 +111,19 @@ class Renderer(unittest.TestCase):
         for marker in ("__MODE__", "__TOKEN__", "/*__PRESETS__*/[]"):
             self.assertIn(marker, tpl)
 
+    def test_support_link(self):
+        tpl = (ROOT / "app.html").read_text()
+        m = re.search(r'<a\b[^>]*\bid="support"[^>]*>([^<]*)</a>', tpl)
+        self.assertIsNotNone(m, "support link missing from app.html footer")
+        tag = m.group(0)
+        self.assertIn('href="https://marcfors.com/donate?from=iterm-studio"', tag)
+        self.assertIn('target="_blank"', tag)
+        self.assertIn('rel="noopener noreferrer"', tag)
+        self.assertEqual(m.group(1), "Support \u00b7 1,99 \u20ac")
+        # every shipped locale carries a translated label
+        self.assertIn('support:"Support \u00b7 1,99 \u20ac"', tpl)
+        self.assertIn('support:"Apoyar \u00b7 1,99 \u20ac"', tpl)
+
 
 if __name__ == "__main__":
     unittest.main()
